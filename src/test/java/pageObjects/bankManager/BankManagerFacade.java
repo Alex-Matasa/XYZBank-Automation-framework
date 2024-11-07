@@ -69,9 +69,9 @@ public class BankManagerFacade extends BasePage {
         LoggerUtility.info("Clicked on Home button");
     }
 
-    public void deleteCustomer(AddCustomerData addCustomerData) {
+    public void deleteCustomer(AddCustomerData addCustomerData, CustomerAccountData customerAccountData) {
         navigateToPage(customers);
-        customersPage.deleteCustomer(addCustomerData);
+        customersPage.deleteCustomer(addCustomerData, customerAccountData);
     }
 
 

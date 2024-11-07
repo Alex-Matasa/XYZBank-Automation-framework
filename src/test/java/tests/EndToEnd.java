@@ -46,7 +46,7 @@ public class EndToEnd extends Hooks {
         customerAccountFacade.logout();
         customerAccountFacade.clickOnHomeButton();
         loginPage.clickOnBankManagerLogin();
-        bankManagerFacade.deleteCustomer(addCustomerData);
+        bankManagerFacade.deleteCustomer(addCustomerData,customerAccountData);
 
     }
 
