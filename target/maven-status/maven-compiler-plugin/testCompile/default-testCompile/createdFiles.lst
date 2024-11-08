@@ -1,0 +1,12 @@
+userActions\AlertsMethods.class
+pageObjects\CustomersPage.class
+tests\Hooks.class
+pageObjects\LoginPage.class
+pageObjects\BasePage.class
+pageObjects\ManagerPage.class
+sharedData\Driver.class
+tests\OpenNewCustomerAccount.class
+userActions\WebElementsMethods.class
+userActions\AssertionsMethods.class
+pageObjects\AddCustomerPage.class
+pageObjects\OpenAccountPage.class
