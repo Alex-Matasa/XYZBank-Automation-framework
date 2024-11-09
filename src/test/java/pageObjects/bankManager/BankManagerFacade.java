@@ -20,16 +20,10 @@ public class BankManagerFacade extends BasePage {
     private WebElement openAccountButton;
     @FindBy(xpath = "//button[@ng-click='showCust()']")
     private WebElement customersButton;
-    @FindBy(xpath = "//button[@class='btn home']")
-    private WebElement homeButton;
-
 
     private AddCustomerPage addCustomerPage;
     private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
-    private String addCustomer = "Add Customer";
-    private String openAccount = "Open Account";
-    private String customers = "Customers";
 
     public void navigateToPage(String pageName) {
         switch (pageName) {
@@ -52,24 +46,19 @@ public class BankManagerFacade extends BasePage {
     }
 
     public void addCustomer(CustomerData customerData) {
-        navigateToPage(addCustomer);
+        navigateToPage("Add Customer");
         addCustomerPage.fillEntireFormAndSubmit(customerData);
     }
 
     public void openAccount(CustomerData customerData) {
-        navigateToPage(openAccount);
+        navigateToPage("Open Account");
         openAccountPage.openNewAccount(customerData.getAccounts().get(0), customerData );
-        navigateToPage(customers);
+        navigateToPage("Customers");
         customersPage.validateLastEntry(customerData);
     }
 
-    public void clickOnHomeButton() {
-        webElementsMethods.clickOn(homeButton);
-        LoggerUtility.info("Clicked on Home button");
-    }
-
     public void deleteCustomer(CustomerData customerData) {
-        navigateToPage(customers);
+        navigateToPage("Customers");
         customersPage.deleteCustomer(customerData);
     }
 

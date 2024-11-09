@@ -36,8 +36,6 @@ public class CustomerAccountFacade extends BasePage {
     private WebElement balanceInfo;
     @FindBy(xpath = "//button[@ng-click='byebye()']")
     private WebElement logoutButton;
-    @FindBy(xpath = "//button[@class='btn home']")
-    private WebElement homeButton;
 
     private final  String transactions = "Transactions";
     private final  String deposit = "Deposit";
@@ -127,12 +125,6 @@ public class CustomerAccountFacade extends BasePage {
         logoutButton.click();
         LoggerUtility.info("Clicked on logout button");
     }
-
-    public void clickOnHomeButton() {
-        webElementsMethods.clickOn(homeButton);
-        LoggerUtility.info("Clicked on Home button");
-    }
-
 
     /////   helper methods ////
 
