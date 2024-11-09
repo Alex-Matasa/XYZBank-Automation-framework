@@ -1,8 +1,7 @@
 package pageObjects.bankManager;
 
-import dataObjects.AddCustomerData;
-import dataObjects.CustomerAccountData;
-import dataObjects.OpenAccountData;
+import dataObjects.CustomerData;
+import dataObjects.AccountData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -52,16 +51,16 @@ public class BankManagerFacade extends BasePage {
         }
     }
 
-    public void addCustomer(AddCustomerData addCustomerData, CustomerAccountData customerAccountData) {
+    public void addCustomer(CustomerData customerData) {
         navigateToPage(addCustomer);
-        addCustomerPage.fillEntireFormAndSubmit(addCustomerData, customerAccountData);
+        addCustomerPage.fillEntireFormAndSubmit(customerData);
     }
 
-    public void openAccount(AddCustomerData addCustomerData, OpenAccountData openAccountData, CustomerAccountData customerAccountData) {
+    public void openAccount(CustomerData customerData) {
         navigateToPage(openAccount);
-        openAccountPage.openNewAccount(openAccountData, addCustomerData, customerAccountData);
+        openAccountPage.openNewAccount(customerData.getAccounts().get(0), customerData );
         navigateToPage(customers);
-        customersPage.validateLastEntry(addCustomerData, customerAccountData);
+        customersPage.validateLastEntry(customerData);
     }
 
     public void clickOnHomeButton() {
@@ -69,9 +68,9 @@ public class BankManagerFacade extends BasePage {
         LoggerUtility.info("Clicked on Home button");
     }
 
-    public void deleteCustomer(AddCustomerData addCustomerData, CustomerAccountData customerAccountData) {
+    public void deleteCustomer(CustomerData customerData) {
         navigateToPage(customers);
-        customersPage.deleteCustomer(addCustomerData, customerAccountData);
+        customersPage.deleteCustomer(customerData);
     }
 
 

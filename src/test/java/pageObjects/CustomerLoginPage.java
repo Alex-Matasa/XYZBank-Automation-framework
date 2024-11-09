@@ -1,7 +1,6 @@
 package pageObjects;
 
-import dataObjects.AddCustomerData;
-import dataObjects.CustomerAccountData;
+import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,8 +18,8 @@ public class CustomerLoginPage extends BasePage{
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement loginButton;
 
-    public void selectName(CustomerAccountData customerAccountData) {
-        webElementsMethods.select(selectName, customerAccountData.getFullName());
+    public void selectName(CustomerData customerData) {
+        webElementsMethods.select(selectName, customerData.getFullName());
         LoggerUtility.info("Name is selected");
     }
 

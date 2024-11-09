@@ -1,0 +1,49 @@
+{
+  "customers":
+  [
+    {
+      "firstName": "Customer1FirstName",
+      "lastName": "Customer1LastName",
+      "postCode": "12345",
+      "customerId": "",
+      "accounts": [
+        {
+          "currency": "Dollar",
+          "accountId": "",
+          "balance": "0",
+          "transactions": [
+            {
+              "type": "deposit",
+              "amount": "400"
+            },
+            {
+              "type": "deposit",
+              "amount": "100"
+            }
+          ]
+        },
+        {
+          "currency": "Pound",
+          "accountId": "",
+          "balance": "0",
+          "transactions": [
+            {
+              "type": "deposit",
+              "amount": "400"
+            },
+            {
+              "type": "withdraw",
+              "amount": "100"
+            }
+          ]
+        },
+        {
+          "currency": "Rupee",
+          "accountId": ""
+        }
+      ]
+    }
+
+  ]
+
+}

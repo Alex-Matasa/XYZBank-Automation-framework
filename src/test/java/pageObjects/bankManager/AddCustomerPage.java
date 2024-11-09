@@ -1,7 +1,6 @@
 package pageObjects.bankManager;
 
-import dataObjects.AddCustomerData;
-import dataObjects.CustomerAccountData;
+import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,27 +37,26 @@ public class AddCustomerPage extends BasePage {
         System.out.println(errorMessage);
     }
 
-    public void enterFirstName(AddCustomerData addCustomerData) {
-        fName.sendKeys(addCustomerData.getFirstName());
+    public void enterFirstName(CustomerData customerData) {
+        fName.sendKeys(customerData.getFirstName());
         LoggerUtility.info("Entered First Name");
     }
 
-    public void enterLastName(AddCustomerData addCustomerData) {
-        lName.sendKeys(addCustomerData.getLastName());
+    public void enterLastName(CustomerData customerData) {
+        lName.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name");
     }
 
-    public void enterPostCode(AddCustomerData addCustomerData) {
-        postCode.sendKeys(addCustomerData.getPostCode());
+    public void enterPostCode(CustomerData customerData) {
+        postCode.sendKeys(customerData.getPostCode());
         LoggerUtility.info("Entered Post Code");
     }
 
-    public void fillEntireFormAndSubmit(AddCustomerData addCustomerData, CustomerAccountData customerAccountData) {
-        enterFirstName(addCustomerData);
-        enterLastName(addCustomerData);
-        customerAccountData.setFullName(addCustomerData.getFirstName() + " " + addCustomerData.getLastName());
-        enterPostCode(addCustomerData);
-        clickOnAddCustomerSubmissionButton(customerAccountData);
+    public void fillEntireFormAndSubmit(CustomerData customerData) {
+        enterFirstName(customerData);
+        enterLastName(customerData);
+        enterPostCode(customerData);
+        clickOnAddCustomerSubmissionButton(customerData);
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
         LoggerUtility.info("Customer is added successfully");
     }
@@ -66,12 +64,12 @@ public class AddCustomerPage extends BasePage {
 
     /////   helper methods  /////
 
-    private void clickOnAddCustomerSubmissionButton(CustomerAccountData customerAccountData) {
+    private void clickOnAddCustomerSubmissionButton(CustomerData customerData) {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
-        customerAccountData.setCustomerId(actualSuccessMessage.split(":")[1]);
+        customerData.setCustomerId(actualSuccessMessage.split(":")[1]);
     }
 
 

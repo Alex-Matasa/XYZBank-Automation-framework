@@ -1,7 +1,7 @@
 package pageObjects.bankManager;
 
-import dataObjects.AddCustomerData;
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
+import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,18 +31,20 @@ public class CustomersPage extends BasePage {
     private WebElement searchField;
 
 
-    public void validateLastEntry(AddCustomerData addCustomerData, CustomerAccountData customerAccountData){
+    public void validateLastEntry(CustomerData customerData){
 
-        List<String> lastCustomerAddedInfo =  List.of(addCustomerData.getFirstName(), addCustomerData.getLastName(), addCustomerData.getPostCode(), customerAccountData.getAccountId());
+        List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), customerData.getAccounts().get(0).getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(this.lastCustomerAddedInfo, lastCustomerAddedInfo));
         LoggerUtility.info("Last customer is added to the Customers table with correct info");
     }
 
-    public void deleteCustomer(AddCustomerData addCustomerData, CustomerAccountData customerAccountData) {
-        searchField.sendKeys(addCustomerData.getLastName());
+    public void deleteCustomer(CustomerData customerData) {
+        searchField.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
 
-        List<String> list = List.of(addCustomerData.getFirstName(), addCustomerData.getLastName(), addCustomerData.getPostCode(),customerAccountData.getAccountId());
+        AccountData accountData = customerData.getAccounts().get(0);
+
+        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountData.getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(allCustomersInfo, list));
 
         if(customersList.size() == 1) {

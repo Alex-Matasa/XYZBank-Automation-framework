@@ -1,16 +1,13 @@
 package pageObjects.bankManager;
 
-import dataObjects.AddCustomerData;
-import dataObjects.CustomerAccountData;
-import dataObjects.OpenAccountData;
+import dataObjects.CustomerData;
+import dataObjects.AccountData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
-
-import java.util.List;
 
 public class OpenAccountPage extends BasePage {
 
@@ -39,20 +36,18 @@ public class OpenAccountPage extends BasePage {
         LoggerUtility.info("Currency is selected");
     }
 
-    public void clickOnProcessButton(CustomerAccountData customerAccountData) {
+    public void clickOnProcessButton(CustomerData customerData) {
         webElementsMethods.clickOn(processButton);
         LoggerUtility.info("Clicked on Process button ");
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
-        customerAccountData.setAccountId(actualSuccessMessage.split(":")[1]);
+        customerData.getAccounts().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
     }
 
-    public void openNewAccount(OpenAccountData openAccountData, AddCustomerData addCustomerData, CustomerAccountData customerAccountData){
-        selectCustomer(customerAccountData.getFullName());
-        selectCurrency(openAccountData.getCurrency());
-        customerAccountData.setCurrency(openAccountData.getCurrency());
-        clickOnProcessButton(customerAccountData);
-        customerAccountData.setBalance("0");
+    public void openNewAccount(AccountData accountData, CustomerData customerData){
+        selectCustomer(customerData.getFullName());
+        selectCurrency(accountData.getCurrency());
+        clickOnProcessButton(customerData);
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Account created successfully with account Number"));
         LoggerUtility.info("Account is created successfully");
     }

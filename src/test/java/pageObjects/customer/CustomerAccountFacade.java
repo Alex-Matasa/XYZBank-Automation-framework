@@ -1,7 +1,8 @@
 package pageObjects.customer;
 
 
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
+import dataObjects.CustomerData;
 import dataObjects.TransactionsData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -46,9 +47,10 @@ public class CustomerAccountFacade extends BasePage {
     private DepositPage depositPage;
     private WithdrawPage withdrawPage;
 
-    public void validateAccountInfo(CustomerAccountData customerAccountData){
-        Assert.assertTrue(assertionsMethods.validateText(welcome, customerAccountData.getFullName()));
-        List<String> customerAccountInfo = List.of(customerAccountData.getAccountId(), customerAccountData.getBalance(), customerAccountData.getCurrency());
+    public void validateAccountInfo(CustomerData customerData){
+        AccountData accountData = customerData.getAccounts().get(0);
+        Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
+        List<String> customerAccountInfo = List.of(accountData.getAccountId(), accountData.getBalance(), accountData.getCurrency());
         Assert.assertTrue(assertionsMethods.validateText(accountInfoDisplayed, customerAccountInfo));
         LoggerUtility.info("Correct account info are displayed");
     }
@@ -74,27 +76,45 @@ public class CustomerAccountFacade extends BasePage {
         }
     }
 
-    public void depositMoney(CustomerAccountData customerAccountData, TransactionsData transactionsData) {
+    public void depositMoney(CustomerData customerData) {
         navigateToPage(deposit);
-        depositPage.deposit(transactionsData, customerAccountData);
-        List <String> info = List.of(getDateAndTIme(), transactionsData.getDepositAmount(), "Credit");
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
+        depositPage.deposit(transactionsData, customerData, accountData);
+        List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Credit");
         transactionsData.setDepositHistory(info);
 
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, customerAccountData.getBalance()));
+        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void withdrawMoney(CustomerAccountData customerAccountData, TransactionsData transactionsData) {
+    public void withdrawMoney(CustomerData customerData) {
         navigateToPage(withdraw);
-        withdrawPage.withdraw(transactionsData, customerAccountData);
-        List <String> info = List.of(getDateAndTIme(), transactionsData.getWithdrawAmount(), "Debit");
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
+        withdrawPage.withdraw(transactionsData, customerData,accountData);
+        List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Debit");
         transactionsData.setWithdrawHistory(info);
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, customerAccountData.getBalance()));
+        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public void validateTransactionHistory(TransactionsData transactionsData, CustomerAccountData customerAccountData) {
+    public void validateTransactionHistory(CustomerData customerData) {
         navigateToPage(transactions);
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
 
         Assert.assertTrue(transactionsPage.validateDepositHistory(transactionsData));
         LoggerUtility.info("Validated deposit history");
