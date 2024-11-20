@@ -62,6 +62,11 @@ public class BankManagerFacade extends BasePage {
         customersPage.deleteCustomer(customerData);
     }
 
+    public void validateCustomer(CustomerData customerData) {
+        navigateToPage("Customers");
+        customersPage.validateLastEntry(customerData);
+    }
+
 
 
 

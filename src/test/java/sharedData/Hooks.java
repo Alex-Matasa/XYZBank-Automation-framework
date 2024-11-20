@@ -18,7 +18,7 @@ public class Hooks extends Driver{
 
     @AfterMethod
     public void clearEnvironment() {
-//        quitDriver();
+        quitDriver();
     }
 
 

@@ -32,7 +32,6 @@ public class CustomersPage extends BasePage {
 
 
     public void validateLastEntry(CustomerData customerData){
-
         List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), customerData.getAccounts().get(0).getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(this.lastCustomerAddedInfo, lastCustomerAddedInfo));
         LoggerUtility.info("Last customer is added to the Customers table with correct info");
@@ -55,6 +54,8 @@ public class CustomersPage extends BasePage {
         Assert.assertTrue(customersList.isEmpty());
 
     }
+
+
 
 
 

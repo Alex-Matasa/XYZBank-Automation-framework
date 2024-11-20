@@ -24,6 +24,8 @@ public class CustomerAccountFacade extends BasePage {
 
     @FindBy(xpath = "//span[contains(@class, 'ng-binding')]")
     private WebElement welcome;
+    @FindBy(xpath = "//span[@ng-show='noAccount']")
+    private WebElement openAccountMessage;
     @FindBy(xpath = "//strong[@class='ng-binding']")
     private List<WebElement> accountInfoDisplayed;
     @FindBy(xpath = "//button[@ng-click='transactions()']")
@@ -51,6 +53,13 @@ public class CustomerAccountFacade extends BasePage {
         List<String> customerAccountInfo = List.of(accountData.getAccountId(), accountData.getBalance(), accountData.getCurrency());
         Assert.assertTrue(assertionsMethods.validateText(accountInfoDisplayed, customerAccountInfo));
         LoggerUtility.info("Correct account info are displayed");
+    }
+
+    public void validateWelcomingNoAccount(CustomerData customerData) {
+        Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
+        Assert.assertTrue(assertionsMethods.validatePartialText(openAccountMessage, "open an account"));
+        LoggerUtility.info("The correct message is displayed");
+
     }
 
     public void navigateToPage(String pageName) {

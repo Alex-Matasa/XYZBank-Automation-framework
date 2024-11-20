@@ -8,11 +8,9 @@ import java.io.IOException;
 public class BaseData {
 
     protected void fromJsonToObject(String filePath) {
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
-
             objectMapper.readerForUpdating(this).readValue(new File(filePath));
         } catch (IOException e) {
             e.printStackTrace();
@@ -20,7 +18,6 @@ public class BaseData {
     }
 
     protected void fromObjectToJson(String filePath) {
-
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {

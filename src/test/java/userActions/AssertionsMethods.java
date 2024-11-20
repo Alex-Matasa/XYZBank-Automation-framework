@@ -32,6 +32,10 @@ public class AssertionsMethods {
         return actual.contains(expected);
     }
 
+    public boolean validatePartialText(WebElement webElement, String expected) {
+        return webElement.getText().contains(expected);
+    }
+
     public boolean validateText(WebElement webElement, String text) {
         return webElement.getText().equals(text);
     }

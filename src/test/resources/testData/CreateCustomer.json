@@ -1,9 +1,27 @@
 {
-  "customers":
+  "customerData": [
     {
-      "firstName": "Customer1FirstName",
-      "lastName": "Customer1LastName",
+      "firstName": "Customer2FirstName",
+      "lastName": "Customer2LastName",
       "postCode": "12345",
-      "customerId": ""
+      "customerId": "",
+      "accounts": [
+        {
+          "currency": "",
+          "accountId": "",
+          "balance": "",
+          "transactions": [
+            {
+              "type": "",
+              "amount": ""
+            },
+            {
+              "type": "",
+              "amount": ""
+            }
+          ]
+        }
+      ]
     }
+  ]
 }
