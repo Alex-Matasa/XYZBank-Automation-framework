@@ -2,34 +2,34 @@
 <testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-20T02:23:55 EET" name="Command line suite" finished-at="2024-11-20T02:24:27 EET" duration-ms="32085">
+  <suite started-at="2024-11-20T02:29:29 EET" name="Command line suite" finished-at="2024-11-20T02:30:01 EET" duration-ms="31419">
     <groups>
     </groups>
-    <test started-at="2024-11-20T02:23:55 EET" name="Command line test" finished-at="2024-11-20T02:24:27 EET" duration-ms="32085">
+    <test started-at="2024-11-20T02:29:29 EET" name="Command line test" finished-at="2024-11-20T02:30:01 EET" duration-ms="31419">
       <class name="tests.SmokeTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:01 EET" name="prepareEnvironment" finished-at="2024-11-20T02:24:03 EET" duration-ms="2672" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:29:36 EET" name="prepareEnvironment" finished-at="2024-11-20T02:29:38 EET" duration-ms="2749" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="smoke()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:03 EET" name="smoke" finished-at="2024-11-20T02:24:26 EET" duration-ms="22961" status="PASS">
+        <test-method signature="smoke()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:29:38 EET" name="smoke" finished-at="2024-11-20T02:30:00 EET" duration-ms="22001" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- smoke -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:26 EET" name="clearEnvironment" finished-at="2024-11-20T02:24:27 EET" duration-ms="243" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:30:00 EET" name="clearEnvironment" finished-at="2024-11-20T02:30:01 EET" duration-ms="165" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.SmokeTest -->
       <class name="tests.CreateCustomerTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:23:55 EET" name="prepareEnvironment" finished-at="2024-11-20T02:23:58 EET" duration-ms="2910" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:29:29 EET" name="prepareEnvironment" finished-at="2024-11-20T02:29:32 EET" duration-ms="3233" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="createCustomer()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:23:58 EET" name="createCustomer" finished-at="2024-11-20T02:24:01 EET" duration-ms="3100" status="PASS">
+        <test-method signature="createCustomer()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:29:32 EET" name="createCustomer" finished-at="2024-11-20T02:29:35 EET" duration-ms="3029" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- createCustomer -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:24:01 EET" name="clearEnvironment" finished-at="2024-11-20T02:24:01 EET" duration-ms="170" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:29:35 EET" name="clearEnvironment" finished-at="2024-11-20T02:29:36 EET" duration-ms="204" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
