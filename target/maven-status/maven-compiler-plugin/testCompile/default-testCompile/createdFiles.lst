@@ -14,6 +14,7 @@ sharedData\Driver.class
 pageObjects\customer\DepositPage.class
 dataObjects\DataModel.class
 pageObjects\bankManager\OpenAccountPage.class
+tests\CreateCustomerTest.class
 dataObjects\AccountData.class
 pageObjects\LoginPage.class
 userActions\WebElementsMethods.class

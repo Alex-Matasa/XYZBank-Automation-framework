@@ -9,7 +9,7 @@ import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 
-public class CreateCustomer extends Hooks {
+public class CreateCustomerTest extends Hooks {
 
     @Test
     public void createCustomer() {

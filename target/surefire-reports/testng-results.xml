@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="2" passed="2" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2024-11-09T23:32:50 EET" name="tests.SmokeTest" finished-at="2024-11-09T23:33:13 EET" duration-ms="23168">
+  <suite started-at="2024-11-20T02:23:55 EET" name="Command line suite" finished-at="2024-11-20T02:24:27 EET" duration-ms="32085">
     <groups>
     </groups>
-    <test started-at="2024-11-09T23:32:50 EET" name="Command line test" finished-at="2024-11-09T23:33:13 EET" duration-ms="23168">
+    <test started-at="2024-11-20T02:23:55 EET" name="Command line test" finished-at="2024-11-20T02:24:27 EET" duration-ms="32085">
       <class name="tests.SmokeTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.SmokeTest@4f9a3314]" started-at="2024-11-09T23:32:50 EET" name="prepareEnvironment" finished-at="2024-11-09T23:32:53 EET" duration-ms="2845" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:01 EET" name="prepareEnvironment" finished-at="2024-11-20T02:24:03 EET" duration-ms="2672" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="smoke()[pri:0, instance:tests.SmokeTest@4f9a3314]" started-at="2024-11-09T23:32:53 EET" name="smoke" finished-at="2024-11-09T23:33:13 EET" duration-ms="20290" status="PASS">
+        <test-method signature="smoke()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:03 EET" name="smoke" finished-at="2024-11-20T02:24:26 EET" duration-ms="22961" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- smoke -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.SmokeTest@4f9a3314]" started-at="2024-11-09T23:33:13 EET" name="clearEnvironment" finished-at="2024-11-09T23:33:13 EET" duration-ms="1" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.SmokeTest@75c072cb]" started-at="2024-11-20T02:24:26 EET" name="clearEnvironment" finished-at="2024-11-20T02:24:27 EET" duration-ms="243" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.SmokeTest -->
+      <class name="tests.CreateCustomerTest">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:23:55 EET" name="prepareEnvironment" finished-at="2024-11-20T02:23:58 EET" duration-ms="2910" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- prepareEnvironment -->
+        <test-method signature="createCustomer()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:23:58 EET" name="createCustomer" finished-at="2024-11-20T02:24:01 EET" duration-ms="3100" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- createCustomer -->
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.CreateCustomerTest@564718df]" started-at="2024-11-20T02:24:01 EET" name="clearEnvironment" finished-at="2024-11-20T02:24:01 EET" duration-ms="170" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearEnvironment -->
+      </class> <!-- tests.CreateCustomerTest -->
     </test> <!-- Command line test -->
-  </suite> <!-- tests.SmokeTest -->
+  </suite> <!-- Command line suite -->
 </testng-results>
