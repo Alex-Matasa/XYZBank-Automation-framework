@@ -1,16 +1,13 @@
 {
-  "customerData":
-  [
+  "customerData": [
     {
       "firstName": "Hermoine",
       "lastName": "Granger"
     }
   ],
-
-  "customerAccountData": [
+  "accountData": [
     {
-    "currency": "Dollar"
-  }
-]
-
+      "currency": "Dollar"
+    }
+  ]
 }

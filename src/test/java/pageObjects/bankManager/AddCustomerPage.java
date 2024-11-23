@@ -1,6 +1,5 @@
 package pageObjects.bankManager;
 
-import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -57,27 +56,27 @@ public class AddCustomerPage extends BasePage {
         enterFirstName(customerData);
         enterLastName(customerData);
         enterPostCode(customerData);
-        clickOnAddCustomerSubmissionButton(customerData);
-        Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
-        LoggerUtility.info("Customer is added successfully");
+        clickOnSubmitButton(customerData);
     }
+
+
 
 
     /////   helper methods  /////
 
-    private void clickOnAddCustomerSubmissionButton(CustomerData customerData) {
+    private void clickOnSubmitButton(CustomerData customerData) {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
-
-        customerData.setFirstName(customerData.getFirstName());
-        customerData.setLastName(customerData.getLastName());
-        customerData.setPostCode(customerData.getPostCode());
-        customerData.setFullName(customerData.getFullName());
 
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
         customerData.setCustomerId(actualSuccessMessage.split(":")[1]);
+
+        Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
+        LoggerUtility.info("Validated successful message");
     }
+
+
 
 
 }

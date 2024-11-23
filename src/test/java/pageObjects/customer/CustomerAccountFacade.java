@@ -1,7 +1,7 @@
 package pageObjects.customer;
 
 
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
 import dataObjects.CustomerData;
 import dataObjects.TransactionsData;
 import loggerUtility.LoggerUtility;
@@ -48,9 +48,9 @@ public class CustomerAccountFacade extends BasePage {
     private WithdrawPage withdrawPage;
 
     public void validateAccountInfo(CustomerData customerData){
-        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccounts().get(0);
         Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
-        List<String> customerAccountInfo = List.of(customerAccountData.getAccountId(), customerAccountData.getBalance(), customerAccountData.getCurrency());
+        List<String> customerAccountInfo = List.of(accountData.getAccountId(), accountData.getBalance(), accountData.getCurrency());
         Assert.assertTrue(assertionsMethods.validateText(accountInfoDisplayed, customerAccountInfo));
         LoggerUtility.info("Correct account info are displayed");
     }
@@ -58,7 +58,7 @@ public class CustomerAccountFacade extends BasePage {
     public void validateWelcomingNoAccount(CustomerData customerData) {
         Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
         Assert.assertTrue(assertionsMethods.validatePartialText(openAccountMessage, "open an account"));
-        LoggerUtility.info("The correct message is displayed");
+        LoggerUtility.info("Validated successful message");
 
     }
 
@@ -85,13 +85,13 @@ public class CustomerAccountFacade extends BasePage {
 
     public void depositMoney(CustomerData customerData) {
         navigateToPage(deposit);
-        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = customerAccountData.getTransactions().get(0);
-        depositPage.deposit(transactionsData, customerData, customerAccountData);
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
+        depositPage.deposit(transactionsData, customerData, accountData);
         List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Credit");
         transactionsData.setDepositHistory(info);
 
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, customerAccountData.getBalance()));
+        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
 
         try {
@@ -103,12 +103,12 @@ public class CustomerAccountFacade extends BasePage {
 
     public void withdrawMoney(CustomerData customerData) {
         navigateToPage(withdraw);
-        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = customerAccountData.getTransactions().get(0);
-        withdrawPage.withdraw(transactionsData, customerData, customerAccountData);
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
+        withdrawPage.withdraw(transactionsData, customerData, accountData);
         List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Debit");
         transactionsData.setWithdrawHistory(info);
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, customerAccountData.getBalance()));
+        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
         try {
             Thread.sleep(3000);
@@ -120,8 +120,8 @@ public class CustomerAccountFacade extends BasePage {
 
     public void validateTransactionHistory(CustomerData customerData) {
         navigateToPage(transactions);
-        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = customerAccountData.getTransactions().get(0);
+        AccountData accountData = customerData.getAccounts().get(0);
+        TransactionsData transactionsData = accountData.getTransactions().get(0);
 
         Assert.assertTrue(transactionsPage.validateDepositHistory(transactionsData));
         LoggerUtility.info("Validated deposit history");

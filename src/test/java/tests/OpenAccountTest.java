@@ -1,7 +1,7 @@
 package tests;
 
 import actions.BankManagerActions;
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
 import dataObjects.CustomerData;
 import dataObjects.DataModel;
 
@@ -15,10 +15,10 @@ public class OpenAccountTest extends Hooks {
 
         DataModel dataModel = new DataModel("src/test/resources/testData/OpenAccount.json");
         CustomerData customerData = dataModel.customerData.get(0);
-        CustomerAccountData customerAccountData = dataModel.getCustomerAccountData().get(0);
+        AccountData accountData = dataModel.getAccountData().get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
 
-        bankManagerActions.openAccountForExistingCustomer(customerAccountData, customerData);
+        bankManagerActions.openAccountForExistingCustomer(accountData, customerData);
     }
 
 

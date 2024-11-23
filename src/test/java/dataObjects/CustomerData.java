@@ -13,7 +13,7 @@ public class CustomerData {
     private String postCode;
     private String fullName;
     private String customerId;
-    private List<CustomerAccountData> accounts = new ArrayList<>();
+    private List<AccountData> accounts = new ArrayList<>();
 
     public void manipulateData() {
 
