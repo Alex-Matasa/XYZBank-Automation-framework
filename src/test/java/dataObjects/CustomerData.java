@@ -15,9 +15,9 @@ public class CustomerData {
     private String customerId;
     private List<CustomerAccountData> accounts = new ArrayList<>();
 
-//    public void manipulateData() {
-//
-//            this.fullName = firstName + " " + lastName;
-//
-//    }
+    public void manipulateData() {
+
+            this.fullName = firstName + " " + lastName;
+
+    }
 }

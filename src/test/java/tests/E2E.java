@@ -1,15 +1,9 @@
 package tests;
 
-import dataObjects.*;
 import org.testng.annotations.Test;
-import pageObjects.CommonPage;
-import pageObjects.CustomerLoginPage;
-import pageObjects.LoginPage;
-import pageObjects.bankManager.BankManagerFacade;
-import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 
-public class SmokeTest extends Hooks {
+public class E2E extends Hooks {
 
     @Test
     public void smoke() {

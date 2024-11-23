@@ -2,7 +2,6 @@ package pageObjects.bankManager;
 
 import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
-import dataObjects.InputAccountData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,9 +48,9 @@ public class OpenAccountPage extends BasePage {
         customerData.getAccounts().get(0).setBalance("0");
     }
 
-    public void openNewAccount(InputAccountData inputAccountData, CustomerData customerData){
+    public void openNewAccount(CustomerAccountData customerAccountData, CustomerData customerData){
         selectCustomer(customerData.getFullName());
-        selectCurrency(inputAccountData.getCurrency());
+        selectCurrency(customerAccountData.getCurrency());
         clickOnProcessButton(customerData);
         validateAccountIsOpened();
     }

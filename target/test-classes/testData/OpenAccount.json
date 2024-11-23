@@ -1,6 +1,16 @@
 {
-  "inputAccountData": {
+  "customerData":
+  [
+    {
+      "firstName": "Hermoine",
+      "lastName": "Granger"
+    }
+  ],
+
+  "customerAccountData": [
+    {
     "currency": "Dollar"
   }
+]
 
 }

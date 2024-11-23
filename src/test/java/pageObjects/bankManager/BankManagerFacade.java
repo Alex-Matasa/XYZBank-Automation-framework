@@ -1,8 +1,7 @@
 package pageObjects.bankManager;
 
+import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
-import dataObjects.InputAccountData;
-import dataObjects.InputCustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -49,19 +48,19 @@ public class BankManagerFacade extends BasePage {
         }
     }
 
-    public void addCustomer(InputCustomerData inputCustomerData, CustomerData customerData) {
+    public void addCustomer(CustomerData customerData) {
         navigateToPage("Add Customer");
-        addCustomerPage.fillEntireFormAndSubmit(inputCustomerData,customerData);
+        addCustomerPage.fillEntireFormAndSubmit(customerData);
     }
 
-    public void addMultipleCustomers(InputCustomerData inputCustomerData, CustomerData customerData) {
+    public void addMultipleCustomers(CustomerData customerData) {
         navigateToPage("Add Customer");
-        addCustomerPage.fillEntireFormAndSubmit(inputCustomerData,customerData);
+        addCustomerPage.fillEntireFormAndSubmit(customerData);
     }
 
-    public void openAccount(InputAccountData inputAccountData, CustomerData customerData) {
+    public void openAccount(CustomerAccountData customerAccountData, CustomerData customerData) {
         navigateToPage("Open Account");
-        openAccountPage.openNewAccount(inputAccountData, customerData );
+        openAccountPage.openNewAccount(customerAccountData, customerData );
         navigateToPage("Customers");
     }
 

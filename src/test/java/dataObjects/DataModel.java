@@ -8,15 +8,14 @@ import java.util.List;
 @Data
 public class DataModel extends BaseData {
 
-    public List<CustomerData> customerData = new ArrayList<>();
-    public InputAccountData inputAccountData;
-    public List<InputCustomerData> inputCustomerData = new ArrayList<>();
+    public List<CustomerData> customerData;
+    public List<CustomerAccountData> customerAccountData;
 
     public DataModel(String filePath) {
         fromJsonToObject(filePath);
-//        for (CustomerData customer : customerData) {
-//            customer.manipulateData();
-//        }
+        for (CustomerData customer : customerData) {
+            customer.manipulateData();
+        }
     }
 
 }
