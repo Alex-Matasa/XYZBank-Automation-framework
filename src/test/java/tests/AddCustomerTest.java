@@ -2,6 +2,7 @@ package tests;
 
 import dataObjects.CustomerData;
 import dataObjects.DataModel;
+import dataObjects.InputCustomerData;
 import org.testng.annotations.Test;
 import pageObjects.CommonPage;
 import pageObjects.CustomerLoginPage;
@@ -10,20 +11,21 @@ import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 
-public class CreateCustomerTest extends Hooks {
+public class AddCustomerTest extends Hooks {
 
     @Test
-    public void createCustomer() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/CreateCustomer.json");
+    public void addCustomer() {
+        DataModel dataModel = new DataModel("src/test/resources/testData/AddCustomer.json");
+        InputCustomerData inputCustomerData = dataModel.inputCustomerData;
         CommonPage commonPage = new CommonPage(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
         CustomerLoginPage customerLoginPage = new CustomerLoginPage(getDriver());
         BankManagerFacade bankManagerFacade = new BankManagerFacade(getDriver());
         CustomerAccountFacade customerAccountFacade = new CustomerAccountFacade(getDriver());
-        CustomerData customerData = dataModel.customerData.get(0);
+        CustomerData customerData = new CustomerData();
 
         loginPage.clickOnBankManagerLogin();
-        bankManagerFacade.addCustomer(customerData);
+        bankManagerFacade.addCustomer(inputCustomerData, customerData);
         bankManagerFacade.validateCustomer(customerData);
         commonPage.clickOnHomeButton();
         loginPage.clickOnCustomerLogin();

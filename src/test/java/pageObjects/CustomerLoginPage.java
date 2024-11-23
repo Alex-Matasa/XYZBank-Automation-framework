@@ -13,7 +13,7 @@ public class CustomerLoginPage extends BasePage{
     }
 
 
-    @FindBy(xpath = "//select[@ng-model='custId']")
+    @FindBy(xpath = "//select[@name='userSelect']")
     private WebElement selectName;
     @FindBy(xpath = "//button[@type='submit']")
     private WebElement loginButton;

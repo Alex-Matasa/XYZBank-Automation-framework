@@ -1,12 +1,16 @@
 package pageObjects.bankManager;
 
 import dataObjects.CustomerData;
-import dataObjects.AccountData;
+import dataObjects.InputAccountData;
+import dataObjects.InputCustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import pageObjects.BasePage;
+
+import java.util.List;
 
 public class BankManagerFacade extends BasePage {
 
@@ -45,16 +49,15 @@ public class BankManagerFacade extends BasePage {
         }
     }
 
-    public void addCustomer(CustomerData customerData) {
+    public void addCustomer(InputCustomerData inputCustomerData, CustomerData customerData) {
         navigateToPage("Add Customer");
-        addCustomerPage.fillEntireFormAndSubmit(customerData);
+        addCustomerPage.fillEntireFormAndSubmit(inputCustomerData,customerData);
     }
 
-    public void openAccount(CustomerData customerData) {
+    public void openAccount(InputAccountData inputAccountData, CustomerData customerData) {
         navigateToPage("Open Account");
-        openAccountPage.openNewAccount(customerData.getAccounts().get(0), customerData );
+        openAccountPage.openNewAccount(inputAccountData, customerData );
         navigateToPage("Customers");
-        customersPage.validateLastEntry(customerData);
     }
 
     public void deleteCustomer(CustomerData customerData) {
@@ -64,6 +67,17 @@ public class BankManagerFacade extends BasePage {
 
     public void validateCustomer(CustomerData customerData) {
         navigateToPage("Customers");
+        customersPage.validateLastEntry(customerData);
+    }
+
+    public void validateManagerDashboard() {
+        List<WebElement> tabsList = List.of(addCustomerButton, openAccountButton, customersButton);
+        List<String> tabsListLabels = List.of("Add Customer", "Open Account", "Customers");
+        Assert.assertTrue(assertionsMethods.validateText(tabsList, tabsListLabels));
+        LoggerUtility.info("Tabs are displayed");
+    }
+
+    public void validateLastEntryData(CustomerData customerData) {
         customersPage.validateLastEntry(customerData);
     }
 

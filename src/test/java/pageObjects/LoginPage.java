@@ -25,6 +25,7 @@ public class LoginPage extends BasePage{
     public void clickOnCustomerLogin() {
         webElementsMethods.clickOn(customerLoginButton);
         LoggerUtility.info("Clicked on Customer Login button");
+
     }
 
 }

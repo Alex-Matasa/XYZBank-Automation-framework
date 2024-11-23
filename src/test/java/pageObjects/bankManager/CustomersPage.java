@@ -1,6 +1,6 @@
 package pageObjects.bankManager;
 
-import dataObjects.AccountData;
+import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
@@ -32,7 +32,13 @@ public class CustomersPage extends BasePage {
 
 
     public void validateLastEntry(CustomerData customerData){
-        List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), customerData.getAccounts().get(0).getAccountId());
+        String accountId = "";
+
+        if (customerData.getAccounts() != null && !customerData.getAccounts().isEmpty()) {
+            accountId = customerData.getAccounts().get(0).getAccountId();
+        }
+
+        List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountId);
         Assert.assertTrue(assertionsMethods.validateText(this.lastCustomerAddedInfo, lastCustomerAddedInfo));
         LoggerUtility.info("Last customer is added to the Customers table with correct info");
     }
@@ -41,9 +47,9 @@ public class CustomersPage extends BasePage {
         searchField.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
 
-        AccountData accountData = customerData.getAccounts().get(0);
+        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
 
-        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountData.getAccountId());
+        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), customerAccountData.getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(allCustomersInfo, list));
 
         if(customersList.size() == 1) {

@@ -1,6 +1,6 @@
 package pageObjects.customer;
 
-import dataObjects.AccountData;
+import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
 import dataObjects.TransactionsData;
 import loggerUtility.LoggerUtility;
@@ -23,12 +23,12 @@ public class DepositPage extends BasePage {
     @FindBy(xpath ="//span[@ng-show='message']")
     private WebElement message;
 
-    public void deposit(TransactionsData transactionsData, CustomerData customerData, AccountData accountData ) {
+    public void deposit(TransactionsData transactionsData, CustomerData customerData, CustomerAccountData customerAccountData) {
         amount.sendKeys(transactionsData.getAmount());
         LoggerUtility.info("Entered amount of money to deposit");
 
         if (Integer.parseInt(transactionsData.getAmount()) > 0) {
-            accountData.setBalance(String.valueOf(Integer.parseInt(accountData.getBalance())
+            customerAccountData.setBalance(String.valueOf(Integer.parseInt(customerAccountData.getBalance())
                     + Integer.parseInt(transactionsData.getAmount())));
         }
 

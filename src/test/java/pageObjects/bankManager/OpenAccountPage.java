@@ -1,7 +1,8 @@
 package pageObjects.bankManager;
 
+import dataObjects.CustomerAccountData;
 import dataObjects.CustomerData;
-import dataObjects.AccountData;
+import dataObjects.InputAccountData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -41,13 +42,21 @@ public class OpenAccountPage extends BasePage {
         LoggerUtility.info("Clicked on Process button ");
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
+
+        CustomerAccountData newAccount = new CustomerAccountData();
+        customerData.getAccounts().add(newAccount);
         customerData.getAccounts().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
+        customerData.getAccounts().get(0).setBalance("0");
     }
 
-    public void openNewAccount(AccountData accountData, CustomerData customerData){
+    public void openNewAccount(InputAccountData inputAccountData, CustomerData customerData){
         selectCustomer(customerData.getFullName());
-        selectCurrency(accountData.getCurrency());
+        selectCurrency(inputAccountData.getCurrency());
         clickOnProcessButton(customerData);
+        validateAccountIsOpened();
+    }
+
+    public void validateAccountIsOpened() {
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Account created successfully with account Number"));
         LoggerUtility.info("Account is created successfully");
     }

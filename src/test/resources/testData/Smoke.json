@@ -7,9 +7,9 @@
       "customerId": "",
       "accounts": [
         {
-        "currency": "Dollar",
+        "currency": "",
         "accountId": "",
-        "balance": "0",
+        "balance": "",
         "transactions": [
           {
             "type": "deposit",

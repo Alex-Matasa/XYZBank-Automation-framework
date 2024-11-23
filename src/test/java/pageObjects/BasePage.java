@@ -2,9 +2,9 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
-import userActions.AlertsMethods;
-import userActions.AssertionsMethods;
-import userActions.WebElementsMethods;
+import helperMethods.AlertsMethods;
+import helperMethods.AssertionsMethods;
+import helperMethods.WebElementsMethods;
 
 public class BasePage {
 
