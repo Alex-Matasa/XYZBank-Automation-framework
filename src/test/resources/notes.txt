@@ -1,21 +1,4 @@
-1. create Customer
-2. create Customer with only one account
-3. create Customer with multiple accounts
+1. OOP concepts used: inheritance, composition
 
 
 
-  ,"customerData":[
-    {
-      "firstName": "",
-      "lastName": "",
-      "postCode": "",
-      "customerId": "",
-      "accounts": [
-        {
-          "accountId": "",
-          "balance":""
-        }
-      ]
-    }
-
-  ]

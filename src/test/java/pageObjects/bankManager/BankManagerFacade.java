@@ -54,6 +54,11 @@ public class BankManagerFacade extends BasePage {
         addCustomerPage.fillEntireFormAndSubmit(inputCustomerData,customerData);
     }
 
+    public void addMultipleCustomers(InputCustomerData inputCustomerData, CustomerData customerData) {
+        navigateToPage("Add Customer");
+        addCustomerPage.fillEntireFormAndSubmit(inputCustomerData,customerData);
+    }
+
     public void openAccount(InputAccountData inputAccountData, CustomerData customerData) {
         navigateToPage("Open Account");
         openAccountPage.openNewAccount(inputAccountData, customerData );

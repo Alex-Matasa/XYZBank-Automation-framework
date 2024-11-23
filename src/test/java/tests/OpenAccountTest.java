@@ -22,7 +22,7 @@ public class OpenAccountTest extends Hooks {
 
         DataModel dataModel = new DataModel("src/test/resources/testData/AddCustomer.json");
         DataModel dataModel1 = new DataModel("src/test/resources/testData/OpenAccount.json");
-        InputCustomerData inputCustomerData = dataModel.inputCustomerData;
+        InputCustomerData inputCustomerData = dataModel.inputCustomerData.get(0);
         InputAccountData inputAccountData = dataModel1.inputAccountData;
         CommonPage commonPage = new CommonPage(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
