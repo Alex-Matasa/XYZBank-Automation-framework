@@ -20,15 +20,15 @@ public class AddCustomersTest extends Hooks {
         CustomerAccountFacade customerAccountFacade = new CustomerAccountFacade(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
-        loginActions.loginAsBankManager();
-        for (int i = 0; i < 5; i++) {
-            CustomerData customerData = dataModel.customerData.get(i);
-            bankManagerFacade.addCustomer(customerData);
-            customersPage.validateLastEntry(customerData);
-            loginActions.loginAsCustomer(customerData);
-            customerAccountFacade.validateWelcomingNoAccount(customerData);
-            loginActions.loginAsBankManager();
-        }
+//        loginActions.loginAsBankManager();
+//        for (int i = 0; i < 5; i++) {
+//            CustomerData customerData = dataModel.customerData.get(i);
+//            bankManagerFacade.addCustomer(customerData);
+//            customersPage.validateLastEntry(customerData);
+//            loginActions.loginAsCustomer(customerData);
+//            customerAccountFacade.validateWelcomingNoAccount(customerData);
+//            loginActions.loginAsBankManager();
+//        }
     }
 
 

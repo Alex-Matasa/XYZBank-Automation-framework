@@ -17,10 +17,10 @@ public class LoginActions {
         this.driver = driver;
     }
 
+
     public void loginAsBankManager() {
         commonPage = new CommonPage(driver);
         loginPage = new LoginPage(driver);
-
         commonPage.clickOnHomeButton();
         loginPage.clickOnBankManagerLogin();
     }
@@ -29,7 +29,6 @@ public class LoginActions {
         commonPage = new CommonPage(driver);
         loginPage = new LoginPage(driver);
         customerLoginPage = new CustomerLoginPage(driver);
-
         commonPage.clickOnHomeButton();
         loginPage.clickOnCustomerLogin();
         customerLoginPage.selectName(customerData);

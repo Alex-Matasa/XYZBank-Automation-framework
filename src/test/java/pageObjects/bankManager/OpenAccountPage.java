@@ -15,7 +15,6 @@ public class OpenAccountPage extends BasePage {
         super(driver);
     }
 
-
     @FindBy(xpath = "//select[@name='userSelect']")
     private WebElement selectCustomer;
     @FindBy(xpath = "//select[@name='currency']")
@@ -26,13 +25,14 @@ public class OpenAccountPage extends BasePage {
     private String actualSuccessMessage;
 
 
-    public void selectCustomer(String fullName) {
-        webElementsMethods.select(selectCustomer,  fullName);
+
+    public void selectCustomer(CustomerData customerData) {
+        webElementsMethods.select(selectCustomer,  customerData.getFullName());
         LoggerUtility.info("Customer is selected");
     }
 
-    public void selectCurrency(String currency) {
-        webElementsMethods.select(selectCurrency,currency);
+    public void selectCurrency(AccountData accountData) {
+        webElementsMethods.select(selectCurrency,accountData.getCurrency());
         LoggerUtility.info("Currency is selected");
     }
 
@@ -41,23 +41,13 @@ public class OpenAccountPage extends BasePage {
         LoggerUtility.info("Clicked on Process button ");
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
-
-        AccountData newAccount = new AccountData();
-        customerData.getAccounts().add(newAccount);
         customerData.getAccounts().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
-        customerData.getAccounts().get(0).setBalance("0");
-    }
+        customerData.getAccounts().get(0).setBalance("0");   }
 
-    public void openNewAccount(AccountData accountData, CustomerData customerData){
-        selectCustomer(customerData.getFullName());
-        selectCurrency(accountData.getCurrency());
-        clickOnProcessButton(customerData);
-        validateAccountIsOpened();
-    }
 
-    public void validateAccountIsOpened() {
+    public void validateSuccessfulMessage() {
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Account created successfully with account Number"));
-        LoggerUtility.info("Account is created successfully");
+        LoggerUtility.info("Successful message is displayed");
     }
 
 

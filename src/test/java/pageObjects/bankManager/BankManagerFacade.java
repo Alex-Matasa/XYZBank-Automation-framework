@@ -48,42 +48,42 @@ public class BankManagerFacade extends BasePage {
         }
     }
 
-    public void addCustomer(CustomerData customerData) {
-        navigateToPage("Add Customer");
-        addCustomerPage.fillEntireFormAndSubmit(customerData);
-    }
-
-    public void addMultipleCustomers(CustomerData customerData) {
-        navigateToPage("Add Customer");
-        addCustomerPage.fillEntireFormAndSubmit(customerData);
-    }
-
-    public void openAccount(AccountData accountData, CustomerData customerData) {
-        navigateToPage("Open Account");
-        openAccountPage.openNewAccount(accountData, customerData );
-        navigateToPage("Customers");
-    }
-
-    public void deleteCustomer(CustomerData customerData) {
-        navigateToPage("Customers");
-        customersPage.deleteCustomer(customerData);
-    }
-
-    public void validateCustomer(CustomerData customerData) {
-        navigateToPage("Customers");
-        customersPage.validateLastEntry(customerData);
-    }
-
+//    public void addCustomer(CustomerData customerData) {
+//        navigateToPage("Add Customer");
+//        addCustomerPage.fillEntireFormAndSubmit(customerData);
+//    }
+//
+//    public void addMultipleCustomers(CustomerData customerData) {
+//        navigateToPage("Add Customer");
+//        addCustomerPage.fillEntireFormAndSubmit(customerData);
+//    }
+//
+//    public void openAccount(AccountData accountData, CustomerData customerData) {
+//        navigateToPage("Open Account");
+//        openAccountPage.openAccount(accountData, customerData );
+//        navigateToPage("Customers");
+//    }
+//
+//    public void deleteCustomer(CustomerData customerData) {
+//        navigateToPage("Customers");
+//        customersPage.deleteCustomer(customerData);
+//    }
+//
+//    public void validateCustomer(CustomerData customerData) {
+//        navigateToPage("Customers");
+//        customersPage.validateLastEntry(customerData);
+//    }
+//
     public void validateManagerDashboard() {
         List<WebElement> tabsList = List.of(addCustomerButton, openAccountButton, customersButton);
         List<String> tabsListLabels = List.of("Add Customer", "Open Account", "Customers");
         Assert.assertTrue(assertionsMethods.validateText(tabsList, tabsListLabels));
         LoggerUtility.info("Tabs are displayed");
     }
-
-    public void validateLastEntryData(CustomerData customerData) {
-        customersPage.validateLastEntry(customerData);
-    }
+//
+//    public void validateLastEntryData(CustomerData customerData) {
+//        customersPage.validateLastEntry(customerData);
+//    }
 
 
 

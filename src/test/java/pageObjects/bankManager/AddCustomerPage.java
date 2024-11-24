@@ -27,15 +27,8 @@ public class AddCustomerPage extends BasePage {
     @FindBy(xpath = "//input[@ng-model='postCd']")
     private WebElement postCode;
 
-
     private String actualSuccessMessage;
 
-    public void fillHalfForm() {
-        fName.sendKeys("Customer2");
-        addCustomerSubmit.click();
-        String errorMessage = lName.getAttribute("validationMessage");
-        System.out.println(errorMessage);
-    }
 
     public void enterFirstName(CustomerData customerData) {
         fName.sendKeys(customerData.getFirstName());
@@ -59,11 +52,6 @@ public class AddCustomerPage extends BasePage {
         clickOnSubmitButton(customerData);
     }
 
-
-
-
-    /////   helper methods  /////
-
     private void clickOnSubmitButton(CustomerData customerData) {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
@@ -73,7 +61,7 @@ public class AddCustomerPage extends BasePage {
         customerData.setCustomerId(actualSuccessMessage.split(":")[1]);
 
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
-        LoggerUtility.info("Validated successful message");
+        LoggerUtility.info("Successful message is displayed");
     }
 
 

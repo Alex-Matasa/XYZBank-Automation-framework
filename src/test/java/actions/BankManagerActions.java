@@ -5,7 +5,9 @@ import dataObjects.CustomerData;
 import org.openqa.selenium.WebDriver;
 import pageObjects.CommonPage;
 import pageObjects.LoginPage;
+import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
+import pageObjects.bankManager.OpenAccountPage;
 
 public class BankManagerActions {
 
@@ -13,26 +15,28 @@ public class BankManagerActions {
     private LoginPage loginPage;
     private BankManagerFacade bankManagerFacade;
     private CommonPage commonPage;
+    private AddCustomerPage addCustomerPage;
+    private OpenAccountPage openAccountPage;
 
     public BankManagerActions(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void addNewCustomer(CustomerData customerData) {
 
-        loginPage = new LoginPage(driver);
+    public void addCustomer(CustomerData customerData) {
         bankManagerFacade = new BankManagerFacade(driver);
-        loginPage.clickOnBankManagerLogin();
-        bankManagerFacade.addCustomer(customerData);
+        addCustomerPage = new AddCustomerPage(driver);
+        bankManagerFacade.navigateToPage("Add Customer");
+        addCustomerPage.fillEntireFormAndSubmit(customerData);
     }
 
-    public void openAccountForExistingCustomer(AccountData accountData, CustomerData customerData) {
-        commonPage = new CommonPage(driver);
-        commonPage.clickOnHomeButton();
-        loginPage = new LoginPage(driver);
-        loginPage.clickOnBankManagerLogin();
+    public void openAccount(AccountData accountData, CustomerData customerData) {
         bankManagerFacade = new BankManagerFacade(driver);
-        bankManagerFacade.openAccount(accountData,customerData);
+        openAccountPage = new OpenAccountPage(driver);
+        bankManagerFacade.navigateToPage("Open Account");
+        openAccountPage.selectCustomer(customerData);
+        openAccountPage.selectCurrency(accountData);
+        openAccountPage.clickOnProcessButton(customerData);
     }
 
 }

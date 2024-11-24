@@ -59,7 +59,6 @@ public class CustomerAccountFacade extends BasePage {
         Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
         Assert.assertTrue(assertionsMethods.validatePartialText(openAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
-
     }
 
     public void navigateToPage(String pageName) {
