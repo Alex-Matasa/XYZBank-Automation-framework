@@ -41,8 +41,11 @@ public class OpenAccountPage extends BasePage {
         LoggerUtility.info("Clicked on Process button ");
         actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
-        customerData.getAccounts().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
-        customerData.getAccounts().get(0).setBalance("0");   }
+
+        AccountData accountData = new AccountData();
+        customerData.getAccountData().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
+        customerData.getAccountData().get(0).setBalance("0");
+    }
 
 
     public void validateSuccessfulMessage() {

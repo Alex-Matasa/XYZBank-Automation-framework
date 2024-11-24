@@ -34,8 +34,8 @@ public class CustomersPage extends BasePage {
     public void validateLastEntry(CustomerData customerData){
         String accountId = "";
 
-        if (customerData.getAccounts() != null && !customerData.getAccounts().isEmpty()) {
-            accountId = customerData.getAccounts().get(0).getAccountId();
+        if (customerData.getAccountData() != null && !customerData.getAccountData().isEmpty()) {
+            accountId = customerData.getAccountData().get(0).getAccountId();
         }
 
         List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountId);
@@ -47,7 +47,7 @@ public class CustomersPage extends BasePage {
         searchField.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
 
-        AccountData accountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccountData().get(0);
 
         List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountData.getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(allCustomersInfo, list));

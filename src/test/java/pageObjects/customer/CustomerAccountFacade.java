@@ -48,7 +48,7 @@ public class CustomerAccountFacade extends BasePage {
     private WithdrawPage withdrawPage;
 
     public void validateAccountInfo(CustomerData customerData){
-        AccountData accountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccountData().get(0);
         Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
         List<String> customerAccountInfo = List.of(accountData.getAccountId(), accountData.getBalance(), accountData.getCurrency());
         Assert.assertTrue(assertionsMethods.validateText(accountInfoDisplayed, customerAccountInfo));
@@ -84,7 +84,7 @@ public class CustomerAccountFacade extends BasePage {
 
     public void depositMoney(CustomerData customerData) {
         navigateToPage(deposit);
-        AccountData accountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccountData().get(0);
         TransactionsData transactionsData = accountData.getTransactions().get(0);
         depositPage.deposit(transactionsData, customerData, accountData);
         List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Credit");
@@ -102,7 +102,7 @@ public class CustomerAccountFacade extends BasePage {
 
     public void withdrawMoney(CustomerData customerData) {
         navigateToPage(withdraw);
-        AccountData accountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccountData().get(0);
         TransactionsData transactionsData = accountData.getTransactions().get(0);
         withdrawPage.withdraw(transactionsData, customerData, accountData);
         List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Debit");
@@ -119,7 +119,7 @@ public class CustomerAccountFacade extends BasePage {
 
     public void validateTransactionHistory(CustomerData customerData) {
         navigateToPage(transactions);
-        AccountData accountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccountData().get(0);
         TransactionsData transactionsData = accountData.getTransactions().get(0);
 
         Assert.assertTrue(transactionsPage.validateDepositHistory(transactionsData));
