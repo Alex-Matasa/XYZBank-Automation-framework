@@ -43,6 +43,8 @@ public class CustomersPage extends BasePage {
         LoggerUtility.info("Last customer is added to the Customers table with correct info");
     }
 
+
+
     public void deleteCustomer(CustomerData customerData) {
         searchField.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
