@@ -1,6 +1,6 @@
 package pageObjects.bankManager;
 
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
 import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
@@ -47,9 +47,9 @@ public class CustomersPage extends BasePage {
         searchField.sendKeys(customerData.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
 
-        CustomerAccountData customerAccountData = customerData.getAccounts().get(0);
+        AccountData accountData = customerData.getAccounts().get(0);
 
-        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), customerAccountData.getAccountId());
+        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountData.getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(allCustomersInfo, list));
 
         if(customersList.size() == 1) {

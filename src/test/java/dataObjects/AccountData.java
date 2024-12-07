@@ -6,7 +6,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class CustomerAccountData {
+public class AccountData {
 
     private String currency;
     private String accountId;

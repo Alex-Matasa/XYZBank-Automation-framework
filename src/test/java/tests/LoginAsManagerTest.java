@@ -1,5 +1,6 @@
 package tests;
 
+import actions.LoginActions;
 import org.testng.annotations.Test;
 import pageObjects.LoginPage;
 import pageObjects.bankManager.BankManagerFacade;
@@ -9,11 +10,10 @@ public class LoginAsManagerTest extends Hooks {
 
     @Test
     public void loginAsManager() {
-        LoginPage loginPage = new LoginPage(getDriver());
         BankManagerFacade bankManagerFacade = new BankManagerFacade(getDriver());
+        LoginActions loginActions = new LoginActions(getDriver());
 
-        loginPage.clickOnBankManagerLogin();
+        loginActions.loginAsBankManager();
         bankManagerFacade.validateManagerDashboard();
-
     }
 }

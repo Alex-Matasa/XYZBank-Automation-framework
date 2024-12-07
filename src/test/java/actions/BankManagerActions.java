@@ -1,6 +1,6 @@
 package actions;
 
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
 import dataObjects.CustomerData;
 import org.openqa.selenium.WebDriver;
 import pageObjects.CommonPage;
@@ -24,14 +24,15 @@ public class BankManagerActions {
         bankManagerFacade = new BankManagerFacade(driver);
         loginPage.clickOnBankManagerLogin();
         bankManagerFacade.addCustomer(customerData);
-        bankManagerFacade.validateCustomer(customerData);
     }
 
-    public void openAccountForExistingCustomer(CustomerAccountData customerAccountData, CustomerData customerData) {
+    public void openAccountForExistingCustomer(AccountData accountData, CustomerData customerData) {
         commonPage = new CommonPage(driver);
         commonPage.clickOnHomeButton();
+        loginPage = new LoginPage(driver);
         loginPage.clickOnBankManagerLogin();
-        bankManagerFacade.openAccount(customerAccountData,customerData);
+        bankManagerFacade = new BankManagerFacade(driver);
+        bankManagerFacade.openAccount(accountData,customerData);
     }
 
 }

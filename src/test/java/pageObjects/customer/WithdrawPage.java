@@ -1,6 +1,6 @@
 package pageObjects.customer;
 
-import dataObjects.CustomerAccountData;
+import dataObjects.AccountData;
 import dataObjects.CustomerData;
 import dataObjects.TransactionsData;
 import loggerUtility.LoggerUtility;
@@ -23,12 +23,12 @@ public class WithdrawPage extends BasePage {
     @FindBy(xpath ="//span[@ng-show='message']")
     private WebElement message;
 
-    public void withdraw(TransactionsData transactionsData, CustomerData customerData, CustomerAccountData customerAccountData) {
+    public void withdraw(TransactionsData transactionsData, CustomerData customerData, AccountData accountData) {
         amount.sendKeys(transactionsData.getAmount());
         LoggerUtility.info("Entered amount of money to withdraw");
 
         if (Integer.parseInt(transactionsData.getAmount()) > 0) {
-            customerAccountData.setBalance(String.valueOf(Integer.parseInt(customerAccountData.getBalance())
+            accountData.setBalance(String.valueOf(Integer.parseInt(accountData.getBalance())
                     - Integer.parseInt(transactionsData.getAmount())));
         }
 
