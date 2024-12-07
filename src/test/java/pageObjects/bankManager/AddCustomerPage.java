@@ -59,11 +59,6 @@ public class AddCustomerPage extends BasePage {
         clickOnSubmitButton(customerData);
     }
 
-
-
-
-    /////   helper methods  /////
-
     private void clickOnSubmitButton(CustomerData customerData) {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
