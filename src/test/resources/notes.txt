@@ -1,9 +1,5 @@
-1. OOP concepts used: inheritance, composition
-
-
-
-TO DO:
-- assertions / messages /
+1. On the "refactoring-Facades-and-actions" branch:
+    - I've transferred the manager's actions such as "addCustoner", "openAccount", from Facades to actions
 
 
 
