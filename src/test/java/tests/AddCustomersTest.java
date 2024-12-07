@@ -16,8 +16,6 @@ public class AddCustomersTest extends Hooks {
     public void addMultipleCustomers() {
         DataModel dataModel = new DataModel("src/test/resources/testData/AddMultipleCustomers.json");
 
-
-
         CommonPage commonPage = new CommonPage(getDriver());
         LoginPage loginPage = new LoginPage(getDriver());
         CustomerLoginPage customerLoginPage = new CustomerLoginPage(getDriver());
