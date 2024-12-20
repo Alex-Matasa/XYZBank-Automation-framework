@@ -28,7 +28,6 @@ public class AddCustomerPage extends BasePage {
     private WebElement postCode;
 
 
-    private String actualSuccessMessage;
 
     public void fillHalfForm() {
         fName.sendKeys("Customer2");
@@ -59,11 +58,12 @@ public class AddCustomerPage extends BasePage {
         clickOnSubmitButton(customerData);
     }
 
+
     private void clickOnSubmitButton(CustomerData customerData) {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
+         String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
         customerData.setCustomerId(actualSuccessMessage.split(":")[1]);
 

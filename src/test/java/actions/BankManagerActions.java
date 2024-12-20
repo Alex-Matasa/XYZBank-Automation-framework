@@ -19,7 +19,6 @@ public class BankManagerActions {
     }
 
     public void addNewCustomer(CustomerData customerData) {
-
         loginPage = new LoginPage(driver);
         bankManagerFacade = new BankManagerFacade(driver);
         loginPage.clickOnBankManagerLogin();
