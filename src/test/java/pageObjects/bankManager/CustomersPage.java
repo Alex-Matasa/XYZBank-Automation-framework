@@ -1,7 +1,7 @@
 package pageObjects.bankManager;
 
-import dataObjects.AccountData;
-import dataObjects.CustomerData;
+import dataObjects.Accounts;
+import dataObjects.Customers;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -31,25 +31,25 @@ public class CustomersPage extends BasePage {
     private WebElement searchField;
 
 
-    public void validateLastEntry(CustomerData customerData){
+    public void validateLastEntry(Customers customers){
         String accountId = "";
 
-        if (customerData.getAccounts() != null && !customerData.getAccounts().isEmpty()) {
-            accountId = customerData.getAccounts().get(0).getAccountId();
+        if (customers.getAccounts() != null && !customers.getAccounts().isEmpty()) {
+            accountId = customers.getAccounts().get(0).getAccountId();
         }
 
-        List<String> lastCustomerAddedInfo =  List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountId);
+        List<String> lastCustomerAddedInfo =  List.of(customers.getFirstName(), customers.getLastName(), customers.getPostCode(), accountId);
         Assert.assertTrue(assertionsMethods.validateText(this.lastCustomerAddedInfo, lastCustomerAddedInfo));
         LoggerUtility.info("Last customer is added to the Customers table with correct info");
     }
 
-    public void deleteCustomer(CustomerData customerData) {
-        searchField.sendKeys(customerData.getLastName());
+    public void deleteCustomer(Customers customers) {
+        searchField.sendKeys(customers.getLastName());
         LoggerUtility.info("Entered Last Name of the customer");
 
-        AccountData accountData = customerData.getAccounts().get(0);
+        Accounts accounts = customers.getAccounts().get(0);
 
-        List<String> list = List.of(customerData.getFirstName(), customerData.getLastName(), customerData.getPostCode(), accountData.getAccountId());
+        List<String> list = List.of(customers.getFirstName(), customers.getLastName(), customers.getPostCode(), accounts.getAccountId());
         Assert.assertTrue(assertionsMethods.validateText(allCustomersInfo, list));
 
         if(customersList.size() == 1) {

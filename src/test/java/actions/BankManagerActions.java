@@ -1,52 +1,66 @@
 package actions;
 
-import dataObjects.AccountData;
-import dataObjects.CustomerData;
-import loggerUtility.LoggerUtility;
+import dataObjects.Accounts;
+import dataObjects.Customers;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pageObjects.CommonPage;
 import pageObjects.LoginPage;
 import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
+import pageObjects.bankManager.CustomersPage;
 import pageObjects.bankManager.OpenAccountPage;
 
 public class BankManagerActions {
 
     private WebDriver driver;
-    private LoginPage loginPage;
+
     private BankManagerFacade bankManagerFacade;
     private AddCustomerPage addCustomerPage;
-    private CommonPage commonPage;
     private OpenAccountPage openAccountPage;
+    private CustomersPage customersPage;
 
     public BankManagerActions(WebDriver driver) {
         this.driver = driver;
     }
 
-    public void addCustomer(CustomerData customerData) {
+    public void addCustomer(Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         addCustomerPage = new AddCustomerPage(driver);
 
         bankManagerFacade.navigateToPage("Add Customer");
-        addCustomerPage.enterFirstName(customerData.getFirstName());
-        addCustomerPage.enterLastName(customerData.getLastName());
-        addCustomerPage.enterPostCode(customerData.getPostCode());
-        customerData.setCustomerId(addCustomerPage.clickOnSubmitButton());
+        addCustomerPage.enterFirstName(customers.getFirstName());
+        addCustomerPage.enterLastName(customers.getLastName());
+        addCustomerPage.enterPostCode(customers.getPostCode());
+        customers.setCustomerId(addCustomerPage.clickOnSubmitButton());
     }
 
-    public void openAccountForExistingCustomer(AccountData accountData, CustomerData customerData) {
+    public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         openAccountPage = new OpenAccountPage(driver);
+        Accounts newAccount = new Accounts();
 
         bankManagerFacade.navigateToPage("Open Account");
-        openAccountPage.selectCustomer(customerData.getFullName());
-        openAccountPage.selectCurrency(accountData.getCurrency());
+        openAccountPage.selectCustomer(customers.getFullName());
+        openAccountPage.selectCurrency(accounts.getCurrency());
+        customers.getAccounts().add(newAccount);
+        customers.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
+        customers.getAccounts().get(0).setBalance("0");
+    }
 
-        AccountData newAccount = new AccountData();
-        customerData.getAccounts().add(newAccount);
+    public void deleteCustomer(Customers customers) {
+        bankManagerFacade = new BankManagerFacade(driver);
+        customersPage = new CustomersPage(driver);
 
-        customerData.getAccounts().get(0).setBalance("0");
+        bankManagerFacade.navigateToPage("Customers");
+        customersPage.deleteCustomer(customers);
+    }
+
+    public void validateCustomer(Customers customers) {
+        bankManagerFacade = new BankManagerFacade(driver);
+        customersPage = new CustomersPage(driver);
+
+        bankManagerFacade.navigateToPage("Customers");
+        customersPage.validateLastEntry(customers);
     }
 
 }

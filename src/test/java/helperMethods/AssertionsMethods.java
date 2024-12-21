@@ -1,5 +1,6 @@
 package helperMethods;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -28,6 +29,21 @@ public class AssertionsMethods {
         return isValid.get();
     }
 
+    public boolean validateText(By locator, List<String> data) {
+        AtomicInteger index = new AtomicInteger(0);
+        AtomicBoolean isValid = new AtomicBoolean(true);
+
+        List <WebElement> webElementList = driver.findElements(locator);
+
+        webElementList.stream().forEach(webElement -> {
+            if(!webElement.getText().trim().equals(data.get(index.getAndIncrement()))) {
+                isValid.set(false);
+            }
+//            index.getAndIncrement();
+        });
+        return isValid.get();
+    }
+
     public boolean validatePartialText(String actual, String expected) {
         return actual.contains(expected);
     }
@@ -36,8 +52,17 @@ public class AssertionsMethods {
         return webElement.getText().contains(expected);
     }
 
+    public boolean validatePartialText(By locator, String expected){
+
+        return driver.findElement(locator).getText().contains(expected);
+    }
+
     public boolean validateText(WebElement webElement, String text) {
         return webElement.getText().equals(text);
+    }
+
+    public boolean validateText(By locator, String text) {
+        return driver.findElement(locator).getText().equals(text);
     }
 
 

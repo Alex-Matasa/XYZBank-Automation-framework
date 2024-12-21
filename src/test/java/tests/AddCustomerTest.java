@@ -2,7 +2,7 @@ package tests;
 
 import actions.BankManagerActions;
 import actions.LoginActions;
-import dataObjects.CustomerData;
+import dataObjects.Customers;
 import dataObjects.DataModel;
 import org.testng.annotations.Test;
 import pageObjects.bankManager.CustomersPage;
@@ -14,7 +14,7 @@ public class AddCustomerTest extends Hooks {
     @Test
     public void addCustomer() {
         DataModel dataModel = new DataModel("src/test/resources/testData/AddCustomer.json");
-        CustomerData customerData = dataModel.customerData.get(0);
+        Customers customers = dataModel.customers.get(0);
 
         CustomerAccountFacade customerAccountFacade = new CustomerAccountFacade(getDriver());
         CustomersPage customersPage = new CustomersPage(getDriver());
@@ -24,7 +24,7 @@ public class AddCustomerTest extends Hooks {
 
 
         loginActions.loginAsBankManager();
-        bankManagerActions.addCustomer(customerData);
+        bankManagerActions.addCustomer(customers);
 //        customersPage.validateLastEntry(customerData);
 //        loginActions.loginAsCustomer(customerData);
 //        customerAccountFacade.validateWelcomingNoAccount(customerData);

@@ -1,6 +1,5 @@
 package pageObjects.bankManager;
 
-import dataObjects.CustomerData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

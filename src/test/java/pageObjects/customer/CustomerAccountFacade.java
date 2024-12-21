@@ -1,8 +1,8 @@
 package pageObjects.customer;
 
 
-import dataObjects.AccountData;
-import dataObjects.CustomerData;
+import dataObjects.Accounts;
+import dataObjects.Customers;
 import dataObjects.TransactionsData;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -47,19 +47,18 @@ public class CustomerAccountFacade extends BasePage {
     private DepositPage depositPage;
     private WithdrawPage withdrawPage;
 
-    public void validateAccountInfo(CustomerData customerData){
-        AccountData accountData = customerData.getAccounts().get(0);
-        Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
-        List<String> customerAccountInfo = List.of(accountData.getAccountId(), accountData.getBalance(), accountData.getCurrency());
+    public void validateAccountInfo(Customers customers){
+        Accounts accounts = customers.getAccounts().get(0);
+        Assert.assertTrue(assertionsMethods.validateText(welcome, customers.getFullName()));
+        List<String> customerAccountInfo = List.of(accounts.getAccountId(), accounts.getBalance(), accounts.getCurrency());
         Assert.assertTrue(assertionsMethods.validateText(accountInfoDisplayed, customerAccountInfo));
         LoggerUtility.info("Correct account info are displayed");
     }
 
-    public void validateWelcomingNoAccount(CustomerData customerData) {
-        Assert.assertTrue(assertionsMethods.validateText(welcome, customerData.getFullName()));
+    public void validateWelcomingNoAccount(Customers customers) {
+        Assert.assertTrue(assertionsMethods.validateText(welcome, customers.getFullName()));
         Assert.assertTrue(assertionsMethods.validatePartialText(openAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
-
     }
 
     public void navigateToPage(String pageName) {
@@ -83,32 +82,16 @@ public class CustomerAccountFacade extends BasePage {
         }
     }
 
-    public void depositMoney(CustomerData customerData) {
-        navigateToPage(deposit);
-        AccountData accountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = accountData.getTransactions().get(0);
-        depositPage.deposit(transactionsData, customerData, accountData);
-        List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Credit");
-        transactionsData.setDepositHistory(info);
 
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
-        LoggerUtility.info("Balance is correctly updated");
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void withdrawMoney(CustomerData customerData) {
+    public void withdrawMoney(Customers customers) {
         navigateToPage(withdraw);
-        AccountData accountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = accountData.getTransactions().get(0);
-        withdrawPage.withdraw(transactionsData, customerData, accountData);
-        List <String> info = List.of(getDateAndTIme(), transactionsData.getAmount(), "Debit");
+        Accounts accounts = customers.getAccounts().get(0);
+        TransactionsData transactionsData = accounts.getTransactions().get(0);
+        withdrawPage.withdraw(transactionsData, customers, accounts);
+        List <String> info = List.of(getDateAndTime(), transactionsData.getAmount(), "Debit");
         transactionsData.setWithdrawHistory(info);
-        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accountData.getBalance()));
+        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accounts.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
         try {
             Thread.sleep(3000);
@@ -118,10 +101,10 @@ public class CustomerAccountFacade extends BasePage {
 
     }
 
-    public void validateTransactionHistory(CustomerData customerData) {
+    public void validateTransactionHistory(Customers customers) {
         navigateToPage(transactions);
-        AccountData accountData = customerData.getAccounts().get(0);
-        TransactionsData transactionsData = accountData.getTransactions().get(0);
+        Accounts accounts = customers.getAccounts().get(0);
+        TransactionsData transactionsData = accounts.getTransactions().get(0);
 
         Assert.assertTrue(transactionsPage.validateDepositHistory(transactionsData));
         LoggerUtility.info("Validated deposit history");
@@ -137,7 +120,7 @@ public class CustomerAccountFacade extends BasePage {
 
     /////   helper methods ////
 
-    private String getDateAndTIme() {
+    public String getDateAndTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
         LocalDateTime timestamp = LocalDateTime.now();
         return timestamp.format(formatter);

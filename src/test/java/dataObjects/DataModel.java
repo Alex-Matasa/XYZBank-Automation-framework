@@ -7,12 +7,12 @@ import java.util.List;
 @Data
 public class DataModel extends BaseData {
 
-    public List<CustomerData> customerData;
-    public List<AccountData> accountData;
+    public List<Customers> customers;
+    public List<Accounts> accounts;
 
     public DataModel(String filePath) {
         fromJsonToObject(filePath);
-        for (CustomerData customer : customerData) {
+        for (Customers customer : customers) {
             customer.manipulateData();
         }
     }

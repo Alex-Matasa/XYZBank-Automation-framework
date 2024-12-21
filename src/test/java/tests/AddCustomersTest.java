@@ -1,7 +1,7 @@
 package tests;
 
 import actions.LoginActions;
-import dataObjects.CustomerData;
+import dataObjects.Customers;
 import dataObjects.DataModel;
 import org.testng.annotations.Test;
 import pageObjects.bankManager.BankManagerFacade;
@@ -22,11 +22,11 @@ public class AddCustomersTest extends Hooks {
 
         loginActions.loginAsBankManager();
         for (int i = 0; i < 5; i++) {
-            CustomerData customerData = dataModel.customerData.get(i);
+            Customers customers = dataModel.customers.get(i);
 //            bankManagerFacade.addCustomer(customerData);
-            customersPage.validateLastEntry(customerData);
-            loginActions.loginAsCustomer(customerData);
-            customerAccountFacade.validateWelcomingNoAccount(customerData);
+            customersPage.validateLastEntry(customers);
+            loginActions.loginAsCustomer(customers);
+            customerAccountFacade.validateWelcomingNoAccount(customers);
             loginActions.loginAsBankManager();
         }
     }

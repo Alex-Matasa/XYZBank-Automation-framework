@@ -1,6 +1,6 @@
 package actions;
 
-import dataObjects.CustomerData;
+import dataObjects.Customers;
 import org.openqa.selenium.WebDriver;
 import pageObjects.CommonPage;
 import pageObjects.CustomerLoginPage;
@@ -25,14 +25,14 @@ public class LoginActions {
         loginPage.clickOnBankManagerLogin();
     }
 
-    public void loginAsCustomer(CustomerData customerData) {
+    public void loginAsCustomer(Customers customers) {
         commonPage = new CommonPage(driver);
         loginPage = new LoginPage(driver);
         customerLoginPage = new CustomerLoginPage(driver);
 
         commonPage.clickOnHomeButton();
         loginPage.clickOnCustomerLogin();
-        customerLoginPage.selectName(customerData);
+        customerLoginPage.selectName(customers.getFullName());
         customerLoginPage.clickOnLoginButton();
     }
 

@@ -1,7 +1,7 @@
 package pageObjects.bankManager;
 
-import dataObjects.AccountData;
-import dataObjects.CustomerData;
+import dataObjects.Accounts;
+import dataObjects.Customers;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,12 +25,12 @@ public class OpenAccountPage extends BasePage {
 
 
     public void selectCustomer(String fullName) {
-        webElementsMethods.select(selectCustomer,  fullName);
+        webElementsMethods.select(selectCustomer, fullName);
         LoggerUtility.info("Customer is selected");
     }
 
     public void selectCurrency(String currency) {
-        webElementsMethods.select(selectCurrency,currency);
+        webElementsMethods.select(selectCurrency, currency);
         LoggerUtility.info("Currency is selected");
     }
 
@@ -40,19 +40,10 @@ public class OpenAccountPage extends BasePage {
         String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
 
-        return actualSuccessMessage.split(":")[1];
-    }
-
-    public void openNewAccount(AccountData accountData, CustomerData customerData){
-        selectCustomer(customerData.getFullName());
-        selectCurrency(accountData.getCurrency());
-        clickOnProcessButton(customerData);
-        validateAccountIsOpened();
-    }
-
-    public void validateAccountIsOpened() {
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Account created successfully with account Number"));
         LoggerUtility.info("Account is created successfully");
+
+        return actualSuccessMessage.split(":")[1];
     }
 
 

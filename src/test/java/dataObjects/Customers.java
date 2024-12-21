@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public class CustomerData {
+public class Customers {
 
     private String firstName;
     private String lastName;
     private String postCode;
     private String fullName;
     private String customerId;
-    private List<AccountData> accounts = new ArrayList<>();
+    private List<Accounts> accounts = new ArrayList<>();
 
     public void manipulateData() {
 

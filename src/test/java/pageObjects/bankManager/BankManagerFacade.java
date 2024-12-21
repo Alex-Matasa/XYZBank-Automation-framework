@@ -1,7 +1,7 @@
 package pageObjects.bankManager;
 
-import dataObjects.AccountData;
-import dataObjects.CustomerData;
+import dataObjects.Accounts;
+import dataObjects.Customers;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,27 +48,6 @@ public class BankManagerFacade extends BasePage {
         }
     }
 
-//    public void addMultipleCustomers(CustomerData customerData) {
-//        navigateToPage("Add Customer");
-//        addCustomerPage.fillEntireFormAndSubmit(customerData);
-//    }
-
-    public void openAccount(AccountData accountData, CustomerData customerData) {
-        navigateToPage("Open Account");
-        openAccountPage.openNewAccount(accountData, customerData );
-        navigateToPage("Customers");
-    }
-
-    public void deleteCustomer(CustomerData customerData) {
-        navigateToPage("Customers");
-        customersPage.deleteCustomer(customerData);
-    }
-
-    public void validateCustomer(CustomerData customerData) {
-        navigateToPage("Customers");
-        customersPage.validateLastEntry(customerData);
-    }
-
     public void validateManagerDashboard() {
         List<WebElement> tabsList = List.of(addCustomerButton, openAccountButton, customersButton);
         List<String> tabsListLabels = List.of("Add Customer", "Open Account", "Customers");
@@ -76,12 +55,10 @@ public class BankManagerFacade extends BasePage {
         LoggerUtility.info("Tabs are displayed");
     }
 
-    public void validateLastEntryData(CustomerData customerData) {
-        customersPage.validateLastEntry(customerData);
-    }
-
-
-
+    //    public void addMultipleCustomers(CustomerData customerData) {
+//        navigateToPage("Add Customer");
+//        addCustomerPage.fillEntireFormAndSubmit(customerData);
+//    }
 
 
 
