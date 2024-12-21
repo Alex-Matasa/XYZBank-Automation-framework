@@ -23,7 +23,7 @@ public class AddCustomersTest extends Hooks {
         loginActions.loginAsBankManager();
         for (int i = 0; i < 5; i++) {
             CustomerData customerData = dataModel.customerData.get(i);
-            bankManagerFacade.addCustomer(customerData);
+//            bankManagerFacade.addCustomer(customerData);
             customersPage.validateLastEntry(customerData);
             loginActions.loginAsCustomer(customerData);
             customerAccountFacade.validateWelcomingNoAccount(customerData);

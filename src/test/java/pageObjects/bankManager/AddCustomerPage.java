@@ -27,8 +27,6 @@ public class AddCustomerPage extends BasePage {
     @FindBy(xpath = "//input[@ng-model='postCd']")
     private WebElement postCode;
 
-
-
     public void fillHalfForm() {
         fName.sendKeys("Customer2");
         addCustomerSubmit.click();
@@ -36,40 +34,40 @@ public class AddCustomerPage extends BasePage {
         System.out.println(errorMessage);
     }
 
-    public void enterFirstName(CustomerData customerData) {
-        fName.sendKeys(customerData.getFirstName());
+    public void enterFirstName(String firstName) {
+        fName.sendKeys(firstName);
         LoggerUtility.info("Entered First Name");
     }
 
-    public void enterLastName(CustomerData customerData) {
-        lName.sendKeys(customerData.getLastName());
+    public void enterLastName(String lastName) {
+        lName.sendKeys(lastName);
         LoggerUtility.info("Entered Last Name");
     }
 
-    public void enterPostCode(CustomerData customerData) {
-        postCode.sendKeys(customerData.getPostCode());
+    public void enterPostCode(String postCode) {
+        this.postCode.sendKeys(postCode);
         LoggerUtility.info("Entered Post Code");
     }
 
-    public void fillEntireFormAndSubmit(CustomerData customerData) {
-        enterFirstName(customerData);
-        enterLastName(customerData);
-        enterPostCode(customerData);
-        clickOnSubmitButton(customerData);
-    }
-
-
-    private void clickOnSubmitButton(CustomerData customerData) {
+    public String clickOnSubmitButton() {
         webElementsMethods.clickOn(addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-         String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
+        String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
-        customerData.setCustomerId(actualSuccessMessage.split(":")[1]);
 
         Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
         LoggerUtility.info("Validated successful message");
+
+        return actualSuccessMessage.split(":")[1];
     }
+
+//    public void fillEntireFormAndSubmit(CustomerData customerData) {
+//        enterFirstName(customerData);
+//        enterLastName(customerData);
+//        enterPostCode(customerData);
+//        clickOnSubmitButton(customerData);
+//    }
 
 
 

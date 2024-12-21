@@ -18,6 +18,5 @@ public class CustomerData {
     public void manipulateData() {
 
             this.fullName = firstName + " " + lastName;
-
     }
 }

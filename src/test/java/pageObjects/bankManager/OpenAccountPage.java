@@ -23,8 +23,6 @@ public class OpenAccountPage extends BasePage {
     @FindBy(xpath = "//button[text()='Process']")
     private WebElement processButton;
 
-    private String actualSuccessMessage;
-
 
     public void selectCustomer(String fullName) {
         webElementsMethods.select(selectCustomer,  fullName);
@@ -36,16 +34,13 @@ public class OpenAccountPage extends BasePage {
         LoggerUtility.info("Currency is selected");
     }
 
-    public void clickOnProcessButton(CustomerData customerData) {
+    public String clickOnProcessButton() {
         webElementsMethods.clickOn(processButton);
         LoggerUtility.info("Clicked on Process button ");
-        actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
+        String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
 
-        AccountData newAccount = new AccountData();
-        customerData.getAccounts().add(newAccount);
-        customerData.getAccounts().get(0).setAccountId(actualSuccessMessage.split(":")[1]);
-        customerData.getAccounts().get(0).setBalance("0");
+        return actualSuccessMessage.split(":")[1];
     }
 
     public void openNewAccount(AccountData accountData, CustomerData customerData){

@@ -1,10 +1,9 @@
 {
-
   "customerData":
   [
     {
-    "firstName": "Customer2FirstName",
-    "lastName": "Customer2LastName",
+    "firstName": "Customer1FirstName",
+    "lastName": "Customer1LastName",
     "postCode": "12345"
   }
 ]
