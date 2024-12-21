@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
+import pageObjects.locators.AddCustomerLocators;
 
 import java.util.List;
 
@@ -15,41 +16,35 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//form/div/input")
-    private List<WebElement> formList;
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement addCustomerSubmit;
-    @FindBy(xpath = "//input[@ng-model='lName']")
-    private WebElement lName;
-    @FindBy(xpath = "//input[@ng-model='fName']")
-    private WebElement fName;
-    @FindBy(xpath = "//input[@ng-model='postCd']")
-    private WebElement postCode;
+
+
 
     public void fillHalfForm() {
-        fName.sendKeys("Customer2");
-        addCustomerSubmit.click();
-        String errorMessage = lName.getAttribute("validationMessage");
+        webElementsMethods.sendKeys(AddCustomerLocators.fName, "Customer2");
+        webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+
+        String errorMessage = driver.findElement(AddCustomerLocators.lName).getDomAttribute("validationMessage");
         System.out.println(errorMessage);
     }
 
     public void enterFirstName(String firstName) {
-        fName.sendKeys(firstName);
+        webElementsMethods.sendKeys(AddCustomerLocators.fName, firstName);
         LoggerUtility.info("Entered First Name");
     }
 
     public void enterLastName(String lastName) {
-        lName.sendKeys(lastName);
+        webElementsMethods.sendKeys(AddCustomerLocators.lName, lastName);
         LoggerUtility.info("Entered Last Name");
     }
 
     public void enterPostCode(String postCode) {
-        this.postCode.sendKeys(postCode);
+
+        webElementsMethods.sendKeys(AddCustomerLocators.postCode, postCode);
         LoggerUtility.info("Entered Post Code");
     }
 
     public String clickOnSubmitButton() {
-        webElementsMethods.clickOn(addCustomerSubmit);
+        webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
         String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();

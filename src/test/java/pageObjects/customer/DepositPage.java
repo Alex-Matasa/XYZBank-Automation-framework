@@ -2,7 +2,7 @@ package pageObjects.customer;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import dataObjects.TransactionsData;
+import dataObjects.Transactions;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -23,13 +23,13 @@ public class DepositPage extends BasePage {
     @FindBy(xpath ="//span[@ng-show='message']")
     private WebElement message;
 
-    public void deposit(TransactionsData transactionsData, Customers customers, Accounts accounts) {
-        amount.sendKeys(transactionsData.getAmount());
+    public void deposit(Transactions transactions, Customers customers, Accounts accounts) {
+        amount.sendKeys(transactions.getAmount());
         LoggerUtility.info("Entered amount of money to deposit");
 
-        if (Integer.parseInt(transactionsData.getAmount()) > 0) {
+        if (Integer.parseInt(transactions.getAmount()) > 0) {
             accounts.setBalance(String.valueOf(Integer.parseInt(accounts.getBalance())
-                    + Integer.parseInt(transactionsData.getAmount())));
+                    + Integer.parseInt(transactions.getAmount())));
         }
 
         webElementsMethods.clickOn(depositSubmitButton);

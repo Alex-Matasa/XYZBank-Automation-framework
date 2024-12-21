@@ -3,7 +3,7 @@ package pageObjects.customer;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import dataObjects.TransactionsData;
+import dataObjects.Transactions;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 
@@ -87,10 +87,10 @@ public class CustomerAccountFacade extends BasePage {
     public void withdrawMoney(Customers customers) {
         navigateToPage(withdraw);
         Accounts accounts = customers.getAccounts().get(0);
-        TransactionsData transactionsData = accounts.getTransactions().get(0);
-        withdrawPage.withdraw(transactionsData, customers, accounts);
-        List <String> info = List.of(getDateAndTime(), transactionsData.getAmount(), "Debit");
-        transactionsData.setWithdrawHistory(info);
+        Transactions transactions = accounts.getTransactions().get(0);
+        withdrawPage.withdraw(transactions, customers, accounts);
+        List <String> info = List.of(getDateAndTime(), transactions.getAmount(), "Debit");
+        transactions.setWithdrawHistory(info);
         Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accounts.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
         try {
@@ -102,14 +102,14 @@ public class CustomerAccountFacade extends BasePage {
     }
 
     public void validateTransactionHistory(Customers customers) {
-        navigateToPage(transactions);
+        navigateToPage(this.transactions);
         Accounts accounts = customers.getAccounts().get(0);
-        TransactionsData transactionsData = accounts.getTransactions().get(0);
+        Transactions transactions = accounts.getTransactions().get(0);
 
-        Assert.assertTrue(transactionsPage.validateDepositHistory(transactionsData));
+        Assert.assertTrue(transactionsPage.validateDepositHistory(transactions));
         LoggerUtility.info("Validated deposit history");
 
-        Assert.assertTrue(transactionsPage.validateWithdrawHistory(transactionsData));
+        Assert.assertTrue(transactionsPage.validateWithdrawHistory(transactions));
         LoggerUtility.info("Validated withdraw history");
     }
 

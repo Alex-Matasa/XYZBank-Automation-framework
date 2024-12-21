@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class TransactionsData {
+public class Transactions {
 
     private String type;
     private String amount;

@@ -1,0 +1,20 @@
+{
+  "customers": [
+    {
+      "firstName": "Hermoine",
+      "lastName": "Granger",
+      "accounts": [
+        {
+          "currency": "Dollar",
+          "accountId": "1001",
+          "transactions": [
+            {
+              "type": "deposit",
+              "amount": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

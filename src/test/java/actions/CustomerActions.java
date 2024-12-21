@@ -2,14 +2,8 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import dataObjects.TransactionsData;
-import loggerUtility.LoggerUtility;
+import dataObjects.Transactions;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import pageObjects.bankManager.AddCustomerPage;
-import pageObjects.bankManager.BankManagerFacade;
-import pageObjects.bankManager.CustomersPage;
-import pageObjects.bankManager.OpenAccountPage;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.DepositPage;
 
@@ -34,10 +28,10 @@ public class CustomerActions {
 
         customerAccountFacade.navigateToPage("Deposit");
         Accounts accounts = customers.getAccounts().get(0);
-        TransactionsData transactionsData = accounts.getTransactions().get(0);
-        depositPage.deposit(transactionsData, customers, accounts);
-        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactionsData.getAmount(), "Credit");
-        transactionsData.setDepositHistory(info);
+        Transactions transactions = accounts.getTransactions().get(0);
+        depositPage.deposit(transactions, customers, accounts);
+        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Credit");
+        transactions.setDepositHistory(info);
 
 //        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accounts.getBalance()));
 //        LoggerUtility.info("Balance is correctly updated");

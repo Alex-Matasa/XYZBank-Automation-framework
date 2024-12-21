@@ -11,6 +11,6 @@ public class Accounts {
     private String currency;
     private String accountId;
     private String balance;
-    private List<TransactionsData> transactions;
+    private List<Transactions> transactions;
 
 }

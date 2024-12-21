@@ -58,6 +58,10 @@ public class WebElementsMethods {
         select.selectByIndex(select.getOptions().size() - 1);
     }
 
+    public void sendKeys(By locator, String text) {
+        driver.findElement(locator).sendKeys(text);
+    }
+
 
 
 }
