@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
+import pageObjects.locators.BankManagerFacadeLocators;
 
 import java.util.List;
 
@@ -17,13 +18,6 @@ public class BankManagerFacade extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//button[@ng-class='btnClass1']")
-    private WebElement addCustomerButton;
-    @FindBy(xpath = "//button[@ng-click='openAccount()']")
-    private WebElement openAccountButton;
-    @FindBy(xpath = "//button[@ng-click='showCust()']")
-    private WebElement customersButton;
-
     private AddCustomerPage addCustomerPage;
     private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
@@ -32,24 +26,27 @@ public class BankManagerFacade extends BasePage {
         switch (pageName) {
             case "Add Customer" :
                 addCustomerPage = new AddCustomerPage(driver);
-                webElementsMethods.clickOn(addCustomerButton);
+                webElementsMethods.clickOn(BankManagerFacadeLocators.addCustomerButton);
                 LoggerUtility.info("Clicked on Add Customer button");
                 break;
             case "Open Account" :
                 openAccountPage = new OpenAccountPage(driver);
-                webElementsMethods.clickOn(openAccountButton);
+                webElementsMethods.clickOn(BankManagerFacadeLocators.openAccountButton);
                 LoggerUtility.info("Clicked on Open Account button");
                 break;
             case "Customers" :
                 customersPage = new CustomersPage(driver);
-                webElementsMethods.clickOn(customersButton);
+                webElementsMethods.clickOn(BankManagerFacadeLocators.customersButton);
                 LoggerUtility.info("Clicked on Customers button");
                 break;
         }
     }
 
     public void validateManagerDashboard() {
-        List<WebElement> tabsList = List.of(addCustomerButton, openAccountButton, customersButton);
+
+        List<WebElement> tabsList = List.of((driver.findElement(BankManagerFacadeLocators.addCustomerButton)),
+                        driver.findElement(BankManagerFacadeLocators.openAccountButton),
+                        driver.findElement(BankManagerFacadeLocators.customersButton));
         List<String> tabsListLabels = List.of("Add Customer", "Open Account", "Customers");
         Assert.assertTrue(assertionsMethods.validateText(tabsList, tabsListLabels));
         LoggerUtility.info("Tabs are displayed");

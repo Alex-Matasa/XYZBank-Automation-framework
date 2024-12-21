@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
+import pageObjects.locators.DepositLocators;
 
 public class DepositPage extends BasePage {
 
@@ -16,15 +17,8 @@ public class DepositPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//label[text()='Amount to be Deposited :']/parent::div/input")
-    private WebElement amount;
-    @FindBy(xpath = "//button[@type='submit']")
-    private WebElement depositSubmitButton;
-    @FindBy(xpath ="//span[@ng-show='message']")
-    private WebElement message;
-
     public void deposit(Transactions transactions, Customers customers, Accounts accounts) {
-        amount.sendKeys(transactions.getAmount());
+        webElementsMethods.sendKeys(DepositLocators.amount,transactions.getAmount());
         LoggerUtility.info("Entered amount of money to deposit");
 
         if (Integer.parseInt(transactions.getAmount()) > 0) {
@@ -32,12 +26,11 @@ public class DepositPage extends BasePage {
                     + Integer.parseInt(transactions.getAmount())));
         }
 
-        webElementsMethods.clickOn(depositSubmitButton);
+        webElementsMethods.clickOn(DepositLocators.depositSubmitButton);
         LoggerUtility.info("Clicked on Deposit submitting button");
 
-        Assert.assertTrue(assertionsMethods.validateText(message, "Deposit Successful"));
+        Assert.assertTrue(assertionsMethods.validateText(DepositLocators.message, "Deposit Successful"));
         LoggerUtility.info("Successful message is displayed");
-
     }
 
 

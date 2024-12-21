@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import pageObjects.BasePage;
+import pageObjects.locators.TransactionLocators;
 
 import java.util.List;
 
@@ -15,17 +16,14 @@ public class TransactionsPage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//button[@ng-click='back()']")
-    private WebElement backButton;
-    @FindBy(xpath = "//tr[contains(@id,'anchor')]")
-    private List<WebElement> transactionHistoryList;
 
     public void clickOnBackButton() {
-        webElementsMethods.clickOn(backButton);
+        webElementsMethods.clickOn(TransactionLocators.backButton);
     }
 
     public boolean validateDepositHistory(Transactions transactions) {
         boolean isInHistory = false;
+        List<WebElement> transactionHistoryList = driver.findElements(TransactionLocators.transactionHistoryList);
 
         for (int i = 0; i < transactionHistoryList.size(); i++) {
             List<WebElement> webElementList = transactionHistoryList.get(i).findElements(By.xpath(".//td"));
@@ -37,11 +35,12 @@ public class TransactionsPage extends BasePage {
         }
 
         return isInHistory;
-
     }
 
     public boolean validateWithdrawHistory(Transactions transactions) {
         boolean isInHistory = false;
+
+        List<WebElement> transactionHistoryList = driver.findElements(TransactionLocators.transactionHistoryList);
 
         for (int i = 0; i < transactionHistoryList.size(); i++) {
             List<WebElement> webElementList = transactionHistoryList.get(i).findElements(By.xpath(".//td"));
@@ -50,6 +49,7 @@ public class TransactionsPage extends BasePage {
             if (assertionsMethods.validateText(webElementList, transactions.getWithdrawHistory())) isInHistory = true;
             break;
         }
+
         return isInHistory;
     }
 

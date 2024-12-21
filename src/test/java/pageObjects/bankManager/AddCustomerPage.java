@@ -16,9 +16,6 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
-
-
-
     public void fillHalfForm() {
         webElementsMethods.sendKeys(AddCustomerLocators.fName, "Customer2");
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
