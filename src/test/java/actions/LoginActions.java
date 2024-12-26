@@ -18,19 +18,15 @@ public class LoginActions {
     }
 
     public void loginAsBankManager() {
-        commonPage = new CommonPage(driver);
         loginPage = new LoginPage(driver);
 
-        commonPage.clickOnHomeButton();
         loginPage.clickOnBankManagerLogin();
     }
 
     public void loginAsCustomer(Customers customers) {
-        commonPage = new CommonPage(driver);
         loginPage = new LoginPage(driver);
         customerLoginPage = new CustomerLoginPage(driver);
 
-        commonPage.clickOnHomeButton();
         loginPage.clickOnCustomerLogin();
         customerLoginPage.selectName(customers.getFullName());
         customerLoginPage.clickOnLoginButton();

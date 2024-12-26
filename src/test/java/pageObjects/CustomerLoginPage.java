@@ -1,10 +1,7 @@
 package pageObjects;
 
-import dataObjects.Customers;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pageObjects.locators.CustomerLoginLocators;
 
 public class CustomerLoginPage extends BasePage{

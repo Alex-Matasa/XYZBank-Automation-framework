@@ -18,36 +18,22 @@ public class CustomersPage extends BasePage {
         super(driver);
     }
 
-
-    public void validateLastEntry(Customers customers) {
-        String accountId = "";
-
-        if (customers.getAccounts() != null && !customers.getAccounts().isEmpty()) {
-            accountId = customers.getAccounts().get(0).getAccountId();
-        }
-
-        List<String> lastCustomerAddedInfo = List.of(customers.getFirstName(), customers.getLastName(), customers.getPostCode(), accountId);
-        Assert.assertTrue(assertionsMethods.validateText(CustomersLocators.lastCustomerAddedInfo, lastCustomerAddedInfo));
-        LoggerUtility.info("Last customer is added to the Customers table with correct info");
+    public void clickOnDeleteButton (WebElement customerToBeDeleted) {
+        webElementsMethods.clickOn(customerToBeDeleted.findElement(CustomersLocators.deleteButton));
     }
 
-    public void deleteCustomer(Customers customers) {
-        webElementsMethods.sendKeys(CustomersLocators.searchField, customers.getLastName());
+    public void searchCustomer(String lastName) {
+        webElementsMethods.sendKeys(CustomersLocators.searchField, lastName);
         LoggerUtility.info("Entered Last Name of the customer");
+    }
 
-        Accounts accounts = customers.getAccounts().get(0);
+    public List <String> getAllCustomersEntries() {
+        return webElementsMethods.getData(CustomersLocators.allCustomersInfo);
+    }
 
-        List<String> list = List.of(customers.getFirstName(), customers.getLastName(), customers.getPostCode(), accounts.getAccountId());
-        Assert.assertTrue(assertionsMethods.validateText(CustomersLocators.allCustomersInfo, list));
-        List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
-
-        if (customersList.size() == 1) {
-            customersList.get(0).findElement(By.xpath(".//td/button")).click();
-            LoggerUtility.info("Customer was deleted");
-        }
-
-        Assert.assertTrue(customersList.isEmpty());
-
+    public List<String> getLastCustomerAdded() {
+        List<String>list = webElementsMethods.getData(CustomersLocators.lastCustomerAddedInfo);
+        return webElementsMethods.getData(CustomersLocators.lastCustomerAddedInfo);
     }
 
 

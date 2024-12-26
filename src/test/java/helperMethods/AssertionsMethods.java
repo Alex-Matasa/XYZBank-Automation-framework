@@ -16,18 +16,18 @@ public class AssertionsMethods {
         this.driver = driver;
     }
 
-    public boolean validateText(List<WebElement> webElementList, List<String> data) {
-        AtomicInteger index = new AtomicInteger(0);
-        AtomicBoolean isValid = new AtomicBoolean(true);
-
-        webElementList.stream().forEach(webElement -> {
-            if(!webElement.getText().trim().equals(data.get(index.getAndIncrement()))) {
-                isValid.set(false);
-            }
-//            index.getAndIncrement();
-        });
-        return isValid.get();
-    }
+//    public boolean validateText(List<WebElement> webElementList, List<String> data) {
+//        AtomicInteger index = new AtomicInteger(0);
+//        AtomicBoolean isValid = new AtomicBoolean(true);
+//
+//        webElementList.stream().forEach(webElement -> {
+//            if(!webElement.getText().trim().equals(data.get(index.getAndIncrement()))) {
+//                isValid.set(false);
+//            }
+////            index.getAndIncrement();
+//        });
+//        return isValid.get();
+//    }
 
     public boolean validateText(By locator, List<String> data) {
         AtomicInteger index = new AtomicInteger(0);
@@ -44,14 +44,6 @@ public class AssertionsMethods {
         return isValid.get();
     }
 
-    public boolean validatePartialText(String actual, String expected) {
-        return actual.contains(expected);
-    }
-
-    public boolean validatePartialText(WebElement webElement, String expected) {
-        return webElement.getText().contains(expected);
-    }
-
     public boolean validatePartialText(By locator, String expected){
 
         return driver.findElement(locator).getText().contains(expected);
@@ -63,6 +55,18 @@ public class AssertionsMethods {
 
     public boolean validateText(By locator, String text) {
         return driver.findElement(locator).getText().equals(text);
+    }
+
+    public boolean validateText(List<String> actual, List<String> expected) {
+        return actual.equals(expected);
+    }
+
+    public boolean validatePartialText(String actual, String expected) {
+        return actual.contains(expected);
+    }
+
+    public boolean validatePartialText(WebElement webElement, String expected) {
+        return webElement.getText().contains(expected);
     }
 
 

@@ -2,11 +2,9 @@ package pageObjects;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pageObjects.locators.CommonLocators;
 
-public class CommonPage extends BasePage{
+public class CommonPage extends BasePage {
 
     public CommonPage(WebDriver driver) {
         super(driver);

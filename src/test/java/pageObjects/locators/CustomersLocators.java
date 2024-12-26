@@ -9,5 +9,6 @@ public class CustomersLocators {
     public static final By customersList = By.xpath("//tbody/tr");
     public static final By homeButton = By.xpath("//button[@class='btn home']");
     public static final By searchField = By.xpath("//input[@placeholder='Search Customer']");
+    public static final By deleteButton = By.xpath(".//td/button");
 
 }

@@ -2,13 +2,9 @@ package pageObjects.bankManager;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.AddCustomerLocators;
-
-import java.util.List;
 
 public class AddCustomerPage extends BasePage {
 
@@ -35,7 +31,6 @@ public class AddCustomerPage extends BasePage {
     }
 
     public void enterPostCode(String postCode) {
-
         webElementsMethods.sendKeys(AddCustomerLocators.postCode, postCode);
         LoggerUtility.info("Entered Post Code");
     }
@@ -52,15 +47,5 @@ public class AddCustomerPage extends BasePage {
 
         return actualSuccessMessage.split(":")[1];
     }
-
-//    public void fillEntireFormAndSubmit(CustomerData customerData) {
-//        enterFirstName(customerData);
-//        enterLastName(customerData);
-//        enterPostCode(customerData);
-//        clickOnSubmitButton(customerData);
-//    }
-
-
-
 
 }

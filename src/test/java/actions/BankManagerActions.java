@@ -2,13 +2,19 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
+import helperMethods.AssertionsMethods;
+import loggerUtility.LoggerUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pageObjects.CommonPage;
-import pageObjects.LoginPage;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.bankManager.CustomersPage;
 import pageObjects.bankManager.OpenAccountPage;
+import pageObjects.locators.CustomersLocators;
+
+import java.util.List;
 
 public class BankManagerActions {
 
@@ -18,6 +24,7 @@ public class BankManagerActions {
     private AddCustomerPage addCustomerPage;
     private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
+    private AssertionsMethods assertionsMethods;
 
     public BankManagerActions(WebDriver driver) {
         this.driver = driver;
@@ -52,15 +59,30 @@ public class BankManagerActions {
         customersPage = new CustomersPage(driver);
 
         bankManagerFacade.navigateToPage("Customers");
-        customersPage.deleteCustomer(customers);
+        customersPage.searchCustomer(customers.getLastName());
+
+
+        List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
+
+        if (customersList.size() == 1) {
+            customersList.get(0).findElement(By.xpath(".//td/button")).click();
+            LoggerUtility.info("Customer was deleted");
+        }
+
+        Assert.assertTrue(customersList.isEmpty());
     }
 
-    public void validateCustomer(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
+    public boolean validateCustomer(Customers customers) {
+        bankManagerFacade  = new BankManagerFacade(driver);
+        assertionsMethods = new AssertionsMethods(driver);
         customersPage = new CustomersPage(driver);
+        List<String> list = List.of(customers.getFirstName(), customers.getLastName(),
+                customers.getPostCode(), customers.getAccounts().get(0).getAccountId());
 
         bankManagerFacade.navigateToPage("Customers");
-        customersPage.validateLastEntry(customers);
+        return assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list);
     }
+
+
 
 }

@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class WebElementsMethods {
 
@@ -62,6 +63,14 @@ public class WebElementsMethods {
         driver.findElement(locator).sendKeys(text);
     }
 
+    public List<String> getData(By locator) {
+        List <WebElement> webElementList = driver.findElements(locator);
+
+
+        return webElementList.stream()
+                .map(WebElement::getText) // You can replace getText() with getAttribute("attribute_name") if needed
+                .collect(Collectors.toList());
+    }
 
 
 }

@@ -24,7 +24,7 @@ public class AddMultipleCustomersTest extends Hooks {
         for (int i = 0; i < 5; i++) {
             Customers customers = dataModel.customers.get(i);
 //            bankManagerFacade.addCustomer(customerData);
-            customersPage.validateLastEntry(customers);
+//            customersPage.validateLastEntry(customers);
             loginActions.loginAsCustomer(customers);
             customerAccountFacade.validateWelcomingNoAccount(customers);
             loginActions.loginAsBankManager();
