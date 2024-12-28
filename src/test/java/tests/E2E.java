@@ -16,7 +16,7 @@ public class E2E extends Hooks {
 //        CustomerData customerData = dataModel.customerData.get(0);
 //
 //        loginPage.clickOnBankManagerLogin();
-//        bankManagerFacade.addCustomer(customerData);
+//        bankManagerFacade.tests.bankManager.addCustomer(customerData);
 //        bankManagerFacade.openAccount(customerData);
 //        commonPage.clickOnHomeButton();
 //        loginPage.clickOnCustomerLogin();

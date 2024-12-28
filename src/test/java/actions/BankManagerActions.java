@@ -72,14 +72,18 @@ public class BankManagerActions {
         Assert.assertTrue(customersList.isEmpty());
     }
 
-    public boolean validateCustomer(Customers customers) {
+    public boolean validateLastCustomerAdded(Customers customers) {
         bankManagerFacade  = new BankManagerFacade(driver);
         assertionsMethods = new AssertionsMethods(driver);
         customersPage = new CustomersPage(driver);
         List<String> list = List.of(customers.getFirstName(), customers.getLastName(),
-                customers.getPostCode(), customers.getAccounts().get(0).getAccountId());
+                customers.getPostCode());
 
         bankManagerFacade.navigateToPage("Customers");
+        if(assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list)) {
+            LoggerUtility.info("The customer's info are displayed in the table");
+        }
+
         return assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list);
     }
 

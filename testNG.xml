@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="XYZ Bank Test Suite">
+    <test name="Bank Manager Add Customer Tests">
+        <packages>
+            <package name="tests.bankManager.addCustomer.validScenariosAddCustomer"/>
+        </packages>
+    </test>
+</suite>

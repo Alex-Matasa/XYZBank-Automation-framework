@@ -66,9 +66,8 @@ public class WebElementsMethods {
     public List<String> getData(By locator) {
         List <WebElement> webElementList = driver.findElements(locator);
 
-
         return webElementList.stream()
-                .map(WebElement::getText) // You can replace getText() with getAttribute("attribute_name") if needed
+                .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
 
