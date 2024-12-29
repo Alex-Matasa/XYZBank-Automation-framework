@@ -61,6 +61,10 @@ public class AssertionsMethods {
         return actual.equals(expected);
     }
 
+    public boolean validateText(String actual, String expected) {
+        return actual.contains(expected);
+    }
+
     public boolean validatePartialText(String actual, String expected) {
         return actual.contains(expected);
     }

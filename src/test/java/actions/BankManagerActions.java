@@ -41,6 +41,18 @@ public class BankManagerActions {
         customers.setCustomerId(addCustomerPage.clickOnSubmitButton());
     }
 
+    public void fillHalfForm(Customers customers) {
+        bankManagerFacade = new BankManagerFacade(driver);
+        addCustomerPage = new AddCustomerPage(driver);
+
+        bankManagerFacade.navigateToPage("Add Customer");
+        addCustomerPage.leaveEmptyField(customers.getFirstName(), customers.getLastName(), customers.getPostCode());
+
+        if(customers.getFirstName() == null) customers.setFirstName("");
+        if (customers.getLastName() == null) customers.setLastName("");
+        if (customers.getPostCode() == null) customers.setPostCode("");
+    }
+
     public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         openAccountPage = new OpenAccountPage(driver);
@@ -61,7 +73,6 @@ public class BankManagerActions {
         bankManagerFacade.navigateToPage("Customers");
         customersPage.searchCustomer(customers.getLastName());
 
-
         List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
 
         if (customersList.size() == 1) {
@@ -72,21 +83,23 @@ public class BankManagerActions {
         Assert.assertTrue(customersList.isEmpty());
     }
 
-    public boolean validateLastCustomerAdded(Customers customers) {
+    public boolean isCustomerInTheList(Customers customers) {
         bankManagerFacade  = new BankManagerFacade(driver);
-        assertionsMethods = new AssertionsMethods(driver);
         customersPage = new CustomersPage(driver);
-        List<String> list = List.of(customers.getFirstName(), customers.getLastName(),
-                customers.getPostCode());
+        assertionsMethods = new AssertionsMethods(driver);
 
         bankManagerFacade.navigateToPage("Customers");
-        if(assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list)) {
-            LoggerUtility.info("The customer's info are displayed in the table");
+        List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
+                customers.getPostCode());
+
+        boolean isCustomerInTheList = false;
+
+        for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
+            isCustomerInTheList = assertionsMethods.validateText(customerAdded,customersPage.getListOfCustomers().get(i));
+            if (isCustomerInTheList) break;
         }
 
-        return assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list);
+        return isCustomerInTheList;
     }
-
-
 
 }

@@ -1,0 +1,8 @@
+{
+  "customers": [
+    {
+      "lastName": "Customer1",
+      "postCode": "300500"
+    }
+  ]
+}
