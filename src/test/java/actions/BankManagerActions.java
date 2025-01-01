@@ -48,7 +48,7 @@ public class BankManagerActions {
         bankManagerFacade.navigateToPage("Add Customer");
         addCustomerPage.leaveEmptyField(customers.getFirstName(), customers.getLastName(), customers.getPostCode());
 
-        if(customers.getFirstName() == null) customers.setFirstName("");
+        if (customers.getFirstName() == null) customers.setFirstName("");
         if (customers.getLastName() == null) customers.setLastName("");
         if (customers.getPostCode() == null) customers.setPostCode("");
     }
@@ -84,7 +84,7 @@ public class BankManagerActions {
     }
 
     public boolean isCustomerInTheList(Customers customers) {
-        bankManagerFacade  = new BankManagerFacade(driver);
+        bankManagerFacade = new BankManagerFacade(driver);
         customersPage = new CustomersPage(driver);
         assertionsMethods = new AssertionsMethods(driver);
 
@@ -95,9 +95,12 @@ public class BankManagerActions {
         boolean isCustomerInTheList = false;
 
         for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
-            isCustomerInTheList = assertionsMethods.validateText(customerAdded,customersPage.getListOfCustomers().get(i));
+            isCustomerInTheList = assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i));
             if (isCustomerInTheList) break;
         }
+
+        if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
+        else LoggerUtility.info(("The Customer is not added to the list"));
 
         return isCustomerInTheList;
     }
