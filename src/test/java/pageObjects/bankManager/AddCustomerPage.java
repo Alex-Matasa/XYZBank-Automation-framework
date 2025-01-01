@@ -1,7 +1,9 @@
 package pageObjects.bankManager;
 
 import loggerUtility.LoggerUtility;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.AddCustomerLocators;
@@ -12,12 +14,43 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
-    public void fillHalfForm() {
-        webElementsMethods.sendKeys(AddCustomerLocators.fName, "Customer2");
-        webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+    public void leaveEmptyField(String firstName, String lastName, String postCode) {
+        String alertMessage = null;
 
-        String errorMessage = driver.findElement(AddCustomerLocators.lName).getDomAttribute("validationMessage");
-        System.out.println(errorMessage);
+        if (firstName == null) {
+            LoggerUtility.info("Left the First Name field empty");
+            enterLastName(lastName);
+            enterPostCode(postCode);
+            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+            LoggerUtility.info("Clicked on Add Customer Submit button");
+
+            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
+            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", firstNameField);
+        } else if (lastName == null) {
+            enterFirstName(firstName);
+            LoggerUtility.info("Left the Last Name field empty");
+            enterPostCode(postCode);
+            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+            LoggerUtility.info("Clicked on Add Customer Submit button");
+
+            WebElement lastNameField = driver.findElement(AddCustomerLocators.lName);
+            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", lastNameField);
+        } else {
+            enterFirstName(firstName);
+            enterLastName(lastName);
+            LoggerUtility.info("Left the Post Code field empty");
+            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+            LoggerUtility.info("Clicked on Add Customer Submit button");
+
+            WebElement postCodeField = driver.findElement(AddCustomerLocators.postCode);
+            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", postCodeField);
+        }
+
+        Assert.assertTrue(assertionsMethods.validateText(alertMessage, "Please fill out this field."));
+        LoggerUtility.info("Warning alert message is displayed");
     }
 
     public void enterFirstName(String firstName) {
@@ -47,5 +80,6 @@ public class AddCustomerPage extends BasePage {
 
         return actualSuccessMessage.split(":")[1];
     }
+
 
 }
