@@ -1,5 +1,9 @@
 name: AddCustomerWorkflow
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+     branch:
+      default: 'testing-Add-Customer'
 jobs:
   test:
     runs-on: ubuntu-latest
