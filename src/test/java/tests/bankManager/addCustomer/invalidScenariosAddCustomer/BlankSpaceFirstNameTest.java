@@ -8,17 +8,17 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.Hooks;
 
-public class LastNameEmptyTest extends Hooks {
+public class BlankSpaceFirstNameTest extends Hooks {
 
     @Test
-    public void lastNameEmpty() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/invalidDataAddCustomer/lastNameEmpty.json");
+    public void blankSpaceFirstName() {
+        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/invalidDataAddCustomer/blankSpaceFirstName.json");
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.fillHalfForm(customers);
+        bankManagerActions.addCustomer(customers);
         dataModel.normalizeInputData(customers);
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }

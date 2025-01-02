@@ -19,6 +19,7 @@ public class PostCodeEmptyTest extends Hooks {
 
         loginActions.loginAsBankManager();
         bankManagerActions.fillHalfForm(customers);
+        dataModel.normalizeInputData(customers);
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
 

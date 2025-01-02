@@ -8,11 +8,11 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.Hooks;
 
-public class LastNameEmptyTest extends Hooks {
+public class AllFieldsEmptyTest extends Hooks {
 
     @Test
-    public void lastNameEmpty() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/invalidDataAddCustomer/lastNameEmpty.json");
+    public void allFieldsEmpty() {
+        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/invalidDataAddCustomer/allFieldsEmpty.json");
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());

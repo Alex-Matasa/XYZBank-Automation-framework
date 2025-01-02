@@ -47,10 +47,6 @@ public class BankManagerActions {
 
         bankManagerFacade.navigateToPage("Add Customer");
         addCustomerPage.leaveEmptyField(customers.getFirstName(), customers.getLastName(), customers.getPostCode());
-
-        if (customers.getFirstName() == null) customers.setFirstName("");
-        if (customers.getLastName() == null) customers.setLastName("");
-        if (customers.getPostCode() == null) customers.setPostCode("");
     }
 
     public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {

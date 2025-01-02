@@ -18,4 +18,8 @@ public class DataModel extends BaseData {
         }
     }
 
+    public void normalizeInputData(Customers customers) {
+        customers.modifyData(customers);
+    }
+
 }

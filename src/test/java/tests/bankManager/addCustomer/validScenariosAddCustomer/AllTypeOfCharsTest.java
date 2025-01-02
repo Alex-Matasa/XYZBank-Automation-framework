@@ -20,7 +20,6 @@ public class AllTypeOfCharsTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.addCustomer(customers);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
-
     }
 
 
