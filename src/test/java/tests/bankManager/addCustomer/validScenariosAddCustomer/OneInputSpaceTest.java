@@ -19,6 +19,7 @@ public class OneInputSpaceTest extends Hooks {
 
         loginActions.loginAsBankManager();
         bankManagerActions.addCustomer(customers);
+        dataModel.normalizeInputData(customers);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
     }
 

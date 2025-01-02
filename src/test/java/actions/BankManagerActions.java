@@ -38,15 +38,7 @@ public class BankManagerActions {
         addCustomerPage.enterFirstName(customers.getFirstName());
         addCustomerPage.enterLastName(customers.getLastName());
         addCustomerPage.enterPostCode(customers.getPostCode());
-        customers.setCustomerId(addCustomerPage.clickOnSubmitButton());
-    }
-
-    public void fillHalfForm(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
-        addCustomerPage = new AddCustomerPage(driver);
-
-        bankManagerFacade.navigateToPage("Add Customer");
-        addCustomerPage.leaveEmptyField(customers.getFirstName(), customers.getLastName(), customers.getPostCode());
+        customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
     }
 
     public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {

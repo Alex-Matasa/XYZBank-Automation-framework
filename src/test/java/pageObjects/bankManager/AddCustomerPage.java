@@ -14,90 +14,65 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
-
-
-    public void leaveEmptyField(String firstName, String lastName, String postCode) {
-        String alertMessage = null;
-
-        if (firstName == null && lastName == null && postCode == null) {
-            LoggerUtility.info("Left all the fields empty");
-            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
-            LoggerUtility.info("Clicked on Add Customer Submit button");
-
-            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
-            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", firstNameField);
-        } else if (firstName == null) {
-            LoggerUtility.info("Left the First Name field empty");
-            enterLastName(lastName);
-            enterPostCode(postCode);
-            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
-            LoggerUtility.info("Clicked on Add Customer Submit button");
-
-            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
-            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", firstNameField);
-        } else if (lastName == null) {
-            enterFirstName(firstName);
-            LoggerUtility.info("Left the Last Name field empty");
-            enterPostCode(postCode);
-            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
-            LoggerUtility.info("Clicked on Add Customer Submit button");
-
-            WebElement lastNameField = driver.findElement(AddCustomerLocators.lName);
-            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", lastNameField);
-        } else {
-            enterFirstName(firstName);
-            enterLastName(lastName);
-            LoggerUtility.info("Left the Post Code field empty");
-            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
-            LoggerUtility.info("Clicked on Add Customer Submit button");
-
-            WebElement postCodeField = driver.findElement(AddCustomerLocators.postCode);
-            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", postCodeField);
-        }
-
-        Assert.assertTrue(assertionsMethods.validateText(alertMessage, "Please fill out this field."));
-        LoggerUtility.info("Warning alert message is displayed");
-    }
-
     public void enterFirstName(String firstName) {
-        webElementsMethods.sendKeys(AddCustomerLocators.fName, firstName);
-        LoggerUtility.info("Entered First Name");
+        if (firstName != null) {
+            webElementsMethods.sendKeys(AddCustomerLocators.fName, firstName);
+            LoggerUtility.info("Entered First Name");
+        } else LoggerUtility.info("Left the First Name field empty");
     }
 
     public void enterLastName(String lastName) {
-        webElementsMethods.sendKeys(AddCustomerLocators.lName, lastName);
-        LoggerUtility.info("Entered Last Name");
+        if (lastName != null) {
+            webElementsMethods.sendKeys(AddCustomerLocators.lName, lastName);
+            LoggerUtility.info("Entered Last Name");
+        } else LoggerUtility.info("Left the Last Name field empty");
+
     }
 
     public void enterPostCode(String postCode) {
-        webElementsMethods.sendKeys(AddCustomerLocators.postCode, postCode);
-        LoggerUtility.info("Entered Post Code");
+        if (postCode != null) {
+            webElementsMethods.sendKeys(AddCustomerLocators.postCode, postCode);
+            LoggerUtility.info("Entered Post Code");
+        } else LoggerUtility.info("Left the Post Code field empty");
     }
 
-    public String clickOnSubmitButton() {
-        String textToReturn = null;
+    public String clickOnSubmitButton(String firstName, String lastName, String postCode) {
+        String customerIdToReturn = null;
+        String actualAlertMessage = null;
 
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        String actualMessage = alertsMethods.getAlertsTextAndAccept();
-        LoggerUtility.info("Accepted pop-up alert");
-
-        if(actualMessage.startsWith("Customer")) {
-            Assert.assertTrue(assertionsMethods.validatePartialText(actualMessage, "Customer added successfully with customer id"));
-            LoggerUtility.info("Validated successful message");
-            textToReturn = actualMessage.split(":")[1];
+        if (firstName == null) {
+            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
+            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", firstNameField);
+        } else if (lastName == null) {
+            WebElement lastNameField = driver.findElement(AddCustomerLocators.lName);
+            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", lastNameField);
+        } else if (postCode == null) {
+            WebElement postCodeField = driver.findElement(AddCustomerLocators.postCode);
+            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", postCodeField);
+        } else {
+            actualAlertMessage = alertsMethods.getAlertsTextAndAccept();
+            LoggerUtility.info("Accepted pop-up alert");
         }
-        else {
-            Assert.assertTrue(assertionsMethods.validateText(actualMessage, "Please check the details. Customer may be duplicate."));
+
+        if (actualAlertMessage.contains("id")) {
+            Assert.assertTrue(assertionsMethods.validatePartialText(actualAlertMessage, "Customer added successfully with customer id"));
+            LoggerUtility.info("Validated successful message");
+            customerIdToReturn = actualAlertMessage.split(":")[1];
+        } else if (actualAlertMessage.contains("field")) {
+            Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please fill out this field."));
+            LoggerUtility.info("Warning alert message is displayed");
+        } else {
+            Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please check the details. Customer may be duplicate."));
             LoggerUtility.info("Warning alert message is displayed");
         }
 
-        return textToReturn;
+        return customerIdToReturn;
     }
 
 
