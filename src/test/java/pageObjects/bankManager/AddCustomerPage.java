@@ -14,10 +14,20 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
+
+
     public void leaveEmptyField(String firstName, String lastName, String postCode) {
         String alertMessage = null;
 
-        if (firstName == null) {
+        if (firstName == null && lastName == null && postCode == null) {
+            LoggerUtility.info("Left all the fields empty");
+            webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
+            LoggerUtility.info("Clicked on Add Customer Submit button");
+
+            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
+            alertMessage = (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", firstNameField);
+        } else if (firstName == null) {
             LoggerUtility.info("Left the First Name field empty");
             enterLastName(lastName);
             enterPostCode(postCode);
@@ -69,16 +79,25 @@ public class AddCustomerPage extends BasePage {
     }
 
     public String clickOnSubmitButton() {
+        String textToReturn = null;
+
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
+        String actualMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
 
-        Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Customer added successfully with customer id"));
-        LoggerUtility.info("Validated successful message");
+        if(actualMessage.startsWith("Customer")) {
+            Assert.assertTrue(assertionsMethods.validatePartialText(actualMessage, "Customer added successfully with customer id"));
+            LoggerUtility.info("Validated successful message");
+            textToReturn = actualMessage.split(":")[1];
+        }
+        else {
+            Assert.assertTrue(assertionsMethods.validateText(actualMessage, "Please check the details. Customer may be duplicate."));
+            LoggerUtility.info("Warning alert message is displayed");
+        }
 
-        return actualSuccessMessage.split(":")[1];
+        return textToReturn;
     }
 
 

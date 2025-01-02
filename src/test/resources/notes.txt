@@ -1,9 +1,0 @@
-1. OOP concepts used: inheritance, composition
-
-
-
-TO DO:
-- assertions / messages /
-
-
-

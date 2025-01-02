@@ -1,5 +1,6 @@
 package dataObjects;
 
+import helperMethods.UtilityMethods;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -20,7 +21,14 @@ public class Customers {
     }
 
     public void manipulateData() {
-
             this.fullName = firstName + " " + lastName;
     }
+
+    public void modifyData(Customers customers){
+        customers.setFirstName(UtilityMethods.modifyString(customers.getFirstName()));
+        customers.setLastName(UtilityMethods.modifyString(customers.getLastName()));
+        customers.setPostCode(UtilityMethods.modifyString(customers.getPostCode()));
+    }
+
+
 }
