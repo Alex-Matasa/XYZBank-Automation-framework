@@ -1,0 +1,14 @@
+{
+  "customers": [
+    {
+      "firstName": "CommonFirstName",
+      "lastName": "CommonLastName",
+      "postCode": "1234"
+    },
+    {
+      "firstName": "CommonFirstName",
+      "lastName": "CommonLastName",
+      "postCode": "1234"
+    }
+  ]
+}
