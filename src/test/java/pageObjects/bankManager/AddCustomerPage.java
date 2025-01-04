@@ -57,12 +57,12 @@ public class AddCustomerPage extends BasePage {
                     "return arguments[0].validationMessage;", postCodeField);
         } else {
             actualAlertMessage = alertsMethods.getAlertsTextAndAccept();
-            LoggerUtility.info("Accepted pop-up alert");
         }
 
         if (actualAlertMessage.contains("id")) {
             Assert.assertTrue(assertionsMethods.validatePartialText(actualAlertMessage, "Customer added successfully with customer id"));
             LoggerUtility.info("Validated successful message");
+            LoggerUtility.info("Accepted pop-up alert");
             customerIdToReturn = actualAlertMessage.split(":")[1];
         } else if (actualAlertMessage.contains("field")) {
             Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please fill out this field."));
@@ -70,6 +70,7 @@ public class AddCustomerPage extends BasePage {
         } else {
             Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please check the details. Customer may be duplicate."));
             LoggerUtility.info("Warning alert message is displayed");
+            LoggerUtility.info("Accepted pop-up alert");
         }
 
         return customerIdToReturn;
