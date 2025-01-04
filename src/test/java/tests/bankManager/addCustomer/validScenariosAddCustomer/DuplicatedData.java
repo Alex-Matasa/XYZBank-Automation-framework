@@ -24,7 +24,7 @@ public class DuplicatedData extends Hooks {
         bankManagerActions.addCustomer(customer2);
         dataModel.normalizeInputData(customer2);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));
+        Assert.assertFalse(bankManagerActions.isCustomerDuplicated(customer1));
     }
 
 

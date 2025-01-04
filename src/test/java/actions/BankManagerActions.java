@@ -14,6 +14,7 @@ import pageObjects.bankManager.CustomersPage;
 import pageObjects.bankManager.OpenAccountPage;
 import pageObjects.locators.CustomersLocators;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankManagerActions {
@@ -79,18 +80,51 @@ public class BankManagerActions {
         bankManagerFacade.navigateToPage("Customers");
         List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
                 customers.getPostCode());
+        List<List<String>> customersFound = new ArrayList<>();
+
 
         boolean isCustomerInTheList = false;
 
         for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
             isCustomerInTheList = assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i));
-            if (isCustomerInTheList) break;
+            if (isCustomerInTheList) {
+                customersFound.add(customerAdded);
+            }
         }
 
+        if (customersFound.size() != 1) isCustomerInTheList = false;
         if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
         else LoggerUtility.info(("The Customer is not added to the list"));
 
         return isCustomerInTheList;
+    }
+
+    public boolean isCustomerDuplicated(Customers customers) {
+        bankManagerFacade = new BankManagerFacade(driver);
+        customersPage = new CustomersPage(driver);
+        assertionsMethods = new AssertionsMethods(driver);
+
+        bankManagerFacade.navigateToPage("Customers");
+        List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
+                customers.getPostCode());
+        List<List<String>> customersFound = new ArrayList<>();
+
+        boolean isCustomerDuplicated = false;
+
+        for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
+            if (assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
+                customersFound.add(customerAdded);
+            }
+
+            if (customersFound.size() == 2) {
+                isCustomerDuplicated = true;
+                break;
+            }
+        }
+
+        if (!isCustomerDuplicated) LoggerUtility.info("The Customer is not duplicated");
+
+        return isCustomerDuplicated;
     }
 
 }
