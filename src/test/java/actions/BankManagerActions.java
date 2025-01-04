@@ -31,11 +31,25 @@ public class BankManagerActions {
         this.driver = driver;
     }
 
+    public void navigateToAddCustomer() {
+        bankManagerFacade = new BankManagerFacade(driver);
+        bankManagerFacade.navigateToPage("Add Customer");
+    }
+
+    public void navigateToOpenAccount() {
+        bankManagerFacade = new BankManagerFacade(driver);
+        bankManagerFacade.navigateToPage("Open Account");
+    }
+
+    public void navigateToCustomersList() {
+        bankManagerFacade = new BankManagerFacade(driver);
+        bankManagerFacade.navigateToPage("Customers");
+    }
+
     public void addCustomer(Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         addCustomerPage = new AddCustomerPage(driver);
 
-        bankManagerFacade.navigateToPage("Add Customer");
         addCustomerPage.enterFirstName(customers.getFirstName());
         addCustomerPage.enterLastName(customers.getLastName());
         addCustomerPage.enterPostCode(customers.getPostCode());
@@ -43,11 +57,9 @@ public class BankManagerActions {
     }
 
     public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
         openAccountPage = new OpenAccountPage(driver);
         Accounts newAccount = new Accounts();
 
-        bankManagerFacade.navigateToPage("Open Account");
         openAccountPage.selectCustomer(customers.getFullName());
         openAccountPage.selectCurrency(accounts.getCurrency());
         customers.getAccounts().add(newAccount);
@@ -56,10 +68,8 @@ public class BankManagerActions {
     }
 
     public void deleteCustomer(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
         customersPage = new CustomersPage(driver);
 
-        bankManagerFacade.navigateToPage("Customers");
         customersPage.searchCustomer(customers.getLastName());
 
         List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
@@ -73,26 +83,21 @@ public class BankManagerActions {
     }
 
     public boolean isCustomerInTheList(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
         customersPage = new CustomersPage(driver);
         assertionsMethods = new AssertionsMethods(driver);
 
-        bankManagerFacade.navigateToPage("Customers");
         List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
                 customers.getPostCode());
-        List<List<String>> customersFound = new ArrayList<>();
-
 
         boolean isCustomerInTheList = false;
 
         for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
-            isCustomerInTheList = assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i));
-            if (isCustomerInTheList) {
-                customersFound.add(customerAdded);
+            if(assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
+            isCustomerInTheList = true;
+            break;
             }
         }
 
-        if (customersFound.size() != 1) isCustomerInTheList = false;
         if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
         else LoggerUtility.info(("The Customer is not added to the list"));
 
@@ -100,11 +105,9 @@ public class BankManagerActions {
     }
 
     public boolean isCustomerDuplicated(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
         customersPage = new CustomersPage(driver);
         assertionsMethods = new AssertionsMethods(driver);
 
-        bankManagerFacade.navigateToPage("Customers");
         List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
                 customers.getPostCode());
         List<List<String>> customersFound = new ArrayList<>();

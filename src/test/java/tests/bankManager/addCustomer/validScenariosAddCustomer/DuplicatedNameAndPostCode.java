@@ -19,10 +19,12 @@ public class DuplicatedNameAndPostCode extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
+        bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customer1);
         dataModel.normalizeInputData(customer1);
         bankManagerActions.addCustomer(customer2);
         dataModel.normalizeInputData(customer2);
+        bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));
     }

@@ -1,4 +1,4 @@
-package tests.bankManager.addCustomer.validScenariosAddCustomer;
+package tests.bankManager.addCustomer.invalidScenariosAddCustomer;
 
 import actions.BankManagerActions;
 import actions.LoginActions;
@@ -19,13 +19,15 @@ public class DuplicatedData extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
+        bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customer1);
         dataModel.normalizeInputData(customer1);
+        bankManagerActions.navigateToCustomersList();
+        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
+        bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customer2);
         dataModel.normalizeInputData(customer2);
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
+        bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerDuplicated(customer1));
     }
-
-
 }
