@@ -24,6 +24,4 @@ public class MultipleInputSpaceTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
     }
-
-
 }

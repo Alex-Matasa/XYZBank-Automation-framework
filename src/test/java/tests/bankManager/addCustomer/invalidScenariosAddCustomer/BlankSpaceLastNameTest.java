@@ -24,5 +24,4 @@ public class BlankSpaceLastNameTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
-
 }

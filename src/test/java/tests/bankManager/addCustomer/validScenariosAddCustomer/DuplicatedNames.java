@@ -28,6 +28,4 @@ public class DuplicatedNames extends Hooks {
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));
     }
-
-
 }

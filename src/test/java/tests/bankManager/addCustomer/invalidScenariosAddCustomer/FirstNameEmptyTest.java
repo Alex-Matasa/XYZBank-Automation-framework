@@ -24,5 +24,4 @@ public class FirstNameEmptyTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
-
 }

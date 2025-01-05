@@ -24,6 +24,4 @@ public class OneInputSpaceTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
     }
-
-
 }

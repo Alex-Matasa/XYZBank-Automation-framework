@@ -24,5 +24,4 @@ public class BlankSpacePostCodeTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
-
 }

@@ -31,6 +31,7 @@ public class BankManagerActions {
         this.driver = driver;
     }
 
+
     public void navigateToAddCustomer() {
         bankManagerFacade = new BankManagerFacade(driver);
         bankManagerFacade.navigateToPage("Add Customer");
