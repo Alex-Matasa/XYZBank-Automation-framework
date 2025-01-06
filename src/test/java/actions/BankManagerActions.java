@@ -57,7 +57,7 @@ public class BankManagerActions {
         customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
     }
 
-    public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {
+    public void openAccount(Customers customers, Accounts accounts) {
         openAccountPage = new OpenAccountPage(driver);
         Accounts newAccount = new Accounts();
 
@@ -65,6 +65,7 @@ public class BankManagerActions {
         openAccountPage.selectCurrency(accounts.getCurrency());
         customers.getAccounts().add(newAccount);
         customers.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
+        customers.getAccounts().get(0).setCurrency(accounts.getCurrency());
         customers.getAccounts().get(0).setBalance("0");
     }
 
@@ -93,9 +94,9 @@ public class BankManagerActions {
         boolean isCustomerInTheList = false;
 
         for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
-            if(assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
-            isCustomerInTheList = true;
-            break;
+            if (assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
+                isCustomerInTheList = true;
+                break;
             }
         }
 
@@ -129,6 +130,27 @@ public class BankManagerActions {
         if (!isCustomerDuplicated) LoggerUtility.info("The Customer is not duplicated");
 
         return isCustomerDuplicated;
+    }
+
+    public boolean isAccountAddedToTable(Customers customers) {
+        customersPage = new CustomersPage(driver);
+        assertionsMethods = new AssertionsMethods(driver);
+        boolean isAccountAdded = false;
+
+        for (int i = 0; i <= customersPage.getListOfCustomers().size(); i++) {
+            String fullNameInTable = customersPage.getListOfCustomers().get(i).get(0) + " " + customersPage.getListOfCustomers().get(i).get(1);
+            if (customers.getFullName().equals(fullNameInTable)) {
+                if (customersPage.getListOfCustomers().get(i).contains(customers.getAccounts().get(0).getAccountId())) {
+                    isAccountAdded = true;
+                    break;
+                }
+            }
+        }
+
+        if(isAccountAdded)  LoggerUtility.info("The account id is added to the customer");
+        else LoggerUtility.info(("The account id is not added to the customer"));
+
+        return isAccountAdded;
     }
 
 }

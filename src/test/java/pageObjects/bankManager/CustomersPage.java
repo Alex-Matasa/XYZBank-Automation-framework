@@ -49,4 +49,5 @@ public class CustomersPage extends BasePage {
 
         return listOfCustomers;
     }
+
 }
