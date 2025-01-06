@@ -43,6 +43,10 @@ public class CustomerAccountFacade extends BasePage {
         }
     }
 
+    public void selectAccountId(String id) {
+        webElementsMethods.select(CustomerAccountFacadeLocators.selectAccountId, id);
+    }
+
     public void validateAccountInfo(Customers customers){
         Accounts accounts = customers.getAccounts().get(0);
         Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));

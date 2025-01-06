@@ -1,0 +1,19 @@
+{
+  "customers": [
+    {
+      "firstName": "Harry",
+      "lastName": "Potter",
+      "accounts": [
+        {
+          "accountId": "1004",
+          "transactions": [
+            {
+              "type": "deposit",
+              "amount": 100
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

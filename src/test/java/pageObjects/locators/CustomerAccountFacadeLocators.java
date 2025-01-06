@@ -12,5 +12,6 @@ public class CustomerAccountFacadeLocators {
     public static final By withdrawlButton = By.xpath("//button[@ng-click='withdrawl()']");
     public static final By balanceInfo = By.xpath("//strong[@class='ng-binding'][2]");
     public static final By logoutButton = By.xpath("//button[@ng-click='byebye()']");
+    public static final By selectAccountId = By.xpath("//select");
 
 }
