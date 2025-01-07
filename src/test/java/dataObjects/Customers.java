@@ -21,6 +21,11 @@ public class Customers {
     }
 
     public void manipulateData() {
+        if(!this.firstName.contains("Duplicate")) {
+            this.firstName += System.currentTimeMillis();
+            this.lastName += System.currentTimeMillis();
+        }
+
             this.fullName = firstName + " " + lastName;
     }
 

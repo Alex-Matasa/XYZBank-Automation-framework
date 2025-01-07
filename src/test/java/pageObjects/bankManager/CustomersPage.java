@@ -9,6 +9,7 @@ import pageObjects.locators.CustomersLocators;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomersPage extends BasePage {
 
@@ -29,23 +30,11 @@ public class CustomersPage extends BasePage {
         return webElementsMethods.getData(CustomersLocators.allCustomersInfo);
     }
 
-    public List<List<String>> getListOfCustomers() {
-        List<List<String>> listOfCustomers = new ArrayList<>();
+    public List<String> getListOfCustomers() {
+        List<String> listOfCustomers = new ArrayList<>();
         List<WebElement> listOfCustomersWE = driver.findElements(CustomersLocators.customersList);
 
-        for (int i = 1; i <= listOfCustomersWE.size(); i++) {
-            List<String> list = new ArrayList<>();
-            String dynamicXpath = CustomersLocators.customersList + "[" + i + "]" + CustomersLocators.customerInfo;
-            dynamicXpath = dynamicXpath.replace("By.xpath: ", "");
-
-            List<WebElement> webElementList = driver.findElements(By.xpath(dynamicXpath));
-
-            for (WebElement element : webElementList) {
-                list.add(element.getText());
-            }
-
-            listOfCustomers.add(list);
-        }
+        listOfCustomers = listOfCustomersWE.stream().map(element -> element.getText()).collect(Collectors.toList());
 
         return listOfCustomers;
     }

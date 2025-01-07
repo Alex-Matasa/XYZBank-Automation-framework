@@ -1,6 +1,7 @@
 package pageObjects.bankManager;
 
 import loggerUtility.LoggerUtility;
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -38,27 +39,23 @@ public class AddCustomerPage extends BasePage {
 
     public String clickOnSubmitButton(String firstName, String lastName, String postCode) {
         String customerIdToReturn = null;
-        String actualAlertMessage = null;
+        StringBuilder alertMessages = new StringBuilder();
 
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        if (firstName == null) {
-            WebElement firstNameField = driver.findElement(AddCustomerLocators.fName);
-            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", firstNameField);
-        } else if (lastName == null) {
-            WebElement lastNameField = driver.findElement(AddCustomerLocators.lName);
-            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", lastNameField);
-        } else if (postCode == null) {
-            WebElement postCodeField = driver.findElement(AddCustomerLocators.postCode);
-            actualAlertMessage = (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", postCodeField);
-        } else {
-            actualAlertMessage = alertsMethods.getAlertsTextAndAccept();
+        // Verificăm fiecare câmp și adăugăm mesajul (dacă există) în alertMessages
+        alertMessages.append(getAlertTextForEmptyElement(firstName, AddCustomerLocators.fName));
+        alertMessages.append(getAlertTextForEmptyElement(lastName, AddCustomerLocators.lName));
+        alertMessages.append(getAlertTextForEmptyElement(postCode, AddCustomerLocators.postCode));
+
+        // Dacă nu există mesaje de alertă, luăm mesajul alert implicit
+        if (alertMessages.toString().isEmpty()) {
+            alertMessages.append(alertsMethods.getAlertsTextAndAccept());
         }
 
+        // Gestionăm mesajele de alertă
+        String actualAlertMessage = alertMessages.toString();
         if (actualAlertMessage.contains("id")) {
             Assert.assertTrue(assertionsMethods.validatePartialText(actualAlertMessage, "Customer added successfully with customer id"));
             LoggerUtility.info("Validated successful message");
@@ -76,5 +73,14 @@ public class AddCustomerPage extends BasePage {
         return customerIdToReturn;
     }
 
+    private String getAlertTextForEmptyElement(String value, By locator) {
+        if (value == null) {
+            WebElement elementField = driver.findElement(locator);
+            return (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField);
+        } else {
+            return "";
+        }
+    }
 
 }

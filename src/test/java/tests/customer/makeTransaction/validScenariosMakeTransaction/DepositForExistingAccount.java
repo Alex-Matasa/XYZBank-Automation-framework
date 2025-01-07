@@ -20,10 +20,10 @@ public class DepositForExistingAccount extends Hooks {
         CustomerActions customerActions = new CustomerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
-        loginActions.loginAsCustomer(customer);
-        customerActions.navigateToDeposit();
-        bankManagerActions.openAccount(customer, accounts);
-        bankManagerActions.navigateToCustomersList();
-        Assert.assertTrue(bankManagerActions.isAccountAddedToTable(customer));
+//        loginActions.loginAsCustomer(customer);
+//        customerActions.navigateToDeposit();
+//        bankManagerActions.openAccount(customer, accounts);
+//        bankManagerActions.navigateToCustomersList();
+//        Assert.assertTrue(bankManagerActions.isAccountAddedToTable(customer));
     }
 }

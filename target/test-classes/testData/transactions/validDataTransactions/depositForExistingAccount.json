@@ -1,12 +1,11 @@
 {
   "customers": [
     {
-      "firstName": "Hermoine",
-      "lastName": "Granger",
+      "firstName": "Harry",
+      "lastName": "Potter",
       "accounts": [
         {
-          "currency": "Dollar",
-          "accountId": "1001",
+          "accountId": "1004",
           "transactions": [
             {
               "type": "deposit",

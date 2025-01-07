@@ -90,11 +90,16 @@ public class BankManagerActions {
 
         List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
                 customers.getPostCode());
+        List<String> actualList = customersPage.getListOfCustomers();
 
         boolean isCustomerInTheList = false;
 
-        for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
-            if (assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
+        for (int i = 0; i < actualList.size(); i++) {
+
+            if (actualList.get(i).contains(customers.getFullName())) {
+                for (int j = 0; j < customerAdded.size(); j++) {
+                    assertionsMethods.validatePartialText(customerAdded.get(j), actualList.get(i));
+                }
                 isCustomerInTheList = true;
                 break;
             }
@@ -110,21 +115,20 @@ public class BankManagerActions {
         customersPage = new CustomersPage(driver);
         assertionsMethods = new AssertionsMethods(driver);
 
-        List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
-                customers.getPostCode());
-        List<List<String>> customersFound = new ArrayList<>();
+        List<String> actualList = customersPage.getListOfCustomers();
 
         boolean isCustomerDuplicated = false;
+        int count = 0;
 
-        for (int i = 0; i < customersPage.getListOfCustomers().size(); i++) {
-            if (assertionsMethods.validateText(customerAdded, customersPage.getListOfCustomers().get(i))) {
-                customersFound.add(customerAdded);
-            }
+        for (int i = 0; i < actualList.size(); i++) {
 
-            if (customersFound.size() == 2) {
-                isCustomerDuplicated = true;
-                break;
+            if (actualList.get(i).contains(customers.getFullName()) && actualList.get(i).contains(customers.getPostCode())) {
+                count++;
             }
+        }
+
+        if(count == 2) {
+            isCustomerDuplicated = true;
         }
 
         if (!isCustomerDuplicated) LoggerUtility.info("The Customer is not duplicated");
@@ -132,25 +136,25 @@ public class BankManagerActions {
         return isCustomerDuplicated;
     }
 
-    public boolean isAccountAddedToTable(Customers customers) {
-        customersPage = new CustomersPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
-        boolean isAccountAdded = false;
-
-        for (int i = 0; i <= customersPage.getListOfCustomers().size(); i++) {
-            String fullNameInTable = customersPage.getListOfCustomers().get(i).get(0) + " " + customersPage.getListOfCustomers().get(i).get(1);
-            if (customers.getFullName().equals(fullNameInTable)) {
-                if (customersPage.getListOfCustomers().get(i).contains(customers.getAccounts().get(0).getAccountId())) {
-                    isAccountAdded = true;
-                    break;
-                }
-            }
-        }
-
-        if(isAccountAdded)  LoggerUtility.info("The account id is added to the customer");
-        else LoggerUtility.info(("The account id is not added to the customer"));
-
-        return isAccountAdded;
-    }
+//    public boolean isAccountAddedToTable(Customers customers) {
+//        customersPage = new CustomersPage(driver);
+//        assertionsMethods = new AssertionsMethods(driver);
+//        boolean isAccountAdded = false;
+//
+//        for (int i = 0; i <= customersPage.getListOfCustomers().size(); i++) {
+//            String fullNameInTable = customersPage.getListOfCustomers().get(i).get(0) + " " + customersPage.getListOfCustomers().get(i).get(1);
+//            if (customers.getFullName().equals(fullNameInTable)) {
+//                if (customersPage.getListOfCustomers().get(i).contains(customers.getAccounts().get(0).getAccountId())) {
+//                    isAccountAdded = true;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        if(isAccountAdded)  LoggerUtility.info("The account id is added to the customer");
+//        else LoggerUtility.info(("The account id is not added to the customer"));
+//
+//        return isAccountAdded;
+//    }
 
 }
