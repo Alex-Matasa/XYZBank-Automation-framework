@@ -23,7 +23,6 @@ public class AllFieldsEmptyTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customers);
-        dataModel.normalizeInputData(customers);
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }

@@ -85,28 +85,32 @@ public class BankManagerActions {
     }
 
     public boolean isCustomerInTheList(Customers customers) {
-        customersPage = new CustomersPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
-
-        List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
-                customers.getPostCode());
-        List<String> actualList = customersPage.getListOfCustomers();
-
         boolean isCustomerInTheList = false;
 
-        for (int i = 0; i < actualList.size(); i++) {
+        if(customers.getCustomerId() != null) {
+            customersPage = new CustomersPage(driver);
+            assertionsMethods = new AssertionsMethods(driver);
 
-            if (actualList.get(i).contains(customers.getFullName())) {
-                for (int j = 0; j < customerAdded.size(); j++) {
-                    assertionsMethods.validatePartialText(customerAdded.get(j), actualList.get(i));
+            List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
+                    customers.getPostCode());
+            List<String> actualList = customersPage.getListOfCustomers();
+
+            for (int i = 0; i < actualList.size(); i++) {
+
+                if (actualList.get(i).contains(customers.getFullName())) {
+                    for (int j = 0; j < customerAdded.size(); j++) {
+                        assertionsMethods.validatePartialText(customerAdded.get(j), actualList.get(i));
+                    }
+                    isCustomerInTheList = true;
+                    break;
                 }
-                isCustomerInTheList = true;
-                break;
             }
+
+            if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
+            else LoggerUtility.info(("The Customer is not added to the list"));
         }
 
-        if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
-        else LoggerUtility.info(("The Customer is not added to the list"));
+
 
         return isCustomerInTheList;
     }
@@ -136,25 +140,5 @@ public class BankManagerActions {
         return isCustomerDuplicated;
     }
 
-//    public boolean isAccountAddedToTable(Customers customers) {
-//        customersPage = new CustomersPage(driver);
-//        assertionsMethods = new AssertionsMethods(driver);
-//        boolean isAccountAdded = false;
-//
-//        for (int i = 0; i <= customersPage.getListOfCustomers().size(); i++) {
-//            String fullNameInTable = customersPage.getListOfCustomers().get(i).get(0) + " " + customersPage.getListOfCustomers().get(i).get(1);
-//            if (customers.getFullName().equals(fullNameInTable)) {
-//                if (customersPage.getListOfCustomers().get(i).contains(customers.getAccounts().get(0).getAccountId())) {
-//                    isAccountAdded = true;
-//                    break;
-//                }
-//            }
-//        }
-//
-//        if(isAccountAdded)  LoggerUtility.info("The account id is added to the customer");
-//        else LoggerUtility.info(("The account id is not added to the customer"));
-//
-//        return isAccountAdded;
-//    }
 
 }

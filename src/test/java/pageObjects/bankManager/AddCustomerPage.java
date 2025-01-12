@@ -44,17 +44,14 @@ public class AddCustomerPage extends BasePage {
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        // Verificăm fiecare câmp și adăugăm mesajul (dacă există) în alertMessages
         alertMessages.append(getAlertTextForEmptyElement(firstName, AddCustomerLocators.fName));
         alertMessages.append(getAlertTextForEmptyElement(lastName, AddCustomerLocators.lName));
         alertMessages.append(getAlertTextForEmptyElement(postCode, AddCustomerLocators.postCode));
 
-        // Dacă nu există mesaje de alertă, luăm mesajul alert implicit
         if (alertMessages.toString().isEmpty()) {
             alertMessages.append(alertsMethods.getAlertsTextAndAccept());
         }
 
-        // Gestionăm mesajele de alertă
         String actualAlertMessage = alertMessages.toString();
         if (actualAlertMessage.contains("id")) {
             Assert.assertTrue(assertionsMethods.validatePartialText(actualAlertMessage, "Customer added successfully with customer id"));

@@ -21,17 +21,14 @@ public class Customers {
     }
 
     public void manipulateData() {
-        if(!this.firstName.contains("Duplicate")) {
-            this.firstName += System.currentTimeMillis();
-            this.lastName += System.currentTimeMillis();
-        }
 
-            this.fullName = firstName + " " + lastName;
+        this.fullName = firstName + " " + lastName;
     }
 
-    public void modifyData(Customers customers){
+    public static void modifyData(Customers customers){
         customers.setFirstName(UtilityMethods.modifyString(customers.getFirstName()));
         customers.setLastName(UtilityMethods.modifyString(customers.getLastName()));
+        customers.setFullName(customers.getFirstName() + " " + customers.getLastName());
         customers.setPostCode(UtilityMethods.modifyString(customers.getPostCode()));
     }
 

@@ -1,7 +1,6 @@
 package pageObjects.bankManager;
 
 import loggerUtility.LoggerUtility;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pageObjects.BasePage;
@@ -34,7 +33,7 @@ public class CustomersPage extends BasePage {
         List<String> listOfCustomers = new ArrayList<>();
         List<WebElement> listOfCustomersWE = driver.findElements(CustomersLocators.customersList);
 
-        listOfCustomers = listOfCustomersWE.stream().map(element -> element.getText()).collect(Collectors.toList());
+        listOfCustomers = listOfCustomersWE.stream().map(WebElement::getText).collect(Collectors.toList());
 
         return listOfCustomers;
     }

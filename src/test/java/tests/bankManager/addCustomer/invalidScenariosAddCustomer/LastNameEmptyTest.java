@@ -4,6 +4,7 @@ import actions.BankManagerActions;
 import actions.LoginActions;
 import dataObjects.Customers;
 import dataObjects.DataModel;
+import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.Hooks;
@@ -12,7 +13,7 @@ public class LastNameEmptyTest extends Hooks {
 
     @Test
     public void lastNameEmpty() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/invalidDataAddCustomer/lastNameEmpty.json");
+        DataModel dataModel = new DataModel(ResourcePath.LAST_NAME_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
@@ -20,7 +21,6 @@ public class LastNameEmptyTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customers);
-        dataModel.normalizeInputData(customers);
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }

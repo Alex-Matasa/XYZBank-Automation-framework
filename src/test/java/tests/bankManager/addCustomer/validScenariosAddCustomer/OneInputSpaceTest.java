@@ -4,6 +4,7 @@ import actions.BankManagerActions;
 import actions.LoginActions;
 import dataObjects.Customers;
 import dataObjects.DataModel;
+import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.Hooks;
@@ -12,7 +13,7 @@ public class OneInputSpaceTest extends Hooks {
 
     @Test
     public void oneInputSpace() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/addCustomer/validDataAddCustomer/oneInputSpace.json");
+        DataModel dataModel = new DataModel(ResourcePath.ONE_INPUT_SPACE_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
