@@ -27,6 +27,7 @@ public class ForExistingCustomer extends Hooks {
         bankManagerActions.navigateToOpenAccount();
         bankManagerActions.openAccount(customer, account);
         bankManagerActions.navigateToCustomersList();
+        Assert.assertTrue(bankManagerActions.isAccountAddedToTheList(customer));
 
     }
 }

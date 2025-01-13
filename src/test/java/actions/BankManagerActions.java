@@ -154,9 +154,8 @@ public class BankManagerActions {
         for (int i = 0; i < actualList.size(); i++) {
 
             if (actualList.get(i).contains(customer.getFullName())) {
-                assertionsMethods.validatePartialText(customer.getAccounts().get(0).getAccountId(), actualList.get(i));
-                isAccountAdded = true;
-                break;
+                isAccountAdded = assertionsMethods.validatePartialText(actualList.get(i),customer.getAccounts().get(0).getAccountId());
+                if(isAccountAdded) break;
             }
         }
 
