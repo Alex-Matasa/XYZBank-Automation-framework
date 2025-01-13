@@ -6,9 +6,7 @@ import org.openqa.selenium.WebElement;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomersLocators;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CustomersPage extends BasePage {
 
@@ -26,16 +24,11 @@ public class CustomersPage extends BasePage {
     }
 
     public List<String> getAllCustomersEntries() {
-        return webElementsMethods.getData(CustomersLocators.allCustomersInfo);
+        return webElementsMethods.getAStringList(CustomersLocators.allCustomersInfo);
     }
 
     public List<String> getListOfCustomers() {
-        List<String> listOfCustomers = new ArrayList<>();
-        List<WebElement> listOfCustomersWE = driver.findElements(CustomersLocators.customersList);
-
-        listOfCustomers = listOfCustomersWE.stream().map(WebElement::getText).collect(Collectors.toList());
-
-        return listOfCustomers;
+        return webElementsMethods.getAStringList(CustomersLocators.customersList);
     }
 
 }

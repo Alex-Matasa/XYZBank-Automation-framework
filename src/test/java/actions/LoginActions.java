@@ -1,10 +1,14 @@
 package actions;
 
 import dataObjects.Customers;
+import helperMethods.AssertionsMethods;
+import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pageObjects.CommonPage;
 import pageObjects.CustomerLoginPage;
 import pageObjects.LoginPage;
+import pageObjects.locators.CustomerAccountFacadeLocators;
 
 public class LoginActions {
 
@@ -12,6 +16,7 @@ public class LoginActions {
     private CommonPage commonPage;
     private LoginPage loginPage;
     private CustomerLoginPage customerLoginPage;
+    private AssertionsMethods assertionsMethods;
 
     public LoginActions(WebDriver driver) {
         this.driver = driver;
@@ -23,13 +28,17 @@ public class LoginActions {
         loginPage.clickOnBankManagerLogin();
     }
 
-    public void loginAsCustomer(Customers customers) {
+    public void loginAsCustomer(Customers customer) {
         loginPage = new LoginPage(driver);
         customerLoginPage = new CustomerLoginPage(driver);
+        assertionsMethods = new AssertionsMethods(driver);
 
         loginPage.clickOnCustomerLogin();
-        customerLoginPage.selectName(customers.getFullName());
+        customerLoginPage.selectName(customer.getFullName());
         customerLoginPage.clickOnLoginButton();
+        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
+        LoggerUtility.info("Logged in as customer");
+
     }
 
 }

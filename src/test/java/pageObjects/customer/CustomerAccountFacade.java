@@ -2,7 +2,6 @@ package pageObjects.customer;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import dataObjects.Transactions;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -45,6 +44,7 @@ public class CustomerAccountFacade extends BasePage {
 
     public void selectAccountId(String id) {
         webElementsMethods.select(CustomerAccountFacadeLocators.selectAccountId, id);
+        LoggerUtility.info("The account is selected");
     }
 
     public void validateAccountInfo(Customers customers){
@@ -57,10 +57,13 @@ public class CustomerAccountFacade extends BasePage {
 
     public void validateWelcomingNoAccount(Customers customers) {
         Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        Assert.assertTrue(assertionsMethods.validatePartialText(CustomerAccountFacadeLocators.openAccountMessage, "open an account"));
+        Assert.assertTrue(assertionsMethods.validatePartialText(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
     }
 
+    public List<String> getActualAccountInfo() {
+        return webElementsMethods.getAStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
+    }
 
 
 

@@ -3,6 +3,7 @@ package actions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.Transactions;
+import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import pageObjects.customer.CustomerAccountFacade;
@@ -17,6 +18,7 @@ public class CustomerActions {
     private CustomerAccountFacade customerAccountFacade;
     private DepositPage depositPage;
     private WithdrawPage withdrawPage;
+    private AssertionsMethods assertionsMethods;
 
 
     public CustomerActions(WebDriver driver) {
@@ -80,6 +82,25 @@ public class CustomerActions {
             e.printStackTrace();
         }
 
+    }
+
+    public void selectAnAccount(Accounts account) {
+        customerAccountFacade = new CustomerAccountFacade(driver);
+        customerAccountFacade.selectAccountId(account.getAccountId());
+    }
+
+    public boolean validateAccountInfo(Accounts account) {
+        boolean isValid;
+        List<String> expectedAccountInfo = List.of(account.getAccountId(), account.getBalance(), account.getCurrency());
+        assertionsMethods = new AssertionsMethods(driver);
+        customerAccountFacade = new CustomerAccountFacade(driver);
+
+        isValid =  assertionsMethods.validateText(customerAccountFacade.getActualAccountInfo(),expectedAccountInfo);
+        if(isValid){
+            LoggerUtility.info("Account data info displayed are valid");
+        }
+
+        return isValid;
     }
 
 

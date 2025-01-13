@@ -47,6 +47,7 @@ public class BankManagerActions {
         bankManagerFacade.navigateToPage("Customers");
     }
 
+
     public void addCustomer(Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         addCustomerPage = new AddCustomerPage(driver);
@@ -157,6 +158,10 @@ public class BankManagerActions {
                 isAccountAdded = assertionsMethods.validatePartialText(actualList.get(i),customer.getAccounts().get(0).getAccountId());
                 if(isAccountAdded) break;
             }
+        }
+
+        if(isAccountAdded) {
+            LoggerUtility.info("The account id is added to table");
         }
 
         return isAccountAdded;
