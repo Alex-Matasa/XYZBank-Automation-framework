@@ -17,5 +17,7 @@ public class ResourcePath {
     public static final String MAXIMUM_LENGTH_DATA= "src/test/resources/testData/addCustomer/validDataAddCustomer/maximumLength.json";
     public static final String MINIMUM_LENGTH_DATA= "src/test/resources/testData/addCustomer/validDataAddCustomer/minimumLength.json";
     public static final String ONE_INPUT_SPACE_DATA= "src/test/resources/testData/addCustomer/validDataAddCustomer/oneInputSpace.json";
+    public static final String DEPOSIT_FOR_EXISTING_ACCOUNT_DATA= "src/test/resources/testData/transactions/validDataTransactions/depositForExistingAccount.json";
+    public static final String OPEN_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA= "src/test/resources/testData/openAccount/validDataOpenAccount/forAnExistingCustomer.json";
 }
 

@@ -6,6 +6,7 @@ import actions.LoginActions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.DataModel;
+import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import sharedData.Hooks;
@@ -14,7 +15,7 @@ public class DepositForExistingAccount extends Hooks {
 
     @Test
     public void depositForExistingCustomer() {
-        DataModel dataModel = new DataModel("src/test/resources/testData/transactions/validDataTransactions/depositForExistingAccount.json");
+        DataModel dataModel = new DataModel(ResourcePath.DEPOSIT_FOR_EXISTING_ACCOUNT_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts accounts = dataModel.getAccounts().get(0);
         CustomerActions customerActions = new CustomerActions(getDriver());

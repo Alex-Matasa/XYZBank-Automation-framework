@@ -57,16 +57,16 @@ public class BankManagerActions {
         customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
     }
 
-    public void openAccount(Customers customers, Accounts accounts) {
+    public void openAccount(Customers customer, Accounts account) {
         openAccountPage = new OpenAccountPage(driver);
         Accounts newAccount = new Accounts();
 
-        openAccountPage.selectCustomer(customers.getFullName());
-        openAccountPage.selectCurrency(accounts.getCurrency());
-        customers.getAccounts().add(newAccount);
-        customers.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
-        customers.getAccounts().get(0).setCurrency(accounts.getCurrency());
-        customers.getAccounts().get(0).setBalance("0");
+        openAccountPage.selectCustomer(customer.getFullName());
+        openAccountPage.selectCurrency(account.getCurrency());
+        customer.getAccounts().add(newAccount);
+        customer.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
+        customer.getAccounts().get(0).setCurrency(account.getCurrency());
+        customer.getAccounts().get(0).setBalance("0");
     }
 
     public void deleteCustomer(Customers customers) {
@@ -87,7 +87,7 @@ public class BankManagerActions {
     public boolean isCustomerInTheList(Customers customers) {
         boolean isCustomerInTheList = false;
 
-        if(customers.getCustomerId() != null) {
+        if (customers.getCustomerId() != null) {
             customersPage = new CustomersPage(driver);
             assertionsMethods = new AssertionsMethods(driver);
 
@@ -96,21 +96,25 @@ public class BankManagerActions {
             List<String> actualList = customersPage.getListOfCustomers();
 
             for (int i = 0; i < actualList.size(); i++) {
-
                 if (actualList.get(i).contains(customers.getFullName())) {
+                    boolean allFieldsMatch = true;
                     for (int j = 0; j < customerAdded.size(); j++) {
-                        assertionsMethods.validatePartialText(customerAdded.get(j), actualList.get(i));
+                        if(!assertionsMethods.validatePartialText(actualList.get(i), customerAdded.get(j))) {
+                            allFieldsMatch = false;
+                            break;
+                        }
                     }
-                    isCustomerInTheList = true;
-                    break;
+                    if (allFieldsMatch) {
+                        isCustomerInTheList = true;
+                        break;
+                    }
                 }
+                if (isCustomerInTheList) break;
             }
 
             if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
             else LoggerUtility.info(("The Customer is not added to the list"));
         }
-
-
 
         return isCustomerInTheList;
     }
@@ -131,13 +135,32 @@ public class BankManagerActions {
             }
         }
 
-        if(count == 2) {
+        if (count == 2) {
             isCustomerDuplicated = true;
         }
 
         if (!isCustomerDuplicated) LoggerUtility.info("The Customer is not duplicated");
 
         return isCustomerDuplicated;
+    }
+
+    public boolean isAccountAddedToTheList(Customers customer) {
+        customersPage = new CustomersPage(driver);
+        assertionsMethods = new AssertionsMethods(driver);
+        boolean isAccountAdded = false;
+
+        List<String> actualList = customersPage.getListOfCustomers();
+
+        for (int i = 0; i < actualList.size(); i++) {
+
+            if (actualList.get(i).contains(customer.getFullName())) {
+                assertionsMethods.validatePartialText(customer.getAccounts().get(0).getAccountId(), actualList.get(i));
+                isAccountAdded = true;
+                break;
+            }
+        }
+
+        return isAccountAdded;
     }
 
 
