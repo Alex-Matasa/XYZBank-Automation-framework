@@ -55,19 +55,6 @@ public class CustomerActions {
         transaction.setType("Credit");
         account.getTransactions().add(transaction);
 
-        if(transaction.getAmount() != null) {
-            if (Integer.parseInt(transaction.getAmount()) > 0) {
-                account.setBalance(String.valueOf(Integer.parseInt(account.getBalance())
-                        + Integer.parseInt(transaction.getAmount())));
-
-                LoggerUtility.info(transaction.getAmount() + " was deposited into the account");
-            }
-        }
-
-
-
-
-
 //        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Credit");
 //        transactions.setDepositHistory(info);
 

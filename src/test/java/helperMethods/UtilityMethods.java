@@ -13,4 +13,15 @@ public class UtilityMethods {
         return modified;
     }
 
+    public static int parseStringToInt(String input) {
+        try {
+            // Parse the string into an integer
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
+            // Handle the exception for invalid input
+            System.err.println("Invalid input: " + input);
+            throw e; // Rethrow or handle as per your need
+        }
+    }
+
 }

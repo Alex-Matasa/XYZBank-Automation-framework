@@ -26,17 +26,17 @@ public class CustomerAccountFacade extends BasePage {
             case "Transactions" :
                 transactionsPage = new TransactionsPage(driver);
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.transactionsButton);
-                LoggerUtility.info("Clicked on Transactions button");
+                LoggerUtility.info("Clicked on Transaction tab");
                 break;
             case "Deposit" :
                 depositPage = new DepositPage(driver);
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.depositButton);
-                LoggerUtility.info("Clicked on Deposit button");
+                LoggerUtility.info("Clicked on Deposit tab");
                 break;
             case "Withdraw" :
                 withdrawPage = new WithdrawPage(driver);
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.withdrawlButton);
-                LoggerUtility.info("Clicked on Withdrawl button");
+                LoggerUtility.info("Clicked on Withdrawl tab");
                 break;
         }
     }

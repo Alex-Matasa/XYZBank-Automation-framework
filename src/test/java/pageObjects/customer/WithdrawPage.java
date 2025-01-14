@@ -27,7 +27,7 @@ public class WithdrawPage extends BasePage {
         webElementsMethods.clickOn(WithdrawLocators.withdrawSubmitButton);
         LoggerUtility.info("Clicked on Withdraw submitting button");
 
-        Assert.assertTrue(assertionsMethods.validateText(WithdrawLocators.message, "Transaction successful"));
+        Assert.assertTrue(assertionsMethods.validateText(WithdrawLocators.successfulMessage, "Transaction successful"));
         LoggerUtility.info("Successful message is displayed");
 
     }
