@@ -42,6 +42,7 @@ public class DepositPage extends BasePage {
         webElementsMethods.clickOn(DepositLocators.depositSubmitButton);
         LoggerUtility.info("Clicked on deposit button");
 
+
         if (amount == null) {
             WebElement elementField = driver.findElement(DepositLocators.amount);
             return (String) ((JavascriptExecutor) driver).executeScript(

@@ -12,9 +12,7 @@ import org.testng.annotations.Test;
 import pageObjects.CommonPage;
 import sharedData.Hooks;
 
-import java.util.List;
-
-public class ForExistingCustomer extends Hooks {
+public class OpenAccountForExistingCustomer extends Hooks {
 
     @Test
     public void openAccountForAnnExistingCustomer() {
