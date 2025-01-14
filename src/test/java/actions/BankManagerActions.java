@@ -60,14 +60,16 @@ public class BankManagerActions {
 
     public void openAccount(Customers customer, Accounts account) {
         openAccountPage = new OpenAccountPage(driver);
-        Accounts newAccount = new Accounts();
+
+        if (customer.getAccounts() == null) {
+            customer.setAccounts(new ArrayList<>());
+        }
 
         openAccountPage.selectCustomer(customer.getFullName());
         openAccountPage.selectCurrency(account.getCurrency());
-        customer.getAccounts().add(newAccount);
-        customer.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
-        customer.getAccounts().get(0).setCurrency(account.getCurrency());
-        customer.getAccounts().get(0).setBalance("0");
+        account.setAccountId(openAccountPage.clickOnProcessButton());
+        account.setBalance("0");
+        customer.getAccounts().add(account);
     }
 
     public void deleteCustomer(Customers customers) {

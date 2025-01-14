@@ -1,6 +1,5 @@
 package pageObjects.customer;
 
-import dataObjects.Accounts;
 import dataObjects.Customers;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -45,14 +44,6 @@ public class CustomerAccountFacade extends BasePage {
     public void selectAccountId(String id) {
         webElementsMethods.select(CustomerAccountFacadeLocators.selectAccountId, id);
         LoggerUtility.info("The account is selected");
-    }
-
-    public void validateAccountInfo(Customers customers){
-        Accounts accounts = customers.getAccounts().get(0);
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        List<String> customerAccountInfo = List.of(accounts.getAccountId(), accounts.getBalance(), accounts.getCurrency());
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.accountInfoDisplayedList, customerAccountInfo));
-        LoggerUtility.info("Correct account info are displayed");
     }
 
     public void validateWelcomingNoAccount(Customers customers) {

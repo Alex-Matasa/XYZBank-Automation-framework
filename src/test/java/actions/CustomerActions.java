@@ -10,6 +10,7 @@ import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.DepositPage;
 import pageObjects.customer.WithdrawPage;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CustomerActions {
@@ -40,19 +41,30 @@ public class CustomerActions {
         customerAccountFacade.navigateToPage("Withdraw");
     }
 
-
-
-    public void depositMoney(Customers customer) {
+    public void depositMoney(Accounts account, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
         depositPage = new DepositPage(driver);
+        account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
+        if (account.getTransactions() == null) {
+            account.setTransactions(new ArrayList<>());
+        }
 
-        customerAccountFacade.selectAccountId(customer.getAccounts().get(0).getAccountId());
-        navigateToDeposit();
-        Accounts account = customer.getAccounts().get(0);
-        Transactions transactions = account.getTransactions().get(0);
-        depositPage.deposit(transactions, customer, account);
-        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Credit");
-        transactions.setDepositHistory(info);
+        depositPage.enterAmount(transaction.getAmount());
+        System.out.println(depositPage.clickOnDeposit(transaction.getAmount()));
+        transaction.setType("Credit");
+        account.getTransactions().add(transaction);
+
+        if(transaction.getAmount() != null) {
+            if (Integer.parseInt(transaction.getAmount()) > 0) {
+                account.setBalance(String.valueOf(Integer.parseInt(account.getBalance())
+                        + Integer.parseInt(transaction.getAmount())));
+            }
+        }
+
+
+
+//        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Credit");
+//        transactions.setDepositHistory(info);
 
 //        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accounts.getBalance()));
 //        LoggerUtility.info("Balance is correctly updated");

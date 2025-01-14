@@ -5,15 +5,14 @@
       "lastName": "Potter",
       "accounts": [
         {
-          "accountId": "1004",
-          "transactions": [
-            {
-              "type": "deposit",
-              "amount": 100
-            }
-          ]
+          "accountId": "1004"
         }
       ]
+    }
+  ],
+  "transactions": [
+    {
+      "amount":100
     }
   ]
 }

@@ -10,8 +10,6 @@ import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.CommonPage;
-import pageObjects.bankManager.CustomersPage;
-import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 
 import java.util.List;
@@ -22,7 +20,7 @@ public class ForExistingCustomer extends Hooks {
     public void openAccountForAnnExistingCustomer() {
         DataModel dataModel = new DataModel(ResourcePath.OPEN_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA);
         Customers customer = dataModel.customers.get(0);
-        Accounts account = dataModel.getAccounts().get(0);
+        Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         CustomerActions customerActions = new CustomerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());

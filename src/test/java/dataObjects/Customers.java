@@ -16,16 +16,12 @@ public class Customers {
     private String customerId;
     private List<Accounts> accounts;
 
-    public Customers() {
-        this.accounts = new ArrayList<>();
-    }
-
     public void manipulateData() {
 
         this.fullName = firstName + " " + lastName;
     }
 
-    public static void modifyData(Customers customers){
+    public void modifyData(Customers customers){
         customers.setFirstName(UtilityMethods.modifyString(customers.getFirstName()));
         customers.setLastName(UtilityMethods.modifyString(customers.getLastName()));
         customers.setFullName(customers.getFirstName() + " " + customers.getLastName());

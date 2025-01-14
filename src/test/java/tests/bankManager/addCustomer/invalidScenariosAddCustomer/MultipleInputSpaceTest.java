@@ -14,15 +14,15 @@ public class MultipleInputSpaceTest extends Hooks {
     @Test
     public void multipleInputSpace() {
         DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_INPUT_SPACES_DATA);
-        Customers customers = dataModel.customers.get(0);
+        Customers customer = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
-        bankManagerActions.addCustomer(customers);
-        dataModel.normalizeInputData(customers);
+        bankManagerActions.addCustomer(customer);
+        dataModel.normalizeInputData(customer);
         bankManagerActions.navigateToCustomersList();
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
+        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer));
     }
 }
