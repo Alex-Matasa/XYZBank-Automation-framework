@@ -16,7 +16,7 @@ public class DepositPage extends BasePage {
     public void enterAmount(String amount) {
         if(amount != null) {
             webElementsMethods.sendKeys(DepositLocators.amount, amount);
-            LoggerUtility.info(amount + " was deposited into the account");
+            LoggerUtility.info(amount + " entered to deposit");
         }
 
     }

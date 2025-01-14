@@ -13,4 +13,13 @@ public class Accounts {
     private String balance;
     private List<Transactions> transactions;
 
+    @Override
+    public String toString() {
+        return "Accounts {" +
+                "accountId='" + accountId + '\'' +
+                ", balance='" + balance + '\'' +
+                ", currency='" + currency + '\'' +
+                '}';
+    }
+
 }

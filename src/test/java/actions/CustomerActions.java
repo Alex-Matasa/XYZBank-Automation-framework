@@ -45,12 +45,13 @@ public class CustomerActions {
         customerAccountFacade = new CustomerAccountFacade(driver);
         depositPage = new DepositPage(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
+
         if (account.getTransactions() == null) {
             account.setTransactions(new ArrayList<>());
         }
 
         depositPage.enterAmount(transaction.getAmount());
-        System.out.println(depositPage.clickOnDeposit(transaction.getAmount()));
+        depositPage.clickOnDeposit(transaction.getAmount());
         transaction.setType("Credit");
         account.getTransactions().add(transaction);
 
@@ -58,8 +59,12 @@ public class CustomerActions {
             if (Integer.parseInt(transaction.getAmount()) > 0) {
                 account.setBalance(String.valueOf(Integer.parseInt(account.getBalance())
                         + Integer.parseInt(transaction.getAmount())));
+
+                LoggerUtility.info(transaction.getAmount() + " was deposited into the account");
             }
         }
+
+
 
 
 

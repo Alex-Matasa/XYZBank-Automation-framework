@@ -28,5 +28,17 @@ public class Customers {
         customers.setPostCode(UtilityMethods.modifyString(customers.getPostCode()));
     }
 
+    @Override
+    public String toString() {
+        return "Customers {" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", customerId='" + customerId + '\'' +
+                ", accounts=" + accounts +
+                '}';
+    }
+
 
 }

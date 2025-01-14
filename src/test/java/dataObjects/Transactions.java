@@ -12,4 +12,12 @@ public class Transactions {
     private List<String> depositHistory;
     private List<String> withdrawHistory;
 
+    @Override
+    public String toString() {
+        return "Transactions {" +
+                ", type='" + type + '\'' +
+                ", amount=" + amount +
+                '}';
+    }
+
 }
