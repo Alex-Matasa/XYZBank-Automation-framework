@@ -1,7 +1,6 @@
 package actions;
 
 import dataObjects.Accounts;
-import dataObjects.Customers;
 import dataObjects.Transactions;
 import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
@@ -12,6 +11,7 @@ import pageObjects.customer.TransactionsPage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomerActions {
 
@@ -50,8 +50,8 @@ public class CustomerActions {
         assertionsMethods = new AssertionsMethods(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
 
-        customerAccountFacade.enterAmount(transaction.getAmount());
-        customerAccountFacade.submitTransaction(transaction.getAmount());
+        customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
+        customerAccountFacade.submitTransaction(transaction.getAmount(),transaction.getType());
         transaction.setDateAndTime();
 
         if(transaction.getType().equals("Credit")) account.addToBalance(transaction.getAmount());
@@ -60,10 +60,9 @@ public class CustomerActions {
         if (account.getTransactions() == null) {
             account.setTransactions(new ArrayList<>());
         }
-
         account.getTransactions().add(transaction);
 
-        Assert.assertTrue(assertionsMethods.validateText(account.getBalance(), customerAccountFacade.getActualAccountInfo().get(1)));
+        Assert.assertTrue(assertionsMethods.actualEqualExpected(account.getBalance(), customerAccountFacade.getActualAccountInfo().get(1)));
         LoggerUtility.info("The balance was properly updated.");
 
         try {
@@ -80,7 +79,7 @@ public class CustomerActions {
         assertionsMethods = new AssertionsMethods(driver);
         customerAccountFacade = new CustomerAccountFacade(driver);
 
-        isValid =  assertionsMethods.validateText(customerAccountFacade.getActualAccountInfo(),expectedAccountInfo);
+        isValid =  assertionsMethods.actualEqualExpected(customerAccountFacade.getActualAccountInfo(),expectedAccountInfo);
         if(isValid){
             LoggerUtility.info("Account data info displayed are valid");
         }
@@ -88,11 +87,26 @@ public class CustomerActions {
         return isValid;
     }
 
-    public boolean validateTransactionsHistory() {
+    public boolean validateTransactionsHistory(Accounts account) {
         transactionsPage = new TransactionsPage(driver);
-        System.out.println(transactionsPage.getTransactionsHistory());
-        return true;
+        assertionsMethods = new AssertionsMethods(driver);
+
+        List<String> tableTransactions = transactionsPage.getTransactionsHistory();
+        List<String> accountTransactions = account.getTransactions().stream()
+                .map(Transactions::toString)
+                .toList();
+
+        boolean isValid = account.getTransactions().stream()
+                .map(Transactions::toString)
+                .allMatch(tableTransactions::contains);
+
+        if(isValid) LoggerUtility.info("All transaction are displayed in the table");
+
+        return isValid;
     }
+
+
+
 
 
 

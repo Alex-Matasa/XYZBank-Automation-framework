@@ -1,0 +1,23 @@
+{
+  "customers": [
+    {
+      "firstName": "Hermoine",
+      "lastName": "Granger",
+      "accounts": [
+        {
+          "accountId": "1001"
+        }
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "amount": "175",
+      "type": "Credit"
+    },
+    {
+      "amount": "150",
+      "type": "Debit"
+    }
+  ]
+}

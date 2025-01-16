@@ -54,15 +54,15 @@ public class AddCustomerPage extends BasePage {
 
         String actualAlertMessage = alertMessages.toString();
         if (actualAlertMessage.contains("id")) {
-            Assert.assertTrue(assertionsMethods.validatePartialText(actualAlertMessage, "Customer added successfully with customer id"));
+            Assert.assertTrue(assertionsMethods.actualContainsExpected(actualAlertMessage, "Customer added successfully with customer id"));
             LoggerUtility.info("Validated successful message");
             LoggerUtility.info("Accepted pop-up alert");
             customerIdToReturn = actualAlertMessage.split(":")[1];
         } else if (actualAlertMessage.contains("field")) {
-            Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please fill out this field."));
+            Assert.assertTrue(actualAlertMessage.contains("Please fill out this field."));
             LoggerUtility.info("Warning alert message is displayed");
         } else {
-            Assert.assertTrue(assertionsMethods.validateText(actualAlertMessage, "Please check the details. Customer may be duplicate."));
+            Assert.assertTrue(assertionsMethods.actualEqualExpected(actualAlertMessage, "Please check the details. Customer may be duplicate."));
             LoggerUtility.info("Warning alert message is displayed");
             LoggerUtility.info("Accepted pop-up alert");
         }

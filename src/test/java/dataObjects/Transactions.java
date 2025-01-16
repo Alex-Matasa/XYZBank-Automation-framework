@@ -4,7 +4,6 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Data
 public class Transactions {
@@ -12,8 +11,7 @@ public class Transactions {
     private String type;
     private String amount;
     private String time;
-    private List<String> depositHistory;
-    private List<String> withdrawHistory;
+
 
     public void setDateAndTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
@@ -23,10 +21,7 @@ public class Transactions {
 
     @Override
     public String toString() {
-        return "Transactions{" +
-                "type='" + type + '\'' +
-                ", amount='" + amount + '\'' +
-                ", time='" + time + '\'' +
-                '}';
+        return time + " " + amount + " " + type;
+
     }
 }

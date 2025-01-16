@@ -9,8 +9,11 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomerAccountFacadeLocators;
+import pageObjects.locators.DepositLocators;
+import pageObjects.locators.WithdrawLocators;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CustomerAccountFacade extends BasePage {
 
@@ -23,16 +26,16 @@ public class CustomerAccountFacade extends BasePage {
     public void navigateToPage(String pageName) {
 
         switch (pageName) {
-            case "Transactions" :
+            case "Transactions":
                 transactionsPage = new TransactionsPage(driver);
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.transactionsButton);
                 LoggerUtility.info("Clicked on Transaction tab");
                 break;
-            case "Deposit" :
+            case "Deposit":
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.depositButton);
                 LoggerUtility.info("Clicked on Deposit tab");
                 break;
-            case "Withdraw" :
+            case "Withdraw":
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.withdrawlButton);
                 LoggerUtility.info("Clicked on Withdrawl tab");
                 break;
@@ -44,42 +47,49 @@ public class CustomerAccountFacade extends BasePage {
         LoggerUtility.info("The account is selected");
     }
 
-    public void enterAmount(String amount) {
-        if(amount != null) {
-            webElementsMethods.sendKeys(CustomerAccountFacadeLocators.amount, amount);
-            LoggerUtility.info(amount + " entered to deposit");
+    public void enterAmount(String amount, String type) {
+        if (amount != null) {
+            if (type.equals("Credit")) webElementsMethods.sendKeys(DepositLocators.amountToBeDeposited, amount);
+            else webElementsMethods.sendKeys(WithdrawLocators.amountToBeWithdrawn, amount);
         }
-
     }
 
-    public void submitTransaction(String amount) {
-        webElementsMethods.clickOn(CustomerAccountFacadeLocators.submitTransactionButton);
-        LoggerUtility.info("Clicked on deposit button");
+    public void submitTransaction(String amount, String type) {
+
+        if (type.equals("Credit")) webElementsMethods.clickOn(DepositLocators.submitDepositButton);
+        else webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
+
+        LoggerUtility.info("Clicked on submit transaction button");
 
         if (amount == null) {
             WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
-            Assert.assertTrue(assertionsMethods.validateText((String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", elementField), "Please fill out this field."));
+            Assert.assertTrue(assertionsMethods.actualEqualExpected((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field."));
 
             LoggerUtility.info("Warning alert message was displayed.");
-        } else if (UtilityMethods.parseStringToInt(amount) >= 0) {
-            Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.message, "Deposit Successful"));
 
-            LoggerUtility.info("Successful alert message was displayed");
+        } else if (UtilityMethods.parseStringToInt(amount) >= 0) {
+            switch (type) {
+                case "Credit":
+                    Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));
+                    break;
+                case "Debit":
+                    Assert.assertFalse(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Transaction Successful"));
+                    break;
+            }
         }
+        LoggerUtility.info("Successful alert message was displayed");
     }
 
     public void validateWelcomingNoAccount(Customers customers) {
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        Assert.assertTrue(assertionsMethods.validatePartialText(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
+        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
+        Assert.assertTrue(assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
     }
 
     public List<String> getActualAccountInfo() {
         return webElementsMethods.getDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
-
-
 
 
 //    public void validateTransactionHistory(Customers customers) {
@@ -100,32 +110,6 @@ public class CustomerAccountFacade extends BasePage {
     }
 
     /////   helper methods ////
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

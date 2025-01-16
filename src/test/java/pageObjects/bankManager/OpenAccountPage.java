@@ -29,7 +29,7 @@ public class OpenAccountPage extends BasePage {
         String actualSuccessMessage = alertsMethods.getAlertsTextAndAccept();
         LoggerUtility.info("Accepted pop-up alert");
 
-        Assert.assertTrue(assertionsMethods.validatePartialText(actualSuccessMessage, "Account created successfully with account Number"));
+        Assert.assertTrue(assertionsMethods.actualContainsExpected(actualSuccessMessage, "Account created successfully with account Number"));
         LoggerUtility.info("Account is created successfully");
 
         return actualSuccessMessage.split(":")[1];

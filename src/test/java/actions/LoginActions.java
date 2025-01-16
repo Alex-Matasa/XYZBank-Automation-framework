@@ -36,7 +36,7 @@ public class LoginActions {
         loginPage.clickOnCustomerLogin();
         customerLoginPage.selectName(customer.getFullName());
         customerLoginPage.clickOnLoginButton();
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
+        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
         LoggerUtility.info("Logged in as customer");
 
     }

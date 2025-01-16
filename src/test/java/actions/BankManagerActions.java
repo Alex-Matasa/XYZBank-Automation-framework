@@ -102,7 +102,7 @@ public class BankManagerActions {
                 if (actualList.get(i).contains(customers.getFullName())) {
                     boolean allFieldsMatch = true;
                     for (int j = 0; j < customerAdded.size(); j++) {
-                        if(!assertionsMethods.validatePartialText(actualList.get(i), customerAdded.get(j))) {
+                        if(!assertionsMethods.actualContainsExpected(actualList.get(i), customerAdded.get(j))) {
                             allFieldsMatch = false;
                             break;
                         }
@@ -157,7 +157,7 @@ public class BankManagerActions {
         for (int i = 0; i < actualList.size(); i++) {
 
             if (actualList.get(i).contains(customer.getFullName())) {
-                isAccountAdded = assertionsMethods.validatePartialText(actualList.get(i),customer.getAccounts().get(0).getAccountId());
+                isAccountAdded = assertionsMethods.actualContainsExpected(actualList.get(i),customer.getAccounts().get(0).getAccountId());
                 if(isAccountAdded) break;
             }
         }
