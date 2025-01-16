@@ -17,10 +17,16 @@ public class DepositForExistingAccount extends Hooks {
         CustomerActions customerActions = new CustomerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
+        System.out.println(transaction.toString());
         loginActions.loginAsCustomer(customer);
         customerActions.selectAnAccount(account);
         customerActions.navigateToDeposit();
         customerActions.depositMoney(account,transaction);
+        customerActions.depositMoney(account,transaction);
+        System.out.println(account.getTransactions().get(0).toString());
+        customerActions.navigateToTransactions();
+
+        customerActions.validateTransactionsHistory();
 
 
 //        bankManagerActions.navigateToCustomersList();

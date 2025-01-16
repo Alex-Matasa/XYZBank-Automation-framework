@@ -1,13 +1,16 @@
 package actions;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.Transactions;
 import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.DepositPage;
+import pageObjects.customer.TransactionsPage;
 import pageObjects.customer.WithdrawPage;
 
 import java.util.ArrayList;
@@ -20,6 +23,7 @@ public class CustomerActions {
     private DepositPage depositPage;
     private WithdrawPage withdrawPage;
     private AssertionsMethods assertionsMethods;
+    private TransactionsPage transactionsPage;
 
 
     public CustomerActions(WebDriver driver) {
@@ -44,6 +48,7 @@ public class CustomerActions {
     public void depositMoney(Accounts account, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
         depositPage = new DepositPage(driver);
+        assertionsMethods = new AssertionsMethods(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
 
         if (account.getTransactions() == null) {
@@ -52,14 +57,13 @@ public class CustomerActions {
 
         depositPage.enterAmount(transaction.getAmount());
         depositPage.clickOnDeposit(transaction.getAmount());
+        transaction.setDateAndTime();
         transaction.setType("Credit");
         account.getTransactions().add(transaction);
 
-//        List<String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Credit");
-//        transactions.setDepositHistory(info);
-
-//        Assert.assertTrue(assertionsMethods.validateText(balanceInfo, accounts.getBalance()));
-//        LoggerUtility.info("Balance is correctly updated");
+        account.addToBalance(transaction.getAmount());
+        Assert.assertTrue(assertionsMethods.validateText(account.getBalance(), customerAccountFacade.getActualAccountInfo().get(1)));
+        LoggerUtility.info("The balance was properly updated.");
 
         try {
             Thread.sleep(3000);
@@ -76,8 +80,8 @@ public class CustomerActions {
         Accounts accounts = customer.getAccounts().get(0);
         Transactions transactions = accounts.getTransactions().get(0);
         withdrawPage.withdraw(transactions, customer, accounts);
-        List <String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Debit");
-        transactions.setWithdrawHistory(info);
+//        List <String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Debit");
+//        transactions.setWithdrawHistory(info);
 //        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.balanceInfo, accounts.getBalance()));
         LoggerUtility.info("Balance is correctly updated");
         try {
@@ -105,6 +109,12 @@ public class CustomerActions {
         }
 
         return isValid;
+    }
+
+    public boolean validateTransactionsHistory() {
+        transactionsPage = new TransactionsPage(driver);
+        System.out.println(transactionsPage.getTransactionsHistory());
+        return true;
     }
 
 

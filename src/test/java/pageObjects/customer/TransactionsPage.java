@@ -1,12 +1,8 @@
 package pageObjects.customer;
 
-import dataObjects.Transactions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pageObjects.BasePage;
-import pageObjects.locators.TransactionLocators;
+import pageObjects.locators.TransactionsLocators;
 
 import java.util.List;
 
@@ -18,7 +14,11 @@ public class TransactionsPage extends BasePage {
 
 
     public void clickOnBackButton() {
-        webElementsMethods.clickOn(TransactionLocators.backButton);
+        webElementsMethods.clickOn(TransactionsLocators.backButton);
+    }
+
+    public List <String> getTransactionsHistory() {
+        return webElementsMethods.getDataAsStringList(TransactionsLocators.transactionHistoryList);
     }
 
 //    public boolean validateDepositHistory(Transactions transactions) {

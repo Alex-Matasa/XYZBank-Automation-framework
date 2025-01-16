@@ -61,7 +61,7 @@ public class WebElementsMethods {
         driver.findElement(locator).sendKeys(text);
     }
 
-    public List<String> getAStringList(By locator) {
+    public List<String> getDataAsStringList(By locator) {
         List <WebElement> webElementList = driver.findElements(locator);
 
         return webElementList.stream()

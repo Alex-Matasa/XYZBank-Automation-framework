@@ -24,11 +24,11 @@ public class CustomersPage extends BasePage {
     }
 
     public List<String> getAllCustomersEntries() {
-        return webElementsMethods.getAStringList(CustomersLocators.allCustomersInfo);
+        return webElementsMethods.getDataAsStringList(CustomersLocators.allCustomersInfo);
     }
 
     public List<String> getListOfCustomers() {
-        return webElementsMethods.getAStringList(CustomersLocators.customersList);
+        return webElementsMethods.getDataAsStringList(CustomersLocators.customersList);
     }
 
 }

@@ -6,8 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomerAccountFacadeLocators;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.List;
 
 public class CustomerAccountFacade extends BasePage {
@@ -53,7 +52,7 @@ public class CustomerAccountFacade extends BasePage {
     }
 
     public List<String> getActualAccountInfo() {
-        return webElementsMethods.getAStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
+        return webElementsMethods.getDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
 
 
@@ -78,12 +77,7 @@ public class CustomerAccountFacade extends BasePage {
 
     /////   helper methods ////
 
-    public String getDateAndTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
-        LocalDateTime timestamp = LocalDateTime.now();
-        return timestamp.format(formatter);
 
-    }
 
 
 
