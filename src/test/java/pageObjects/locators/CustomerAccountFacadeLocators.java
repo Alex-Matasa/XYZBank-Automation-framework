@@ -10,8 +10,9 @@ public class CustomerAccountFacadeLocators {
     public static final By transactionsButton = By.xpath("//button[@ng-click='transactions()']");
     public static final By depositButton = By.xpath("//button[@ng-click='deposit()']");
     public static final By withdrawlButton = By.xpath("//button[@ng-click='withdrawl()']");
-    public static final By balanceInfo = By.xpath("//strong[@class='ng-binding'][2]");
     public static final By logoutButton = By.xpath("//button[@ng-click='byebye()']");
     public static final By selectAccountId = By.xpath("//select");
-
+    public static final By amount = By.xpath("//input[@ng-model='amount']");
+    public static final By submitTransactionButton = By.xpath("//button[@type='submit']");
+    public static final By message = By.xpath("//span[@ng-show='message']");
 }

@@ -1,6 +1,5 @@
 package actions;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.Transactions;
@@ -9,9 +8,7 @@ import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.customer.CustomerAccountFacade;
-import pageObjects.customer.DepositPage;
 import pageObjects.customer.TransactionsPage;
-import pageObjects.customer.WithdrawPage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +17,6 @@ public class CustomerActions {
 
     private WebDriver driver;
     private CustomerAccountFacade customerAccountFacade;
-    private DepositPage depositPage;
-    private WithdrawPage withdrawPage;
     private AssertionsMethods assertionsMethods;
     private TransactionsPage transactionsPage;
 
@@ -45,23 +40,29 @@ public class CustomerActions {
         customerAccountFacade.navigateToPage("Withdraw");
     }
 
-    public void depositMoney(Accounts account, Transactions transaction) {
+    public void selectAnAccount(Accounts account) {
         customerAccountFacade = new CustomerAccountFacade(driver);
-        depositPage = new DepositPage(driver);
+        customerAccountFacade.selectAccountId(account.getAccountId());
+    }
+
+    public void makeTransaction(Accounts account, Transactions transaction) {
+        customerAccountFacade = new CustomerAccountFacade(driver);
         assertionsMethods = new AssertionsMethods(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
+
+        customerAccountFacade.enterAmount(transaction.getAmount());
+        customerAccountFacade.submitTransaction(transaction.getAmount());
+        transaction.setDateAndTime();
+
+        if(transaction.getType().equals("Credit")) account.addToBalance(transaction.getAmount());
+        else account.subtractFromBalance(transaction.getAmount());
 
         if (account.getTransactions() == null) {
             account.setTransactions(new ArrayList<>());
         }
 
-        depositPage.enterAmount(transaction.getAmount());
-        depositPage.clickOnDeposit(transaction.getAmount());
-        transaction.setDateAndTime();
-        transaction.setType("Credit");
         account.getTransactions().add(transaction);
 
-        account.addToBalance(transaction.getAmount());
         Assert.assertTrue(assertionsMethods.validateText(account.getBalance(), customerAccountFacade.getActualAccountInfo().get(1)));
         LoggerUtility.info("The balance was properly updated.");
 
@@ -70,31 +71,7 @@ public class CustomerActions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
 
-    public void withdrawMoney(Customers customer) {
-        customerAccountFacade = new CustomerAccountFacade(driver);
-        withdrawPage = new WithdrawPage(driver);
-
-        customerAccountFacade.navigateToPage("Withdraw");
-        Accounts accounts = customer.getAccounts().get(0);
-        Transactions transactions = accounts.getTransactions().get(0);
-        withdrawPage.withdraw(transactions, customer, accounts);
-//        List <String> info = List.of(customerAccountFacade.getDateAndTime(), transactions.getAmount(), "Debit");
-//        transactions.setWithdrawHistory(info);
-//        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.balanceInfo, accounts.getBalance()));
-        LoggerUtility.info("Balance is correctly updated");
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public void selectAnAccount(Accounts account) {
-        customerAccountFacade = new CustomerAccountFacade(driver);
-        customerAccountFacade.selectAccountId(account.getAccountId());
     }
 
     public boolean validateAccountInfo(Accounts account) {

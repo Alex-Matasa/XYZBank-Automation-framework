@@ -12,7 +12,8 @@
   ],
   "transactions": [
     {
-      "amount": "100"
+      "amount": "100",
+      "type": "Credit"
     }
   ]
 }
