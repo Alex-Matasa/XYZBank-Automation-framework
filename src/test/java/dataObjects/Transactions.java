@@ -12,16 +12,10 @@ public class Transactions {
     private String amount;
     private String time;
 
-
     public void setDateAndTime() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
         LocalDateTime timestamp = LocalDateTime.now();
         this.time = timestamp.format(formatter);
     }
 
-    @Override
-    public String toString() {
-        return time + " " + amount + " " + type;
-
-    }
 }

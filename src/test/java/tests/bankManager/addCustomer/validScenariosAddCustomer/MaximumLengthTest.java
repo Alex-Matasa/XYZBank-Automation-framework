@@ -21,7 +21,7 @@ public class MaximumLengthTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customers);
-        dataModel.normalizeInputData(customers);
+        dataModel.standardizeInputData(customers);
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
     }

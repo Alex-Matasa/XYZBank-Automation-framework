@@ -1,7 +1,6 @@
 package pageObjects.customer;
 
 import dataObjects.Customers;
-import helperMethods.UtilityMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -68,7 +67,7 @@ public class CustomerAccountFacade extends BasePage {
 
             LoggerUtility.info("Warning alert message was displayed.");
 
-        } else if (UtilityMethods.parseStringToInt(amount) >= 0) {
+        } else if (Integer.parseInt(amount) >= 0) {
             switch (type) {
                 case "Credit":
                     Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));
@@ -88,29 +87,13 @@ public class CustomerAccountFacade extends BasePage {
     }
 
     public List<String> getActualAccountInfo() {
-        return webElementsMethods.getDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
+        return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
-
-
-//    public void validateTransactionHistory(Customers customers) {
-//        navigateToPage(this.transactions);
-//        Accounts accounts = customers.getAccounts().get(0);
-//        Transactions transactions = accounts.getTransactions().get(0);
-//
-//        Assert.assertTrue(transactionsPage.validateDepositHistory(transactions));
-//        LoggerUtility.info("Validated deposit history");
-//
-//        Assert.assertTrue(transactionsPage.validateWithdrawHistory(transactions));
-//        LoggerUtility.info("Validated withdraw history");
-//    }
 
     public void logout() {
         webElementsMethods.clickOn(CustomerAccountFacadeLocators.logoutButton);
         LoggerUtility.info("Clicked on logout button");
     }
-
-    /////   helper methods ////
-
 
 }
 

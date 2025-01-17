@@ -21,7 +21,7 @@ public class MultipleInputSpaceTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customer);
-        dataModel.normalizeInputData(customer);
+        dataModel.standardizeInputData(customer);
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer));
     }

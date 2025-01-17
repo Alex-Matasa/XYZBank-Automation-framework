@@ -22,9 +22,9 @@ public class DuplicatedNameAndPostCode extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToAddCustomer();
         bankManagerActions.addCustomer(customer1);
-        dataModel.normalizeInputData(customer1);
+        dataModel.standardizeInputData(customer1);
         bankManagerActions.addCustomer(customer2);
-        dataModel.normalizeInputData(customer2);
+        dataModel.standardizeInputData(customer2);
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));

@@ -2,7 +2,6 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +24,6 @@ public class BankManagerActions {
     private AddCustomerPage addCustomerPage;
     private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
-    private AssertionsMethods assertionsMethods;
 
     public BankManagerActions(WebDriver driver) {
         this.driver = driver;
@@ -47,7 +45,6 @@ public class BankManagerActions {
         bankManagerFacade.navigateToPage("Customers");
     }
 
-
     public void addCustomer(Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         addCustomerPage = new AddCustomerPage(driver);
@@ -61,14 +58,14 @@ public class BankManagerActions {
     public void openAccount(Customers customer, Accounts account) {
         openAccountPage = new OpenAccountPage(driver);
 
+        openAccountPage.selectCustomer(customer.getFullName());
+        openAccountPage.selectCurrency(account.getCurrency());
+        account.setAccountId(openAccountPage.clickOnProcessButton());
+
         if (customer.getAccounts() == null) {
             customer.setAccounts(new ArrayList<>());
         }
 
-        openAccountPage.selectCustomer(customer.getFullName());
-        openAccountPage.selectCurrency(account.getCurrency());
-        account.setAccountId(openAccountPage.clickOnProcessButton());
-        account.setBalance("0");
         customer.getAccounts().add(account);
     }
 
@@ -92,82 +89,63 @@ public class BankManagerActions {
 
         if (customers.getCustomerId() != null) {
             customersPage = new CustomersPage(driver);
-            assertionsMethods = new AssertionsMethods(driver);
 
-            List<String> customerAdded = List.of(customers.getFirstName(), customers.getLastName(),
-                    customers.getPostCode());
+            String expectedCustomer = String.join(" ", customers.getFirstName(), customers.getLastName(), customers.getPostCode());
             List<String> actualList = customersPage.getListOfCustomers();
 
-            for (int i = 0; i < actualList.size(); i++) {
-                if (actualList.get(i).contains(customers.getFullName())) {
-                    boolean allFieldsMatch = true;
-                    for (int j = 0; j < customerAdded.size(); j++) {
-                        if(!assertionsMethods.actualContainsExpected(actualList.get(i), customerAdded.get(j))) {
-                            allFieldsMatch = false;
-                            break;
-                        }
-                    }
-                    if (allFieldsMatch) {
-                        isCustomerInTheList = true;
-                        break;
-                    }
+            for (String actual : actualList) {
+                if (actual.contains(expectedCustomer)) {
+                    isCustomerInTheList = true;
+                    break;
                 }
-                if (isCustomerInTheList) break;
             }
-
-            if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
-            else LoggerUtility.info(("The Customer is not added to the list"));
         }
+
+        if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
+        else LoggerUtility.info(("The Customer is not added to the list"));
 
         return isCustomerInTheList;
     }
 
     public boolean isCustomerDuplicated(Customers customers) {
         customersPage = new CustomersPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
 
         List<String> actualList = customersPage.getListOfCustomers();
+        String expectedCustomer = String.join(" ", customers.getFirstName(), customers.getLastName(), customers.getPostCode());
 
-        boolean isCustomerDuplicated = false;
         int count = 0;
 
-        for (int i = 0; i < actualList.size(); i++) {
-
-            if (actualList.get(i).contains(customers.getFullName()) && actualList.get(i).contains(customers.getPostCode())) {
+        for (String actual : actualList) {
+            if (actual.contains(expectedCustomer)) {
                 count++;
+            }
+            if (count == 2) {
+                LoggerUtility.info("The Customer is duplicated");
+                return true;
             }
         }
 
-        if (count == 2) {
-            isCustomerDuplicated = true;
-        }
-
-        if (!isCustomerDuplicated) LoggerUtility.info("The Customer is not duplicated");
-
-        return isCustomerDuplicated;
+        LoggerUtility.info("The Customer is not duplicated");
+        return false;
     }
 
     public boolean isAccountAddedToTheList(Customers customer) {
         customersPage = new CustomersPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
+
         boolean isAccountAdded = false;
 
         List<String> actualList = customersPage.getListOfCustomers();
 
-        for (int i = 0; i < actualList.size(); i++) {
-
-            if (actualList.get(i).contains(customer.getFullName())) {
-                isAccountAdded = assertionsMethods.actualContainsExpected(actualList.get(i),customer.getAccounts().get(0).getAccountId());
-                if(isAccountAdded) break;
+        for (String actual : actualList) {
+            if (actual.contains(customer.getFullName())) {
+                isAccountAdded = actual.contains(customer.getAccounts().get(0).getAccountId());
+                if (isAccountAdded) {
+                    LoggerUtility.info("The account id is added to table");
+                    break;
+                }
             }
-        }
-
-        if(isAccountAdded) {
-            LoggerUtility.info("The account id is added to table");
         }
 
         return isAccountAdded;
     }
-
-
 }

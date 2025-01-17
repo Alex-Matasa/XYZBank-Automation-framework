@@ -26,6 +26,7 @@ public class DepositAndWithdrawForExistingAccount extends Hooks {
         customerActions.navigateToWithdraw();
         customerActions.makeTransaction(account,withdrawTransaction);
         customerActions.navigateToTransactions();
+        System.out.println(account.getTransactions().get(0));
         Assert.assertTrue(customerActions.validateTransactionsHistory(account));
     }
 }

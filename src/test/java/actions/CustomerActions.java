@@ -8,10 +8,9 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.TransactionsPage;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class CustomerActions {
 
@@ -60,9 +59,10 @@ public class CustomerActions {
         if (account.getTransactions() == null) {
             account.setTransactions(new ArrayList<>());
         }
+
         account.getTransactions().add(transaction);
 
-        Assert.assertTrue(assertionsMethods.actualEqualExpected(account.getBalance(), customerAccountFacade.getActualAccountInfo().get(1)));
+        Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
         LoggerUtility.info("The balance was properly updated.");
 
         try {
@@ -74,15 +74,14 @@ public class CustomerActions {
     }
 
     public boolean validateAccountInfo(Accounts account) {
-        boolean isValid;
+
         List<String> expectedAccountInfo = List.of(account.getAccountId(), account.getBalance(), account.getCurrency());
         assertionsMethods = new AssertionsMethods(driver);
         customerAccountFacade = new CustomerAccountFacade(driver);
 
-        isValid =  assertionsMethods.actualEqualExpected(customerAccountFacade.getActualAccountInfo(),expectedAccountInfo);
-        if(isValid){
-            LoggerUtility.info("Account data info displayed are valid");
-        }
+        boolean isValid =  customerAccountFacade.getActualAccountInfo().equals(expectedAccountInfo);
+
+        if(isValid) LoggerUtility.info("Account data info displayed are valid");
 
         return isValid;
     }
@@ -93,24 +92,20 @@ public class CustomerActions {
 
         List<String> tableTransactions = transactionsPage.getTransactionsHistory();
         List<String> accountTransactions = account.getTransactions().stream()
-                .map(Transactions::toString)
+                .map(transaction -> transaction.getTime() + " " + transaction.getAmount() + " " + transaction.getType())
                 .toList();
 
-        boolean isValid = account.getTransactions().stream()
-                .map(Transactions::toString)
-                .allMatch(tableTransactions::contains);
+        boolean isValid = true;
+
+        for (String accountTransaction : accountTransactions) {
+            if (!tableTransactions.contains(accountTransaction)) {
+                isValid = false;
+                break;
+            }
+        }
 
         if(isValid) LoggerUtility.info("All transaction are displayed in the table");
 
         return isValid;
     }
-
-
-
-
-
-
-
-
-
 }
