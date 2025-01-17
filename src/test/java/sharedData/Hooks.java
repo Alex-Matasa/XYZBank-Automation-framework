@@ -9,7 +9,7 @@ public class Hooks extends Driver{
 
     private WebDriver driver;
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void prepareEnvironment() {
         driver = getDriver();
 
@@ -18,7 +18,7 @@ public class Hooks extends Driver{
         LoggerUtility.info("Navigated to Home Page");
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void clearEnvironment() {
         quitDriver();
     }

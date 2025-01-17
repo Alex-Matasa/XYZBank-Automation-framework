@@ -13,7 +13,7 @@ import sharedData.Hooks;
 
 public class AllFieldsEmptyTest extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})
     public void allFieldsEmpty() {
         DataModel dataModel = new DataModel(ResourcePath.ALL_FIELDS_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);

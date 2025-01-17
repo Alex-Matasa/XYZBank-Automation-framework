@@ -12,8 +12,7 @@ import sharedData.Hooks;
 
 public class BlankSpaceFirstNameTest extends Hooks {
 
-    @Test
-    public void blankSpaceFirstName() {
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})    public void blankSpaceFirstName() {
         DataModel dataModel = new DataModel(ResourcePath.BLANK_SPACE_FIRST_NAME_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

@@ -1,179 +1,170 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="12" passed="12" failed="0" skipped="0">
+<testng-results ignored="0" total="9" passed="9" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-01-17T12:51:29 EET" name="Command line suite" finished-at="2025-01-17T12:52:07 EET" duration-ms="37931">
+  <suite started-at="2025-01-17T13:34:12 EET" name="XYZ Bank Test Suite" finished-at="2025-01-17T13:34:23 EET" duration-ms="10983">
     <groups>
+      <group name="addCustomer">
+        <method signature="AllFieldsEmptyTest.allFieldsEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" name="allFieldsEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest"/>
+        <method signature="BlankSpaceFirstNameTest.blankSpaceFirstName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" name="blankSpaceFirstName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest"/>
+        <method signature="BlankSpaceLastNameTest.blankSpaceLastName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" name="blankSpaceLastName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest"/>
+        <method signature="BlankSpacePostCodeTest.blankSpacePostCode()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" name="blankSpacePostCode" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest"/>
+        <method signature="DuplicatedData.duplicatedData()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" name="duplicatedData" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData"/>
+        <method signature="FirstNameEmptyTest.firstNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" name="firstNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest"/>
+        <method signature="LastNameEmptyTest.lastNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" name="lastNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest"/>
+        <method signature="MultipleInputSpaceTest.multipleInputSpace()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" name="multipleInputSpace" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest"/>
+        <method signature="PostCodeEmptyTest.postCodeEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" name="postCodeEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest"/>
+      </group> <!-- addCustomer -->
+      <group name="invalidAddCustomer">
+        <method signature="AllFieldsEmptyTest.allFieldsEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" name="allFieldsEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest"/>
+        <method signature="BlankSpaceFirstNameTest.blankSpaceFirstName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" name="blankSpaceFirstName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest"/>
+        <method signature="BlankSpaceLastNameTest.blankSpaceLastName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" name="blankSpaceLastName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest"/>
+        <method signature="BlankSpacePostCodeTest.blankSpacePostCode()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" name="blankSpacePostCode" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest"/>
+        <method signature="DuplicatedData.duplicatedData()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" name="duplicatedData" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData"/>
+        <method signature="FirstNameEmptyTest.firstNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" name="firstNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest"/>
+        <method signature="LastNameEmptyTest.lastNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" name="lastNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest"/>
+        <method signature="MultipleInputSpaceTest.multipleInputSpace()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" name="multipleInputSpace" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest"/>
+        <method signature="PostCodeEmptyTest.postCodeEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" name="postCodeEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest"/>
+      </group> <!-- invalidAddCustomer -->
+      <group name="regression">
+        <method signature="AllFieldsEmptyTest.allFieldsEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" name="allFieldsEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest"/>
+        <method signature="BlankSpaceFirstNameTest.blankSpaceFirstName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" name="blankSpaceFirstName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest"/>
+        <method signature="BlankSpaceLastNameTest.blankSpaceLastName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" name="blankSpaceLastName" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest"/>
+        <method signature="BlankSpacePostCodeTest.blankSpacePostCode()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" name="blankSpacePostCode" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest"/>
+        <method signature="DuplicatedData.duplicatedData()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" name="duplicatedData" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData"/>
+        <method signature="FirstNameEmptyTest.firstNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" name="firstNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest"/>
+        <method signature="LastNameEmptyTest.lastNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" name="lastNameEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest"/>
+        <method signature="MultipleInputSpaceTest.multipleInputSpace()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" name="multipleInputSpace" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest"/>
+        <method signature="PostCodeEmptyTest.postCodeEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" name="postCodeEmpty" class="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest"/>
+      </group> <!-- regression -->
     </groups>
-    <test started-at="2025-01-17T12:51:29 EET" name="Command line test" finished-at="2025-01-17T12:52:07 EET" duration-ms="37931">
-      <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@48524010]" started-at="2025-01-17T12:51:48 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:50 EET" duration-ms="1782" status="PASS">
+    <test started-at="2025-01-17T13:34:12 EET" name="Bank Manager Add Customer Tests" finished-at="2025-01-17T13:34:23 EET" duration-ms="10983">
+      <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" started-at="2025-01-17T13:34:12 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:16 EET" duration-ms="3937" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="multipleInputSpace()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@48524010]" started-at="2025-01-17T12:51:50 EET" name="multipleInputSpace" finished-at="2025-01-17T12:51:51 EET" duration-ms="1589" status="PASS">
+        <test-method signature="duplicatedData()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" started-at="2025-01-17T13:34:16 EET" name="duplicatedData" finished-at="2025-01-17T13:34:18 EET" duration-ms="2644" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- duplicatedData -->
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData@16d04d3d]" started-at="2025-01-17T13:34:18 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:19 EET" duration-ms="150" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearEnvironment -->
+      </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData -->
+      <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" started-at="2025-01-17T13:34:18 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:21 EET" duration-ms="2671" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- prepareEnvironment -->
+        <test-method signature="multipleInputSpace()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" started-at="2025-01-17T13:34:21 EET" name="multipleInputSpace" finished-at="2025-01-17T13:34:23 EET" duration-ms="1869" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- multipleInputSpace -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@48524010]" started-at="2025-01-17T12:51:51 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:52 EET" duration-ms="107" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest@36902638]" started-at="2025-01-17T13:34:23 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:23 EET" duration-ms="128" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest -->
-      <class name="tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest@6b419da]" started-at="2025-01-17T12:52:04 EET" name="prepareEnvironment" finished-at="2025-01-17T12:52:06 EET" duration-ms="1345" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prepareEnvironment -->
-        <test-method signature="oneInputSpace()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest@6b419da]" started-at="2025-01-17T12:52:06 EET" name="oneInputSpace" finished-at="2025-01-17T12:52:07 EET" duration-ms="1567" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- oneInputSpace -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest@6b419da]" started-at="2025-01-17T12:52:07 EET" name="clearEnvironment" finished-at="2025-01-17T12:52:07 EET" duration-ms="96" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- clearEnvironment -->
-      </class> <!-- tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest -->
-      <class name="tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest@23282c25]" started-at="2025-01-17T12:51:58 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:59 EET" duration-ms="1412" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prepareEnvironment -->
-        <test-method signature="maximumLengthOfChars()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest@23282c25]" started-at="2025-01-17T12:51:59 EET" name="maximumLengthOfChars" finished-at="2025-01-17T12:52:01 EET" duration-ms="1584" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- maximumLengthOfChars -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest@23282c25]" started-at="2025-01-17T12:52:01 EET" name="clearEnvironment" finished-at="2025-01-17T12:52:01 EET" duration-ms="107" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- clearEnvironment -->
-      </class> <!-- tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@358c99f5]" started-at="2025-01-17T12:51:43 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:44 EET" duration-ms="1398" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" started-at="2025-01-17T13:34:18 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:20 EET" duration-ms="2669" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="firstNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@358c99f5]" started-at="2025-01-17T12:51:44 EET" name="firstNameEmpty" finished-at="2025-01-17T12:51:45 EET" duration-ms="1250" status="PASS">
+        <test-method signature="firstNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" started-at="2025-01-17T13:34:20 EET" name="firstNameEmpty" finished-at="2025-01-17T13:34:22 EET" duration-ms="1409" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- firstNameEmpty -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@358c99f5]" started-at="2025-01-17T12:51:45 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:45 EET" duration-ms="97" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest@49ec71f8]" started-at="2025-01-17T13:34:22 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:22 EET" duration-ms="117" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@e50a6f6]" started-at="2025-01-17T12:51:33 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:35 EET" duration-ms="1892" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" started-at="2025-01-17T13:34:12 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:16 EET" duration-ms="4301" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="blankSpaceFirstName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@e50a6f6]" started-at="2025-01-17T12:51:35 EET" name="blankSpaceFirstName" finished-at="2025-01-17T12:51:37 EET" duration-ms="1282" status="PASS">
+        <test-method signature="blankSpaceFirstName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" started-at="2025-01-17T13:34:16 EET" name="blankSpaceFirstName" finished-at="2025-01-17T13:34:18 EET" duration-ms="1879" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- blankSpaceFirstName -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@e50a6f6]" started-at="2025-01-17T12:51:37 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:37 EET" duration-ms="103" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest@1189dd52]" started-at="2025-01-17T13:34:18 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:18 EET" duration-ms="155" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@667a738]" started-at="2025-01-17T12:51:29 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:32 EET" duration-ms="2709" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" started-at="2025-01-17T13:34:12 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:16 EET" duration-ms="4093" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="allFieldsEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@667a738]" started-at="2025-01-17T12:51:32 EET" name="allFieldsEmpty" finished-at="2025-01-17T12:51:33 EET" duration-ms="1170" status="PASS">
+        <test-method signature="allFieldsEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" started-at="2025-01-17T13:34:16 EET" name="allFieldsEmpty" finished-at="2025-01-17T13:34:17 EET" duration-ms="1364" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- allFieldsEmpty -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@667a738]" started-at="2025-01-17T12:51:33 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:33 EET" duration-ms="106" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest@4567f35d]" started-at="2025-01-17T13:34:17 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:18 EET" duration-ms="265" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@53ca01a2]" started-at="2025-01-17T12:51:40 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:41 EET" duration-ms="1380" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" started-at="2025-01-17T13:34:12 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:16 EET" duration-ms="4070" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="blankSpacePostCode()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@53ca01a2]" started-at="2025-01-17T12:51:41 EET" name="blankSpacePostCode" finished-at="2025-01-17T12:51:43 EET" duration-ms="1301" status="PASS">
+        <test-method signature="blankSpacePostCode()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" started-at="2025-01-17T13:34:16 EET" name="blankSpacePostCode" finished-at="2025-01-17T13:34:18 EET" duration-ms="1878" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- blankSpacePostCode -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@53ca01a2]" started-at="2025-01-17T12:51:43 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:43 EET" duration-ms="94" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest@564fabc8]" started-at="2025-01-17T13:34:18 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:18 EET" duration-ms="187" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@3ee0fea4]" started-at="2025-01-17T12:51:45 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:47 EET" duration-ms="1388" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" started-at="2025-01-17T13:34:18 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:21 EET" duration-ms="2894" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="lastNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@3ee0fea4]" started-at="2025-01-17T12:51:47 EET" name="lastNameEmpty" finished-at="2025-01-17T12:51:48 EET" duration-ms="1256" status="PASS">
+        <test-method signature="lastNameEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" started-at="2025-01-17T13:34:21 EET" name="lastNameEmpty" finished-at="2025-01-17T13:34:22 EET" duration-ms="1504" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- lastNameEmpty -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@3ee0fea4]" started-at="2025-01-17T12:51:48 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:48 EET" duration-ms="97" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest@1d2adfbe]" started-at="2025-01-17T13:34:22 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:22 EET" duration-ms="130" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@4b168fa9]" started-at="2025-01-17T12:51:52 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:53 EET" duration-ms="1732" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" started-at="2025-01-17T13:34:18 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:21 EET" duration-ms="2728" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="postCodeEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@4b168fa9]" started-at="2025-01-17T12:51:53 EET" name="postCodeEmpty" finished-at="2025-01-17T12:51:55 EET" duration-ms="1243" status="PASS">
+        <test-method signature="postCodeEmpty()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" started-at="2025-01-17T13:34:21 EET" name="postCodeEmpty" finished-at="2025-01-17T13:34:22 EET" duration-ms="1513" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- postCodeEmpty -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@4b168fa9]" started-at="2025-01-17T12:51:55 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:55 EET" duration-ms="97" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest@223d2c72]" started-at="2025-01-17T13:34:22 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:22 EET" duration-ms="131" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest -->
       <class name="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@14ec4505]" started-at="2025-01-17T12:51:37 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:38 EET" duration-ms="1747" status="PASS">
+        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" started-at="2025-01-17T13:34:12 EET" name="prepareEnvironment" finished-at="2025-01-17T13:34:16 EET" duration-ms="3810" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- prepareEnvironment -->
-        <test-method signature="blankSpaceLastName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@14ec4505]" started-at="2025-01-17T12:51:38 EET" name="blankSpaceLastName" finished-at="2025-01-17T12:51:40 EET" duration-ms="1291" status="PASS">
+        <test-method signature="blankSpaceLastName()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" started-at="2025-01-17T13:34:16 EET" name="blankSpaceLastName" finished-at="2025-01-17T13:34:18 EET" duration-ms="2293" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- blankSpaceLastName -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@14ec4505]" started-at="2025-01-17T12:51:40 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:40 EET" duration-ms="97" status="PASS">
+        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest@36bc55de]" started-at="2025-01-17T13:34:18 EET" name="clearEnvironment" finished-at="2025-01-17T13:34:18 EET" duration-ms="167" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- clearEnvironment -->
       </class> <!-- tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest -->
-      <class name="tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest@7920ba90]" started-at="2025-01-17T12:52:01 EET" name="prepareEnvironment" finished-at="2025-01-17T12:52:03 EET" duration-ms="1758" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prepareEnvironment -->
-        <test-method signature="minimumLengthOfChars()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest@7920ba90]" started-at="2025-01-17T12:52:03 EET" name="minimumLengthOfChars" finished-at="2025-01-17T12:52:04 EET" duration-ms="1557" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- minimumLengthOfChars -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest@7920ba90]" started-at="2025-01-17T12:52:04 EET" name="clearEnvironment" finished-at="2025-01-17T12:52:04 EET" duration-ms="98" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- clearEnvironment -->
-      </class> <!-- tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest -->
-      <class name="tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest">
-        <test-method is-config="true" signature="prepareEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest@1a84f40f]" started-at="2025-01-17T12:51:55 EET" name="prepareEnvironment" finished-at="2025-01-17T12:51:56 EET" duration-ms="1490" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- prepareEnvironment -->
-        <test-method signature="allTypeOfCharsTest()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest@1a84f40f]" started-at="2025-01-17T12:51:56 EET" name="allTypeOfCharsTest" finished-at="2025-01-17T12:51:58 EET" duration-ms="1565" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- allTypeOfCharsTest -->
-        <test-method is-config="true" signature="clearEnvironment()[pri:0, instance:tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest@1a84f40f]" started-at="2025-01-17T12:51:58 EET" name="clearEnvironment" finished-at="2025-01-17T12:51:58 EET" duration-ms="96" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- clearEnvironment -->
-      </class> <!-- tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest -->
-    </test> <!-- Command line test -->
-  </suite> <!-- Command line suite -->
+    </test> <!-- Bank Manager Add Customer Tests -->
+  </suite> <!-- XYZ Bank Test Suite -->
 </testng-results>

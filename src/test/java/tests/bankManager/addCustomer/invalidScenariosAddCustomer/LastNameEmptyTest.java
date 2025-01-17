@@ -12,8 +12,7 @@ import sharedData.Hooks;
 
 public class LastNameEmptyTest extends Hooks {
 
-    @Test
-    public void lastNameEmpty() {
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})    public void lastNameEmpty() {
         DataModel dataModel = new DataModel(ResourcePath.LAST_NAME_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

@@ -12,7 +12,7 @@ import sharedData.Hooks;
 
 public class AllTypeOfCharsTest extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "validAddCustomer"})
     public void allTypeOfCharsTest() {
         DataModel dataModel = new DataModel(ResourcePath.ALL_TYPE_OF_CHARS_DATA);
         Customers customer = dataModel.customers.get(0);

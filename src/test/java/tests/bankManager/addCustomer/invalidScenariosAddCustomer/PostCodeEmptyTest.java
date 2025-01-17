@@ -12,8 +12,7 @@ import sharedData.Hooks;
 
 public class PostCodeEmptyTest extends Hooks {
 
-    @Test
-    public void postCodeEmpty() {
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})    public void postCodeEmpty() {
         DataModel dataModel = new DataModel(ResourcePath.POST_CODE_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

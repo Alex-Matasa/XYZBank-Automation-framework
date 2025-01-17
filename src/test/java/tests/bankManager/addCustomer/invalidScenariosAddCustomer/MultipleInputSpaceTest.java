@@ -12,8 +12,7 @@ import sharedData.Hooks;
 
 public class MultipleInputSpaceTest extends Hooks {
 
-    @Test
-    public void multipleInputSpace() {
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})    public void multipleInputSpace() {
         DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_INPUT_SPACES_DATA);
         Customers customer = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

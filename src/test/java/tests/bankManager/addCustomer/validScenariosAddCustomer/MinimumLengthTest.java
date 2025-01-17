@@ -12,7 +12,7 @@ import sharedData.Hooks;
 
 public class MinimumLengthTest extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "validAddCustomer"})
     public void minimumLengthOfChars() {
         DataModel dataModel = new DataModel(ResourcePath.MINIMUM_LENGTH_DATA);
         Customers customers = dataModel.customers.get(0);

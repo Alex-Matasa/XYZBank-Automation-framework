@@ -12,7 +12,7 @@ import sharedData.Hooks;
 
 public class MaximumLengthTest extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "validAddCustomer"})
     public void maximumLengthOfChars() {
         DataModel dataModel = new DataModel(ResourcePath.MAXIMUM_LENGTH_DATA);
         Customers customers = dataModel.customers.get(0);

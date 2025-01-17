@@ -12,7 +12,7 @@ import sharedData.Hooks;
 
 public class DuplicatedNameAndPostCode extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "validAddCustomer"})
     public void duplicatedNameAndPostCode() {
         DataModel dataModel = new DataModel(ResourcePath.DUPLICATED_NAME_AND_POST_CODE_DATA);
         Customers customer1 = dataModel.customers.get(0);

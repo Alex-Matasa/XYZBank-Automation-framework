@@ -12,8 +12,7 @@ import sharedData.Hooks;
 
 public class BlankSpacePostCodeTest extends Hooks {
 
-    @Test
-    public void blankSpacePostCode() {
+    @Test(groups = {"regression", "addCustomer", "invalidAddCustomer"})    public void blankSpacePostCode() {
         DataModel dataModel = new DataModel(ResourcePath.BLANK_SPACE_POST_CODE_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

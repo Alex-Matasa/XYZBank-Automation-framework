@@ -12,7 +12,7 @@ import sharedData.Hooks;
 
 public class OneInputSpaceTest extends Hooks {
 
-    @Test
+    @Test(groups = {"regression", "addCustomer", "validAddCustomer"})
     public void oneInputSpace() {
         DataModel dataModel = new DataModel(ResourcePath.ONE_INPUT_SPACE_DATA);
         Customers customers = dataModel.customers.get(0);

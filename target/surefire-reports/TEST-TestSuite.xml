@@ -1,76 +1,205 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="12" failures="0" name="TestSuite" time="16.659" errors="0" skipped="0">
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" version="3.0.2" name="TestSuite" time="11.496" tests="9" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
-    <property name="java.vm.version" value="17.0.7+8-LTS-224"/>
-    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
-    <property name="maven.multiModuleProjectDirectory" value="D:\IT\PROJECTS\XYZBank"/>
-    <property name="java.vm.vendor" value="Oracle Corporation"/>
-    <property name="java.vendor.url" value="https://java.oracle.com/"/>
-    <property name="guice.disable.misplaced.annotation.check" value="true"/>
-    <property name="path.separator" value=";"/>
-    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="sun.os.patch.level" value=""/>
-    <property name="user.script" value=""/>
-    <property name="user.country" value="US"/>
-    <property name="sun.java.launcher" value="SUN_STANDARD"/>
-    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-    <property name="user.dir" value="D:\IT\PROJECTS\XYZBank"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
-    <property name="java.runtime.version" value="17.0.7+8-LTS-224"/>
-    <property name="os.arch" value="amd64"/>
-    <property name="java.io.tmpdir" value="C:\Users\alexa\AppData\Local\Temp\"/>
-    <property name="line.separator" value="
-"/>
-    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
-    <property name="user.variant" value=""/>
-    <property name="os.name" value="Windows 10"/>
-    <property name="classworlds.conf" value="C:\Program Files\Dev_Programs\apache-maven-3.9.1\bin\m2.conf"/>
-    <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Python312\Scripts\;C:\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Dev_Programs\apache-maven-3.9.1\bin;C:\Program Files\Java\jdk-17\bin;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\alexa\AppData\Local\Microsoft\WindowsApps;C:\Users\alexa\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1\bin;;C:\Users\alexa\AppData\Roaming\npm;."/>
-    <property name="maven.conf" value="C:\Program Files\Dev_Programs\apache-maven-3.9.1/conf"/>
-    <property name="jdk.debug" value="release"/>
-    <property name="java.class.version" value="61.0"/>
-    <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="os.version" value="10.0"/>
-    <property name="library.jansi.path" value="C:\Program Files\Dev_Programs\apache-maven-3.9.1\lib\jansi-native"/>
-    <property name="user.home" value="C:\Users\alexa"/>
-    <property name="user.timezone" value="Europe/Bucharest"/>
-    <property name="file.encoding" value="Cp1252"/>
     <property name="java.specification.version" value="17"/>
-    <property name="user.name" value="alexa"/>
-    <property name="java.class.path" value="C:\Program Files\Dev_Programs\apache-maven-3.9.1\boot\plexus-classworlds-2.6.0.jar"/>
-    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.class.path" value="D:\IT\PROJECTS\XYZBank\target\test-classes;D:\IT\PROJECTS\XYZBank\target\classes;C:\Users\alexa\.m2\repository\org\testng\testng\7.10.2\testng-7.10.2.jar;C:\Users\alexa\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\alexa\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\alexa\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-java\4.27.0\selenium-java-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-api\4.27.0\selenium-api-4.27.0.jar;C:\Users\alexa\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.27.0\selenium-chrome-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.27.0\selenium-chromium-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-json\4.27.0\selenium-json-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.27.0\selenium-manager-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v129\4.27.0\selenium-devtools-v129-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v130\4.27.0\selenium-devtools-v130-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v131\4.27.0\selenium-devtools-v131-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.27.0\selenium-devtools-v85-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.27.0\selenium-edge-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.27.0\selenium-firefox-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-http\4.27.0\selenium-http-4.27.0.jar;C:\Users\alexa\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.27.0\selenium-ie-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.27.0\selenium-remote-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\com\google\guava\guava\33.3.1-jre\guava-33.3.1-jre.jar;C:\Users\alexa\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\alexa\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\alexa\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\alexa\.m2\repository\org\checkerframework\checker-qual\3.43.0\checker-qual-3.43.0.jar;C:\Users\alexa\.m2\repository\com\google\errorprone\error_prone_annotations\2.28.0\error_prone_annotations-2.28.0.jar;C:\Users\alexa\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.25.0-alpha\opentelemetry-semconv-1.25.0-alpha.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-api\1.44.1\opentelemetry-api-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-context\1.44.1\opentelemetry-context-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.44.1\opentelemetry-exporter-logging-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.44.1\opentelemetry-sdk-common-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.44.1\opentelemetry-sdk-extension-autoconfigure-spi-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.44.1\opentelemetry-sdk-extension-autoconfigure-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-api-incubator\1.44.1-alpha\opentelemetry-api-incubator-1.44.1-alpha.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.44.1\opentelemetry-sdk-trace-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.44.1\opentelemetry-sdk-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.44.1\opentelemetry-sdk-metrics-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.44.1\opentelemetry-sdk-logs-1.44.1.jar;C:\Users\alexa\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-os\4.27.0\selenium-os-4.27.0.jar;C:\Users\alexa\.m2\repository\org\apache\commons\commons-exec\1.4.0\commons-exec-1.4.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.27.0\selenium-safari-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-support\4.27.0\selenium-support-4.27.0.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.1\jackson-databind-2.18.1.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.1\jackson-annotations-2.18.1.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.1\jackson-core-2.18.1.jar;C:\Users\alexa\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\alexa\.m2\repository\org\projectlombok\lombok\1.18.36\lombok-1.18.36.jar;C:\Users\alexa\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher clean install"/>
-    <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
+    <property name="user.variant" value=""/>
+    <property name="java.vendor.url" value="https://java.oracle.com/"/>
+    <property name="user.timezone" value="Europe/Bucharest"/>
+    <property name="os.name" value="Windows 10"/>
+    <property name="java.vm.specification.version" value="17"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-17\bin"/>
+    <property name="sun.java.command" value="C:\Users\alexa\AppData\Local\Temp\surefire3599820530843484567\surefirebooter-20250117133411481_3.jar C:\Users\alexa\AppData\Local\Temp\surefire3599820530843484567 2025-01-17T13-34-11_322-jvmRun1 surefire-20250117133411481_1tmp surefire_0-20250117133411481_2tmp"/>
+    <property name="jdk.debug" value="release"/>
+    <property name="surefire.test.class.path" value="D:\IT\PROJECTS\XYZBank\target\test-classes;D:\IT\PROJECTS\XYZBank\target\classes;C:\Users\alexa\.m2\repository\org\testng\testng\7.10.2\testng-7.10.2.jar;C:\Users\alexa\.m2\repository\org\slf4j\slf4j-api\1.7.36\slf4j-api-1.7.36.jar;C:\Users\alexa\.m2\repository\com\beust\jcommander\1.82\jcommander-1.82.jar;C:\Users\alexa\.m2\repository\org\webjars\jquery\3.7.1\jquery-3.7.1.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-java\4.27.0\selenium-java-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-api\4.27.0\selenium-api-4.27.0.jar;C:\Users\alexa\.m2\repository\org\jspecify\jspecify\1.0.0\jspecify-1.0.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-chrome-driver\4.27.0\selenium-chrome-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\com\google\auto\service\auto-service-annotations\1.1.1\auto-service-annotations-1.1.1.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-chromium-driver\4.27.0\selenium-chromium-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-json\4.27.0\selenium-json-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-manager\4.27.0\selenium-manager-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v129\4.27.0\selenium-devtools-v129-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v130\4.27.0\selenium-devtools-v130-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v131\4.27.0\selenium-devtools-v131-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-devtools-v85\4.27.0\selenium-devtools-v85-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-edge-driver\4.27.0\selenium-edge-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-firefox-driver\4.27.0\selenium-firefox-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-http\4.27.0\selenium-http-4.27.0.jar;C:\Users\alexa\.m2\repository\dev\failsafe\failsafe\3.3.2\failsafe-3.3.2.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-ie-driver\4.27.0\selenium-ie-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-remote-driver\4.27.0\selenium-remote-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\com\google\guava\guava\33.3.1-jre\guava-33.3.1-jre.jar;C:\Users\alexa\.m2\repository\com\google\guava\failureaccess\1.0.2\failureaccess-1.0.2.jar;C:\Users\alexa\.m2\repository\com\google\guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\alexa\.m2\repository\com\google\code\findbugs\jsr305\3.0.2\jsr305-3.0.2.jar;C:\Users\alexa\.m2\repository\org\checkerframework\checker-qual\3.43.0\checker-qual-3.43.0.jar;C:\Users\alexa\.m2\repository\com\google\errorprone\error_prone_annotations\2.28.0\error_prone_annotations-2.28.0.jar;C:\Users\alexa\.m2\repository\com\google\j2objc\j2objc-annotations\3.0.0\j2objc-annotations-3.0.0.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\semconv\opentelemetry-semconv\1.25.0-alpha\opentelemetry-semconv-1.25.0-alpha.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-api\1.44.1\opentelemetry-api-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-context\1.44.1\opentelemetry-context-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-exporter-logging\1.44.1\opentelemetry-exporter-logging-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-common\1.44.1\opentelemetry-sdk-common-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.44.1\opentelemetry-sdk-extension-autoconfigure-spi-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.44.1\opentelemetry-sdk-extension-autoconfigure-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-api-incubator\1.44.1-alpha\opentelemetry-api-incubator-1.44.1-alpha.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-trace\1.44.1\opentelemetry-sdk-trace-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk\1.44.1\opentelemetry-sdk-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-metrics\1.44.1\opentelemetry-sdk-metrics-1.44.1.jar;C:\Users\alexa\.m2\repository\io\opentelemetry\opentelemetry-sdk-logs\1.44.1\opentelemetry-sdk-logs-1.44.1.jar;C:\Users\alexa\.m2\repository\net\bytebuddy\byte-buddy\1.15.10\byte-buddy-1.15.10.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-os\4.27.0\selenium-os-4.27.0.jar;C:\Users\alexa\.m2\repository\org\apache\commons\commons-exec\1.4.0\commons-exec-1.4.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-safari-driver\4.27.0\selenium-safari-driver-4.27.0.jar;C:\Users\alexa\.m2\repository\org\seleniumhq\selenium\selenium-support\4.27.0\selenium-support-4.27.0.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-databind\2.18.1\jackson-databind-2.18.1.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-annotations\2.18.1\jackson-annotations-2.18.1.jar;C:\Users\alexa\.m2\repository\com\fasterxml\jackson\core\jackson-core\2.18.1\jackson-core-2.18.1.jar;C:\Users\alexa\.m2\repository\org\apache\logging\log4j\log4j-api\2.14.1\log4j-api-2.14.1.jar;C:\Users\alexa\.m2\repository\org\projectlombok\lombok\1.18.36\lombok-1.18.36.jar;C:\Users\alexa\.m2\repository\org\apache\logging\log4j\log4j-core\2.14.1\log4j-core-2.14.1.jar;"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="C:\Users\alexa"/>
     <property name="user.language" value="en"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
-    <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="java.version" value="17.0.7"/>
-    <property name="native.encoding" value="Cp1252"/>
-    <property name="java.vendor" value="Oracle Corporation"/>
-    <property name="sun.stderr.encoding" value="cp437"/>
-    <property name="maven.home" value="C:\Program Files\Dev_Programs\apache-maven-3.9.1"/>
-    <property name="file.separator" value="\"/>
     <property name="java.version.date" value="2023-04-18"/>
+    <property name="java.home" value="C:\Program Files\Java\jdk-17"/>
+    <property name="file.separator" value="\"/>
+    <property name="basedir" value="D:\IT\PROJECTS\XYZBank"/>
+    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="surefire.real.class.path" value="C:\Users\alexa\AppData\Local\Temp\surefire3599820530843484567\surefirebooter-20250117133411481_3.jar"/>
+    <property name="user.script" value=""/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="17.0.7+8-LTS-224"/>
+    <property name="user.name" value="alexa"/>
+    <property name="path.separator" value=";"/>
+    <property name="os.version" value="10.0"/>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="localRepository" value="C:\Users\alexa\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="C:\Users\alexa\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.7"/>
+    <property name="user.dir" value="D:\IT\PROJECTS\XYZBank"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="threads" value="5"/>
+    <property name="groups" value="invalidAddCustomer"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="sun.os.patch.level" value=""/>
+    <property name="native.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-17\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Python312\Scripts\;C:\Python312\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Dev_Programs\apache-maven-3.9.1\bin;C:\Program Files\Java\jdk-17\bin;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files\MySQL\MySQL Shell 8.0\bin\;C:\Users\alexa\AppData\Local\Microsoft\WindowsApps;C:\Users\alexa\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2023.1\bin;;C:\Users\alexa\AppData\Roaming\npm;."/>
+    <property name="java.vm.info" value="mixed mode, sharing"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="java.vm.version" value="17.0.7+8-LTS-224"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="sun.cpu.endian" value="little"/>
-    <property name="sun.stdout.encoding" value="cp437"/>
-    <property name="sun.cpu.isalist" value="amd64"/>
+    <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest" name="allFieldsEmpty" time="1.172"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest" name="blankSpaceFirstName" time="1.282"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest" name="blankSpaceLastName" time="1.292"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest" name="blankSpacePostCode" time="1.302"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest" name="firstNameEmpty" time="1.25"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest" name="lastNameEmpty" time="1.256"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest" name="multipleInputSpace" time="1.589"/>
-  <testcase classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest" name="postCodeEmpty" time="1.243"/>
-  <testcase classname="tests.bankManager.addCustomer.validScenariosAddCustomer.AllTypeOfCharsTest" name="allTypeOfCharsTest" time="1.566"/>
-  <testcase classname="tests.bankManager.addCustomer.validScenariosAddCustomer.MaximumLengthTest" name="maximumLengthOfChars" time="1.584"/>
-  <testcase classname="tests.bankManager.addCustomer.validScenariosAddCustomer.MinimumLengthTest" name="minimumLengthOfChars" time="1.557"/>
-  <testcase classname="tests.bankManager.addCustomer.validScenariosAddCustomer.OneInputSpaceTest" name="oneInputSpace" time="1.566"/>
+  <testcase name="allFieldsEmpty" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.AllFieldsEmptyTest" time="1.161">
+    <system-out><![CDATA[13:34:15.306 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:15.306 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:15.306 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:15.306 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:15.306 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:16.088 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:16.216 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:16.350 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:16.372 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:16.580 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:16.680 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:16.852 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:16.886 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:16.966 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:17.122 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:17.141 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:17.154 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:17.154 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Left the First Name field empty
+13:34:17.154 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Left the Last Name field empty
+13:34:17.154 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Left the Post Code field empty
+13:34:17.176 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:17.270 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:17.342 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:17.426 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:17.444 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:17.475 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:17.501 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:17.549 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:17.570 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Validated successful message
+13:34:17.570 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:17.592 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:17.609 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:17.669 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:17.735 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:17.736 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+    <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+]]></system-err>
+  </testcase>
+  <testcase name="blankSpacePostCode" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpacePostCodeTest" time="1.648">
+    <system-out><![CDATA[13:34:17.743 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:17.870 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:17.895 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:17.926 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:17.997 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:18.007 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:18.053 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - The Customer is added to the list
+13:34:18.092 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:18.112 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:18.112 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:18.113 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:18.134 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:18.182 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:18.228 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:18.228 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="blankSpaceLastName" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceLastNameTest" time="1.804">
+    <system-out><![CDATA[13:34:18.231 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:18.243 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:18.243 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:18.273 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:18.298 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:18.298 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:18.306 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:18.384 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:18.384 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="blankSpaceFirstName" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.BlankSpaceFirstNameTest" time="1.881">
+    <system-out><![CDATA[13:34:18.441 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:18.459 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:18.459 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="duplicatedData" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.DuplicatedData" time="2.28">
+    <system-out><![CDATA[13:34:18.568 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:18.654 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:18.666 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:18.666 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:18.763 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:18.860 [TestNG-test-Bank Manager Add Customer Tests-5] INFO  loggerUtility.LoggerUtility - The Customer is not duplicated
+]]></system-out>
+  </testcase>
+  <testcase name="firstNameEmpty" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.FirstNameEmptyTest" time="0.742">
+    <system-out><![CDATA[13:34:19.936 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:20.483 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:20.508 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:20.556 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - The browser is open
+13:34:20.677 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:21.223 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:21.291 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:21.311 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:21.344 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Navigated to Home Page
+13:34:21.568 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:21.568 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Left the First Name field empty
+13:34:21.696 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:21.842 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:21.866 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:21.871 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Bank Manager Login button
+13:34:21.925 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:21.986 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:22.008 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:22.025 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:22.086 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:22.086 [TestNG-test-Bank Manager Add Customer Tests-1] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="lastNameEmpty" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.LastNameEmptyTest" time="1.472">
+    <system-out><![CDATA[13:34:22.145 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:22.170 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Add Customerbutton
+13:34:22.329 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:22.462 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:22.483 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:22.483 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Left the Last Name field empty
+13:34:22.521 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Entered First Name
+13:34:22.592 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:22.593 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Entered Post Code
+13:34:22.633 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Entered Last Name
+13:34:22.634 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Left the Post Code field empty
+13:34:22.695 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:22.702 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:22.707 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Validated successful message
+13:34:22.707 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Accepted pop-up alert
+13:34:22.730 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:22.739 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Add Customer Submit button
+13:34:22.764 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Warning alert message is displayed
+13:34:22.795 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:22.815 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:22.816 [TestNG-test-Bank Manager Add Customer Tests-4] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="postCodeEmpty" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.PostCodeEmptyTest" time="1.515">
+    <system-out><![CDATA[13:34:22.858 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - Clicked on Customersbutton
+13:34:22.858 [TestNG-test-Bank Manager Add Customer Tests-2] INFO  loggerUtility.LoggerUtility - The Customer is not added to the list
+]]></system-out>
+  </testcase>
+  <testcase name="multipleInputSpace" classname="tests.bankManager.addCustomer.invalidScenariosAddCustomer.MultipleInputSpaceTest" time="1.749">
+    <system-out><![CDATA[13:34:23.093 [TestNG-test-Bank Manager Add Customer Tests-3] INFO  loggerUtility.LoggerUtility - The Customer is added to the list
+]]></system-out>
+  </testcase>
 </testsuite>
