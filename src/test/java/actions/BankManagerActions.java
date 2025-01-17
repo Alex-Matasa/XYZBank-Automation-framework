@@ -2,7 +2,6 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
-import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,53 +13,44 @@ import pageObjects.bankManager.CustomersPage;
 import pageObjects.bankManager.OpenAccountPage;
 import pageObjects.locators.CustomersLocators;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BankManagerActions {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     private BankManagerFacade bankManagerFacade;
     private AddCustomerPage addCustomerPage;
     private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
-    private AssertionsMethods assertionsMethods;
 
     public BankManagerActions(WebDriver driver) {
         this.driver = driver;
+    }
+
+
+    public void navigateToPage(String pageName) {
+        bankManagerFacade = new BankManagerFacade(driver);
+
+        bankManagerFacade.navigateToPage(pageName);
     }
 
     public void addCustomer(Customers customers) {
         bankManagerFacade = new BankManagerFacade(driver);
         addCustomerPage = new AddCustomerPage(driver);
 
-        bankManagerFacade.navigateToPage("Add Customer");
         addCustomerPage.enterFirstName(customers.getFirstName());
         addCustomerPage.enterLastName(customers.getLastName());
         addCustomerPage.enterPostCode(customers.getPostCode());
-        customers.setCustomerId(addCustomerPage.clickOnSubmitButton());
-    }
 
-    public void openAccountForExistingCustomer(Accounts accounts, Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
-        openAccountPage = new OpenAccountPage(driver);
-        Accounts newAccount = new Accounts();
-
-        bankManagerFacade.navigateToPage("Open Account");
-        openAccountPage.selectCustomer(customers.getFullName());
-        openAccountPage.selectCurrency(accounts.getCurrency());
-        customers.getAccounts().add(newAccount);
-        customers.getAccounts().get(0).setAccountId(openAccountPage.clickOnProcessButton());
-        customers.getAccounts().get(0).setBalance("0");
+        customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
     }
 
     public void deleteCustomer(Customers customers) {
-        bankManagerFacade = new BankManagerFacade(driver);
         customersPage = new CustomersPage(driver);
 
-        bankManagerFacade.navigateToPage("Customers");
         customersPage.searchCustomer(customers.getLastName());
-
 
         List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
 
@@ -72,17 +62,79 @@ public class BankManagerActions {
         Assert.assertTrue(customersList.isEmpty());
     }
 
-    public boolean validateCustomer(Customers customers) {
-        bankManagerFacade  = new BankManagerFacade(driver);
-        assertionsMethods = new AssertionsMethods(driver);
-        customersPage = new CustomersPage(driver);
-        List<String> list = List.of(customers.getFirstName(), customers.getLastName(),
-                customers.getPostCode(), customers.getAccounts().get(0).getAccountId());
+    public void openAccount(Customers customer, Accounts account) {
+        openAccountPage = new OpenAccountPage(driver);
 
-        bankManagerFacade.navigateToPage("Customers");
-        return assertionsMethods.validateText(customersPage.getLastCustomerAdded(), list);
+        openAccountPage.selectCustomer(customer.getFullName());
+        openAccountPage.selectCurrency(account.getCurrency());
+
+        account.setAccountId(openAccountPage.clickOnProcessButton());
+
+        customer.getAccounts().add(account);
     }
 
+    public boolean isCustomerInTheList(Customers customer) {
+        boolean isCustomerInTheList = false;
 
+        if (customer.getCustomerId() != null) {
+            customersPage = new CustomersPage(driver);
 
+            String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
+            List<String> actualList = customersPage.getListOfCustomers();
+
+            for (String actual : actualList) {
+                if (actual.contains(expectedCustomer)) {
+                    isCustomerInTheList = true;
+                    break;
+                }
+            }
+        }
+
+        if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
+        else LoggerUtility.info(("The Customer is not added to the list"));
+
+        return isCustomerInTheList;
+    }
+
+    public boolean isCustomerDuplicated(Customers customer) {
+        customersPage = new CustomersPage(driver);
+
+        List<String> actualList = customersPage.getListOfCustomers();
+        String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
+
+        int count = 0;
+
+        for (String actual : actualList) {
+            if (actual.contains(expectedCustomer)) {
+                count++;
+            }
+            if (count == 2) {
+                LoggerUtility.info("The Customer is duplicated");
+                return true;
+            }
+        }
+
+        LoggerUtility.info("The Customer is not duplicated");
+        return false;
+    }
+
+    public boolean isAccountAddedToTheList(Customers customer) {
+        customersPage = new CustomersPage(driver);
+
+        boolean isAccountAdded = false;
+
+        List<String> actualList = customersPage.getListOfCustomers();
+
+        for (String actual : actualList) {
+            if (actual.contains(customer.getFullName())) {
+                isAccountAdded = actual.contains(customer.getAccounts().get(0).getAccountId());
+                if (isAccountAdded) {
+                    LoggerUtility.info("The account id is added to table");
+                    break;
+                }
+            }
+        }
+
+        return isAccountAdded;
+    }
 }

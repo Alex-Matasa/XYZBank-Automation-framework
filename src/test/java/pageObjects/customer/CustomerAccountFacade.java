@@ -1,16 +1,18 @@
 package pageObjects.customer;
 
-import dataObjects.Accounts;
 import dataObjects.Customers;
-import dataObjects.Transactions;
 import loggerUtility.LoggerUtility;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomerAccountFacadeLocators;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import pageObjects.locators.DepositLocators;
+import pageObjects.locators.WithdrawLocators;
+
 import java.util.List;
+import java.util.Objects;
 
 public class CustomerAccountFacade extends BasePage {
 
@@ -19,99 +21,80 @@ public class CustomerAccountFacade extends BasePage {
     }
 
     private TransactionsPage transactionsPage;
-    private DepositPage depositPage;
-    private WithdrawPage withdrawPage;
 
     public void navigateToPage(String pageName) {
 
         switch (pageName) {
-            case "Transactions" :
+            case "Transactions":
                 transactionsPage = new TransactionsPage(driver);
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.transactionsButton);
-                LoggerUtility.info("Clicked on Transactions button");
+                LoggerUtility.info("Clicked on Transaction tab");
                 break;
-            case "Deposit" :
-                depositPage = new DepositPage(driver);
+            case "Deposit":
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.depositButton);
-                LoggerUtility.info("Clicked on Deposit button");
+                LoggerUtility.info("Clicked on Deposit tab");
                 break;
-            case "Withdraw" :
-                withdrawPage = new WithdrawPage(driver);
+            case "Withdraw":
                 webElementsMethods.clickOn(CustomerAccountFacadeLocators.withdrawlButton);
-                LoggerUtility.info("Clicked on Withdrawl button");
+                LoggerUtility.info("Clicked on Withdrawl tab");
                 break;
         }
     }
 
-    public void validateAccountInfo(Customers customers){
-        Accounts accounts = customers.getAccounts().get(0);
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        List<String> customerAccountInfo = List.of(accounts.getAccountId(), accounts.getBalance(), accounts.getCurrency());
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.accountInfoDisplayedList, customerAccountInfo));
-        LoggerUtility.info("Correct account info are displayed");
+    public void selectAccountId(String id) {
+        webElementsMethods.select(CustomerAccountFacadeLocators.selectAccountId, id);
+
+        LoggerUtility.info("The account is selected");
+    }
+
+    public void enterAmount(String amount, String type) {
+        if (amount != null) {
+            if (type.equals("Credit")) webElementsMethods.sendKeys(DepositLocators.amountToBeDeposited, amount);
+            else webElementsMethods.sendKeys(WithdrawLocators.amountToBeWithdrawn, amount);
+        }
+    }
+
+    public void submitTransaction(String amount, String type) {
+
+        if (type.equals("Credit")) webElementsMethods.clickOn(DepositLocators.submitDepositButton);
+        else webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
+
+        LoggerUtility.info("Clicked on submit transaction button");
+
+        if (amount == null) {
+            WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
+            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
+
+            LoggerUtility.info("Warning alert message was displayed.");
+
+        } else if (Integer.parseInt(amount) > 0) {
+            switch (type) {
+                case "Credit":
+                    Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));
+                    break;
+                case "Debit":
+                    Assert.assertFalse(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Transaction Successful"));
+                    break;
+            }
+        }
+        LoggerUtility.info("Successful alert message was displayed");
+    }
+
+    public List<String> getActualAccountInfo() {
+        return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
 
     public void validateWelcomingNoAccount(Customers customers) {
-        Assert.assertTrue(assertionsMethods.validateText(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        Assert.assertTrue(assertionsMethods.validatePartialText(CustomerAccountFacadeLocators.openAccountMessage, "open an account"));
+        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
+        Assert.assertTrue(assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
     }
-
-
-
-
-
-//    public void validateTransactionHistory(Customers customers) {
-//        navigateToPage(this.transactions);
-//        Accounts accounts = customers.getAccounts().get(0);
-//        Transactions transactions = accounts.getTransactions().get(0);
-//
-//        Assert.assertTrue(transactionsPage.validateDepositHistory(transactions));
-//        LoggerUtility.info("Validated deposit history");
-//
-//        Assert.assertTrue(transactionsPage.validateWithdrawHistory(transactions));
-//        LoggerUtility.info("Validated withdraw history");
-//    }
 
     public void logout() {
         webElementsMethods.clickOn(CustomerAccountFacadeLocators.logoutButton);
         LoggerUtility.info("Clicked on logout button");
     }
-
-    /////   helper methods ////
-
-    public String getDateAndTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
-        LocalDateTime timestamp = LocalDateTime.now();
-        return timestamp.format(formatter);
-
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
 
 

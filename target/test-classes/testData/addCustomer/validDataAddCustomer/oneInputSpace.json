@@ -1,0 +1,9 @@
+{
+  "customers": [
+    {
+      "firstName": "F irs tName",
+      "lastName": "L as t Name",
+      "postCode": "RO 123 4"
+    }
+  ]
+}

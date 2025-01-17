@@ -18,6 +18,5 @@ public class BasePage {
         alertsMethods = new AlertsMethods(driver);
         assertionsMethods = new AssertionsMethods(driver);
         webElementsMethods = new WebElementsMethods(driver);
-        PageFactory.initElements(driver, this);
     }
 }

@@ -11,10 +11,25 @@ public class Customers {
     private String postCode;
     private String fullName;
     private String customerId;
-    private List<Accounts> accounts;
+    private List<Accounts> accounts = new ArrayList<>();
+
 
     public void manipulateData() {
+        this.fullName = firstName + " " + lastName;
+    }
 
-            this.fullName = firstName + " " + lastName;
+    public void modifyData(Customers customers){
+        customers.setFirstName(modifyString(customers.getFirstName()));
+        customers.setLastName(modifyString(customers.getLastName()));
+        customers.setFullName(customers.getFirstName() + " " + customers.getLastName());
+        customers.setPostCode(modifyString(customers.getPostCode()));
+    }
+
+    private static String modifyString(String input) {
+        if (input == null) {
+            return "";
+        }
+        String trimmed = input.trim();
+        return trimmed.replaceAll("\\s+", " ");
     }
 }

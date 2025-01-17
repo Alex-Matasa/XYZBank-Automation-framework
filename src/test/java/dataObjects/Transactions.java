@@ -2,14 +2,20 @@ package dataObjects;
 
 import lombok.Data;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Data
 public class Transactions {
 
     private String type;
     private String amount;
-    private List<String> depositHistory;
-    private List<String> withdrawHistory;
+    private String time;
+
+    public void setDateAndTime() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
+        LocalDateTime timestamp = LocalDateTime.now();
+        this.time = timestamp.format(formatter);
+    }
 
 }

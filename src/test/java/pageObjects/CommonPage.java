@@ -12,7 +12,8 @@ public class CommonPage extends BasePage {
 
     public void clickOnHomeButton() {
         webElementsMethods.clickOn(CommonLocators.homeButton);
-        LoggerUtility.info("Clicked on Home Button");
+
+        LoggerUtility.info("Navigated to Home Page");
     }
 
 }

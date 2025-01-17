@@ -12,7 +12,9 @@ public class Hooks extends Driver{
     @BeforeMethod
     public void prepareEnvironment() {
         driver = getDriver();
+
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login");
+
         LoggerUtility.info("Navigated to Home Page");
     }
 
@@ -20,7 +22,4 @@ public class Hooks extends Driver{
     public void clearEnvironment() {
         quitDriver();
     }
-
-
-
 }
