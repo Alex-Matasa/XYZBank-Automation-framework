@@ -10,6 +10,7 @@ import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.CommonPage;
+import pageObjects.PageType;
 import sharedData.Hooks;
 
 public class OpenAccountForExistingCustomer extends Hooks {
@@ -25,9 +26,9 @@ public class OpenAccountForExistingCustomer extends Hooks {
         CommonPage commonPage = new CommonPage(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.navigateToOpenAccount();
+        bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
         bankManagerActions.openAccount(customer, account);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertTrue(bankManagerActions.isAccountAddedToTheList(customer));
         commonPage.clickOnHomeButton();
         loginActions.loginAsCustomer(customer);

@@ -7,6 +7,7 @@ import dataObjects.DataModel;
 import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObjects.PageType;
 import pageObjects.bankManager.BankManagerFacade;
 import sharedData.Hooks;
 
@@ -20,9 +21,9 @@ public class AllFieldsEmptyTest extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.navigateToAddCustomer();
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customers);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
 }

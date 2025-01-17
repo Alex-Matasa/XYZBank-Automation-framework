@@ -7,6 +7,7 @@ import dataObjects.DataModel;
 import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObjects.PageType;
 import sharedData.Hooks;
 
 public class DuplicatedData extends Hooks {
@@ -20,15 +21,15 @@ public class DuplicatedData extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.navigateToAddCustomer();
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer1);
         dataModel.standardizeInputData(customer1);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
-        bankManagerActions.navigateToAddCustomer();
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer2);
         dataModel.standardizeInputData(customer2);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertFalse(bankManagerActions.isCustomerDuplicated(customer1));
     }
 }

@@ -68,7 +68,7 @@ public class CustomerAccountFacade extends BasePage {
 
             LoggerUtility.info("Warning alert message was displayed.");
 
-        } else if (Integer.parseInt(amount) >= 0) {
+        } else if (Integer.parseInt(amount) > 0) {
             switch (type) {
                 case "Credit":
                     Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));

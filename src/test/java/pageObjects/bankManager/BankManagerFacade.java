@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import pageObjects.BasePage;
+import pageObjects.PageType;
 import pageObjects.locators.BankManagerFacadeLocators;
 
 import java.util.List;
@@ -22,22 +23,23 @@ public class BankManagerFacade extends BasePage {
 
     public void navigateToPage(String pageName) {
         switch (pageName) {
-            case "Add Customer" :
+            case PageType.ADD_CUSTOMER :
                 addCustomerPage = new AddCustomerPage(driver);
                 webElementsMethods.clickOn(BankManagerFacadeLocators.addCustomerButton);
-                LoggerUtility.info("Clicked on Add Customer button");
                 break;
-            case "Open Account" :
+
+            case PageType.OPEN_ACCOUNT:
                 openAccountPage = new OpenAccountPage(driver);
                 webElementsMethods.clickOn(BankManagerFacadeLocators.openAccountButton);
-                LoggerUtility.info("Clicked on Open Account button");
+
                 break;
-            case "Customers" :
+            case PageType.CUSTOMERS:
                 customersPage = new CustomersPage(driver);
                 webElementsMethods.clickOn(BankManagerFacadeLocators.customersButton);
-                LoggerUtility.info("Clicked on Customers button");
                 break;
         }
+
+        LoggerUtility.info("Clicked on " + pageName + "button");
     }
 }
 

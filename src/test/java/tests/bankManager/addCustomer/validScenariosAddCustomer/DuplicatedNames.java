@@ -7,6 +7,7 @@ import dataObjects.DataModel;
 import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObjects.PageType;
 import sharedData.Hooks;
 
 public class DuplicatedNames extends Hooks {
@@ -20,12 +21,12 @@ public class DuplicatedNames extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.navigateToAddCustomer();
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer1);
         dataModel.standardizeInputData(customer1);
         bankManagerActions.addCustomer(customer2);
         dataModel.standardizeInputData(customer2);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));
     }

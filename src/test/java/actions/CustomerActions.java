@@ -59,8 +59,6 @@ public class CustomerActions {
         if(transaction.getType().equals("Credit")) account.addToBalance(transaction.getAmount());
         else account.subtractFromBalance(transaction.getAmount());
 
-        if (account.getTransactions() == null) account.setTransactions(new ArrayList<>());
-
         account.getTransactions().add(transaction);
 
         Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
@@ -72,7 +70,6 @@ public class CustomerActions {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
     }
 
     public boolean validateAccountInfo(Accounts account) {

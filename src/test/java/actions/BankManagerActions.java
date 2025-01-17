@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BankManagerActions {
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     private BankManagerFacade bankManagerFacade;
     private AddCustomerPage addCustomerPage;
@@ -30,22 +30,10 @@ public class BankManagerActions {
     }
 
 
-    public void navigateToAddCustomer() {
+    public void navigateToPage(String pageName) {
         bankManagerFacade = new BankManagerFacade(driver);
 
-        bankManagerFacade.navigateToPage("Add Customer");
-    }
-
-    public void navigateToOpenAccount() {
-        bankManagerFacade = new BankManagerFacade(driver);
-
-        bankManagerFacade.navigateToPage("Open Account");
-    }
-
-    public void navigateToCustomersList() {
-        bankManagerFacade = new BankManagerFacade(driver);
-
-        bankManagerFacade.navigateToPage("Customers");
+        bankManagerFacade.navigateToPage(pageName);
     }
 
     public void addCustomer(Customers customers) {
@@ -81,10 +69,6 @@ public class BankManagerActions {
         openAccountPage.selectCurrency(account.getCurrency());
 
         account.setAccountId(openAccountPage.clickOnProcessButton());
-
-        if (customer.getAccounts() == null) {
-            customer.setAccounts(new ArrayList<>());
-        }
 
         customer.getAccounts().add(account);
     }

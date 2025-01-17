@@ -7,6 +7,7 @@ import dataObjects.DataModel;
 import dataObjects.ResourcePath;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import pageObjects.PageType;
 import sharedData.Hooks;
 
 public class AllTypeOfCharsTest extends Hooks {
@@ -19,9 +20,9 @@ public class AllTypeOfCharsTest extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
-        bankManagerActions.navigateToAddCustomer();
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer);
-        bankManagerActions.navigateToCustomersList();
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
         Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer));
     }
 }
