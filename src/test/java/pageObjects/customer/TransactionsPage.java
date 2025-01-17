@@ -21,6 +21,4 @@ public class TransactionsPage extends BasePage {
         webElementsMethods.clickOn(TransactionsLocators.dateFilter);
         return webElementsMethods.extractDataAsStringList(TransactionsLocators.transactionHistoryList);
     }
-
-
 }

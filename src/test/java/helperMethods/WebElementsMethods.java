@@ -25,36 +25,9 @@ public class WebElementsMethods {
         driver.findElement(locator).click();
     }
 
-
-
-    public void clickOn(List<WebElement> webElementList, String text) {
-        webElementList.stream().filter(s -> s.getText().equals(text)).findFirst().orElse(null).click();
-    }
-
-    public void clickOn(By locator, String text) {
-
-        List<WebElement> webElementList = driver.findElements(locator);
-        webElementList.stream().filter(s -> s.getText().equals(text)).findFirst().orElse(null).click();
-    }
-
-    public void select(WebElement webElement, String text) {
-        Select select = new Select(webElement);
-        select.selectByVisibleText(text);
-    }
-
     public void select(By locator, String text) {
         Select select = new Select(driver.findElement(locator));
         select.selectByVisibleText(text);
-    }
-
-    public void selectLast(WebElement webElement) {
-        Select select = new Select(webElement);
-        select.selectByIndex(select.getOptions().size() - 1);
-    }
-
-    public void selectLast(By locator) {
-        Select select = new Select(driver.findElement(locator));
-        select.selectByIndex(select.getOptions().size() - 1);
     }
 
     public void sendKeys(By locator, String text) {
@@ -68,6 +41,4 @@ public class WebElementsMethods {
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
     }
-
-
 }

@@ -43,6 +43,7 @@ public class CustomerAccountFacade extends BasePage {
 
     public void selectAccountId(String id) {
         webElementsMethods.select(CustomerAccountFacadeLocators.selectAccountId, id);
+
         LoggerUtility.info("The account is selected");
     }
 
@@ -62,8 +63,8 @@ public class CustomerAccountFacade extends BasePage {
 
         if (amount == null) {
             WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
-            Assert.assertTrue(assertionsMethods.actualEqualExpected((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field."));
+            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
 
             LoggerUtility.info("Warning alert message was displayed.");
 
@@ -80,21 +81,20 @@ public class CustomerAccountFacade extends BasePage {
         LoggerUtility.info("Successful alert message was displayed");
     }
 
+    public List<String> getActualAccountInfo() {
+        return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
+    }
+
     public void validateWelcomingNoAccount(Customers customers) {
         Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
         Assert.assertTrue(assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
         LoggerUtility.info("Validated successful message");
     }
 
-    public List<String> getActualAccountInfo() {
-        return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
-    }
-
     public void logout() {
         webElementsMethods.clickOn(CustomerAccountFacadeLocators.logoutButton);
         LoggerUtility.info("Clicked on logout button");
     }
-
 }
 
 

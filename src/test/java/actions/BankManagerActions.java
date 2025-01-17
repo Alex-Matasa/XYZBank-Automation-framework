@@ -32,16 +32,19 @@ public class BankManagerActions {
 
     public void navigateToAddCustomer() {
         bankManagerFacade = new BankManagerFacade(driver);
+
         bankManagerFacade.navigateToPage("Add Customer");
     }
 
     public void navigateToOpenAccount() {
         bankManagerFacade = new BankManagerFacade(driver);
+
         bankManagerFacade.navigateToPage("Open Account");
     }
 
     public void navigateToCustomersList() {
         bankManagerFacade = new BankManagerFacade(driver);
+
         bankManagerFacade.navigateToPage("Customers");
     }
 
@@ -52,21 +55,8 @@ public class BankManagerActions {
         addCustomerPage.enterFirstName(customers.getFirstName());
         addCustomerPage.enterLastName(customers.getLastName());
         addCustomerPage.enterPostCode(customers.getPostCode());
+
         customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
-    }
-
-    public void openAccount(Customers customer, Accounts account) {
-        openAccountPage = new OpenAccountPage(driver);
-
-        openAccountPage.selectCustomer(customer.getFullName());
-        openAccountPage.selectCurrency(account.getCurrency());
-        account.setAccountId(openAccountPage.clickOnProcessButton());
-
-        if (customer.getAccounts() == null) {
-            customer.setAccounts(new ArrayList<>());
-        }
-
-        customer.getAccounts().add(account);
     }
 
     public void deleteCustomer(Customers customers) {
@@ -84,13 +74,28 @@ public class BankManagerActions {
         Assert.assertTrue(customersList.isEmpty());
     }
 
-    public boolean isCustomerInTheList(Customers customers) {
+    public void openAccount(Customers customer, Accounts account) {
+        openAccountPage = new OpenAccountPage(driver);
+
+        openAccountPage.selectCustomer(customer.getFullName());
+        openAccountPage.selectCurrency(account.getCurrency());
+
+        account.setAccountId(openAccountPage.clickOnProcessButton());
+
+        if (customer.getAccounts() == null) {
+            customer.setAccounts(new ArrayList<>());
+        }
+
+        customer.getAccounts().add(account);
+    }
+
+    public boolean isCustomerInTheList(Customers customer) {
         boolean isCustomerInTheList = false;
 
-        if (customers.getCustomerId() != null) {
+        if (customer.getCustomerId() != null) {
             customersPage = new CustomersPage(driver);
 
-            String expectedCustomer = String.join(" ", customers.getFirstName(), customers.getLastName(), customers.getPostCode());
+            String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
             List<String> actualList = customersPage.getListOfCustomers();
 
             for (String actual : actualList) {
@@ -107,11 +112,11 @@ public class BankManagerActions {
         return isCustomerInTheList;
     }
 
-    public boolean isCustomerDuplicated(Customers customers) {
+    public boolean isCustomerDuplicated(Customers customer) {
         customersPage = new CustomersPage(driver);
 
         List<String> actualList = customersPage.getListOfCustomers();
-        String expectedCustomer = String.join(" ", customers.getFirstName(), customers.getLastName(), customers.getPostCode());
+        String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
 
         int count = 0;
 

@@ -20,15 +20,11 @@ public class CustomersPage extends BasePage {
 
     public void searchCustomer(String lastName) {
         webElementsMethods.sendKeys(CustomersLocators.searchField, lastName);
-        LoggerUtility.info("Entered Last Name of the customer");
-    }
 
-    public List<String> getAllCustomersEntries() {
-        return webElementsMethods.extractDataAsStringList(CustomersLocators.allCustomersInfo);
+        LoggerUtility.info("Entered Last Name of the customer");
     }
 
     public List<String> getListOfCustomers() {
         return webElementsMethods.extractDataAsStringList(CustomersLocators.customersList);
     }
-
 }

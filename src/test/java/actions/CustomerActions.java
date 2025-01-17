@@ -16,7 +16,6 @@ public class CustomerActions {
 
     private WebDriver driver;
     private CustomerAccountFacade customerAccountFacade;
-    private AssertionsMethods assertionsMethods;
     private TransactionsPage transactionsPage;
 
 
@@ -26,43 +25,46 @@ public class CustomerActions {
 
     public void navigateToTransactions() {
         customerAccountFacade = new CustomerAccountFacade(driver);
+
         customerAccountFacade.navigateToPage("Transactions");
     }
 
     public void navigateToDeposit() {
         customerAccountFacade = new CustomerAccountFacade(driver);
+
         customerAccountFacade.navigateToPage("Deposit");
     }
 
     public void navigateToWithdraw() {
         customerAccountFacade = new CustomerAccountFacade(driver);
+
         customerAccountFacade.navigateToPage("Withdraw");
     }
 
     public void selectAnAccount(Accounts account) {
         customerAccountFacade = new CustomerAccountFacade(driver);
+
         customerAccountFacade.selectAccountId(account.getAccountId());
     }
 
     public void makeTransaction(Accounts account, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
-        assertionsMethods = new AssertionsMethods(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
 
         customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
         customerAccountFacade.submitTransaction(transaction.getAmount(),transaction.getType());
+
         transaction.setDateAndTime();
 
         if(transaction.getType().equals("Credit")) account.addToBalance(transaction.getAmount());
         else account.subtractFromBalance(transaction.getAmount());
 
-        if (account.getTransactions() == null) {
-            account.setTransactions(new ArrayList<>());
-        }
+        if (account.getTransactions() == null) account.setTransactions(new ArrayList<>());
 
         account.getTransactions().add(transaction);
 
         Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
+
         LoggerUtility.info("The balance was properly updated.");
 
         try {
@@ -74,9 +76,8 @@ public class CustomerActions {
     }
 
     public boolean validateAccountInfo(Accounts account) {
-
         List<String> expectedAccountInfo = List.of(account.getAccountId(), account.getBalance(), account.getCurrency());
-        assertionsMethods = new AssertionsMethods(driver);
+
         customerAccountFacade = new CustomerAccountFacade(driver);
 
         boolean isValid =  customerAccountFacade.getActualAccountInfo().equals(expectedAccountInfo);
@@ -88,7 +89,6 @@ public class CustomerActions {
 
     public boolean validateTransactionsHistory(Accounts account) {
         transactionsPage = new TransactionsPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
 
         List<String> tableTransactions = transactionsPage.getTransactionsHistory();
         List<String> accountTransactions = account.getTransactions().stream()

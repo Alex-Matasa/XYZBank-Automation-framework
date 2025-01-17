@@ -12,12 +12,13 @@ public class CustomerLoginPage extends BasePage{
 
     public void selectName(String fullName) {
         webElementsMethods.select(CustomerLoginLocators.selectName, fullName);
+
         LoggerUtility.info("Name is selected");
     }
 
     public void clickOnLoginButton() {
         webElementsMethods.clickOn(CustomerLoginLocators.loginButton);
+
         LoggerUtility.info("Clicked on Login button");
     }
-
 }

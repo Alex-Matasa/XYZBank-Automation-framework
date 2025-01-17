@@ -14,14 +14,12 @@ public class LoginPage extends BasePage{
 
     public void clickOnBankManagerLogin() {
         webElementsMethods.clickOn(LoginLocators.bankManagerLoginButton);
+
         LoggerUtility.info("Clicked on Bank Manager Login button");
     }
     public void clickOnCustomerLogin() {
         webElementsMethods.clickOn(LoginLocators.customerLoginButton);
+
         LoggerUtility.info("Clicked on Customer Login button");
     }
-
-
-
-
 }

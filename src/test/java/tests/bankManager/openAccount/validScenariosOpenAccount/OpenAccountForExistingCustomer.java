@@ -29,7 +29,6 @@ public class OpenAccountForExistingCustomer extends Hooks {
         bankManagerActions.openAccount(customer, account);
         bankManagerActions.navigateToCustomersList();
         Assert.assertTrue(bankManagerActions.isAccountAddedToTheList(customer));
-
         commonPage.clickOnHomeButton();
         loginActions.loginAsCustomer(customer);
         customerActions.selectAnAccount(customer.getAccounts().get(0));

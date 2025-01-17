@@ -16,9 +16,12 @@ public class Driver {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--disable-search-engine-choice-screen");
             chromeOptions.addArguments("--headless=new");
+
             driver = new ChromeDriver(chromeOptions);
+
             driver.manage().window().maximize();
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
             LoggerUtility.info("The browser is open");
         }
         return driver;
@@ -30,5 +33,4 @@ public class Driver {
             driver = null;
         }
     }
-
 }

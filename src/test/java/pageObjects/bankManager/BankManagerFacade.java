@@ -39,19 +39,5 @@ public class BankManagerFacade extends BasePage {
                 break;
         }
     }
-
-    public void validateManagerDashboard() {
-        List<WebElement> tabsList = List.of((driver.findElement(BankManagerFacadeLocators.addCustomerButton)),
-                        driver.findElement(BankManagerFacadeLocators.openAccountButton),
-                        driver.findElement(BankManagerFacadeLocators.customersButton));
-        List<String> tabsListLabels = List.of("Add Customer", "Open Account", "Customers");
-//        Assert.assertTrue(assertionsMethods.validateText(tabsList, tabsListLabels));
-        LoggerUtility.info("Tabs are displayed");
-    }
-
-
-
-
-
 }
 

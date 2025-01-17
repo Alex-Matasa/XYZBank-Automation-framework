@@ -8,5 +8,4 @@ public class AddCustomerLocators {
     public static By lName = By.xpath("//input[@ng-model='lName']");
     public static By fName = By.xpath("//input[@ng-model='fName']");
     public static By postCode = By.xpath("//input[@ng-model='postCd']");
-
 }

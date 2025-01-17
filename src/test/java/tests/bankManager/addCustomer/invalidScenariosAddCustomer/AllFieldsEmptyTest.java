@@ -17,7 +17,6 @@ public class AllFieldsEmptyTest extends Hooks {
         DataModel dataModel = new DataModel(ResourcePath.ALL_FIELDS_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
-        BankManagerFacade bankManagerFacade = new BankManagerFacade(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
@@ -26,5 +25,4 @@ public class AllFieldsEmptyTest extends Hooks {
         bankManagerActions.navigateToCustomersList();
         Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
     }
-
 }
