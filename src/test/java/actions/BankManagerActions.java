@@ -2,6 +2,8 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
+import extentUtility.ExtentUtility;
+import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -34,6 +36,8 @@ public class BankManagerActions {
         bankManagerFacade = new BankManagerFacade(driver);
 
         bankManagerFacade.navigateToPage(pageName);
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Navigated to " + pageName);
     }
 
     public void addCustomer(Customers customers) {
@@ -45,6 +49,8 @@ public class BankManagerActions {
         addCustomerPage.enterPostCode(customers.getPostCode());
 
         customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Filled form and submitted");
     }
 
     public void deleteCustomer(Customers customers) {
@@ -71,6 +77,8 @@ public class BankManagerActions {
         account.setAccountId(openAccountPage.clickOnProcessButton());
 
         customer.getAccounts().add(account);
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Account was created");
     }
 
     public boolean isCustomerInTheList(Customers customer) {
@@ -110,11 +118,14 @@ public class BankManagerActions {
             }
             if (count == 2) {
                 LoggerUtility.info("The Customer is duplicated");
+                ExtentUtility.addTestLog(StepType.FAIL_STEP, "Customer is duplicated");
+
                 return true;
             }
         }
 
         LoggerUtility.info("The Customer is not duplicated");
+
         return false;
     }
 

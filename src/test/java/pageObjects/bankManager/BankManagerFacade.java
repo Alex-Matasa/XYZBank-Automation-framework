@@ -3,13 +3,11 @@ package pageObjects.bankManager;
 
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 import pageObjects.BasePage;
 import pageObjects.PageType;
 import pageObjects.locators.BankManagerFacadeLocators;
 
-import java.util.List;
 
 public class BankManagerFacade extends BasePage {
 

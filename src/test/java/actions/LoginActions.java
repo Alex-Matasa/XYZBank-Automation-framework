@@ -1,6 +1,8 @@
 package actions;
 
 import dataObjects.Customers;
+import extentUtility.ExtentUtility;
+import extentUtility.StepType;
 import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -26,6 +28,8 @@ public class LoginActions {
         loginPage = new LoginPage(driver);
 
         loginPage.clickOnBankManagerLogin();
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as Bank Manager");
     }
 
     public void loginAsCustomer(Customers customer) {
@@ -38,7 +42,10 @@ public class LoginActions {
         customerLoginPage.clickOnLoginButton();
 
         Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
+
         LoggerUtility.info("Logged in as customer");
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as Customer");
     }
 
 }

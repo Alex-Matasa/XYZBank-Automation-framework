@@ -4,11 +4,15 @@
     <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="groups">
         <value>
-          <list size="4">
+          <list size="8">
             <item index="0" class="java.lang.String" itemvalue="regression" />
             <item index="1" class="java.lang.String" itemvalue="addCustomer" />
             <item index="2" class="java.lang.String" itemvalue="invalidAddCustomer" />
             <item index="3" class="java.lang.String" itemvalue="validAddCustomer" />
+            <item index="4" class="java.lang.String" itemvalue="openAccount" />
+            <item index="5" class="java.lang.String" itemvalue="validOpenAccount" />
+            <item index="6" class="java.lang.String" itemvalue="makeTransactions" />
+            <item index="7" class="java.lang.String" itemvalue="validMakeTransactions" />
           </list>
         </value>
       </option>

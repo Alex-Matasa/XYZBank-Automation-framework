@@ -2,6 +2,8 @@ package actions;
 
 import dataObjects.Accounts;
 import dataObjects.Transactions;
+import extentUtility.ExtentUtility;
+import extentUtility.StepType;
 import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
@@ -23,28 +25,21 @@ public class CustomerActions {
         this.driver = driver;
     }
 
-    public void navigateToTransactions() {
+
+    public void navigateToPage(String pageName) {
         customerAccountFacade = new CustomerAccountFacade(driver);
 
-        customerAccountFacade.navigateToPage("Transactions");
-    }
+        customerAccountFacade.navigateToPage(pageName);
 
-    public void navigateToDeposit() {
-        customerAccountFacade = new CustomerAccountFacade(driver);
-
-        customerAccountFacade.navigateToPage("Deposit");
-    }
-
-    public void navigateToWithdraw() {
-        customerAccountFacade = new CustomerAccountFacade(driver);
-
-        customerAccountFacade.navigateToPage("Withdraw");
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Navigated to " + pageName);
     }
 
     public void selectAnAccount(Accounts account) {
         customerAccountFacade = new CustomerAccountFacade(driver);
 
         customerAccountFacade.selectAccountId(account.getAccountId());
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "The account was selected");
     }
 
     public void makeTransaction(Accounts account, Transactions transaction) {
@@ -62,6 +57,9 @@ public class CustomerActions {
         account.getTransactions().add(transaction);
 
         Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
+
+        if(transaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
+        else ExtentUtility.addTestLog(StepType.INFO_STEP, "Withdraw transaction was made");
 
         LoggerUtility.info("The balance was properly updated.");
 
