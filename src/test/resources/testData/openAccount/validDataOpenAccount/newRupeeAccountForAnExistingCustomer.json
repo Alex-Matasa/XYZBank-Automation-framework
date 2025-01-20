@@ -1,0 +1,13 @@
+{
+  "customers": [
+    {
+      "firstName": "Hermoine",
+      "lastName": "Granger"
+    }
+  ],
+  "accounts": [
+    {
+      "currency": "Rupee"
+    }
+  ]
+}

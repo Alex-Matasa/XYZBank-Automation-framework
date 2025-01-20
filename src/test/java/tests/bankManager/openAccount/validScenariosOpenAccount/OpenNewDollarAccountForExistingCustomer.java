@@ -16,11 +16,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class OpenAccountForExistingCustomer extends Hooks {
+public class OpenNewDollarAccountForExistingCustomer extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "openAccount", "validOpenAccount"})
-    public void openAccountForAnnExistingCustomer() {
-        DataModel dataModel = new DataModel(ResourcePath.OPEN_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA);
+    public void openDollarAccountForAnnExistingCustomer() {
+        DataModel dataModel = new DataModel(ResourcePath.NEW_DOLLAR_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
