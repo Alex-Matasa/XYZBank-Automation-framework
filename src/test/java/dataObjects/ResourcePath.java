@@ -23,5 +23,7 @@ public class ResourcePath {
     public static final String NEW_DOLLAR_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/newDollarAccountForAnExistingCustomer.json";
     public static final String NEW_POUND_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/newPoundAccountForAnExistingCustomer.json";
     public static final String NEW_RUPEE_ACCOUNT_FOR_AN_EXISTING_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/newRupeeAccountForAnExistingCustomer.json";
+    public static final String NEW_ACCOUNT_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/newAccountForNewCustomer.json";
+    public static final String MULTIPLE_DOLLAR_ACCOUNTS_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/multipleDollarAccountsForNewCustomer.json";
 }
 

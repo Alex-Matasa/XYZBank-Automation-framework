@@ -1,16 +1,15 @@
 package actions;
 
 import dataObjects.Accounts;
+import dataObjects.Customers;
 import dataObjects.Transactions;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;
-import helperMethods.AssertionsMethods;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.TransactionsPage;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -103,4 +102,5 @@ public class CustomerActions {
 
         return isValid;
     }
+
 }

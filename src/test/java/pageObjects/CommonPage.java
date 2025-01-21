@@ -12,7 +12,7 @@ public class CommonPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnHomeButton() {
+    public void navigateToHomePage() {
         webElementsMethods.clickOn(CommonLocators.homeButton);
 
         LoggerUtility.info("Navigated to Home Page");

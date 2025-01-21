@@ -1,6 +1,8 @@
 package pageObjects.customer;
 
 import dataObjects.Customers;
+import extentUtility.ExtentUtility;
+import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -85,15 +87,19 @@ public class CustomerAccountFacade extends BasePage {
         return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
 
-    public void validateWelcomingNoAccount(Customers customers) {
-        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customers.getFullName()));
-        Assert.assertTrue(assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account"));
-        LoggerUtility.info("Validated successful message");
+    public boolean validateCustomerHasNoAccount(Customers customer) {
+        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
+        boolean hasNoAccount = assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account");
+        if(hasNoAccount) LoggerUtility.info("Validated successful message");
+
+        return hasNoAccount;
     }
 
     public void logout() {
         webElementsMethods.clickOn(CustomerAccountFacadeLocators.logoutButton);
         LoggerUtility.info("Clicked on logout button");
+
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Customer logged out");
     }
 }
 

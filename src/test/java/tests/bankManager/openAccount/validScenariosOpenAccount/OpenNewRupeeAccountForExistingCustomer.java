@@ -36,7 +36,7 @@ public class OpenNewRupeeAccountForExistingCustomer extends Hooks {
 
         ExtentUtility.addTestLog(StepType.PASS_STEP, "The account id is added to the list.");
 
-        commonPage.clickOnHomeButton();
+        commonPage.navigateToHomePage();
         loginActions.loginAsCustomer(customer);
         customerActions.selectAnAccount(customer.getAccounts().get(0));
         Assert.assertTrue(customerActions.validateAccountInfo(customer.getAccounts().get(0)));
