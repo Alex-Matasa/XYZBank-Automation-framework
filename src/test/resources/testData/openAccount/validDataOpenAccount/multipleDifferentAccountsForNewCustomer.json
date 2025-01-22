@@ -1,0 +1,20 @@
+{
+  "customers": [
+    {
+      "firstName": "FName",
+      "lastName": "LName",
+      "postCode": 12345
+    }
+  ],
+  "accounts": [
+    {
+      "currency": "Dollar"
+    },
+    {
+      "currency": "Pound"
+    },
+    {
+      "currency": "Rupee"
+    }
+  ]
+}

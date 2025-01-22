@@ -73,10 +73,15 @@ public class BankManagerActions {
 
         openAccountPage.selectCustomer(customer.getFullName());
         openAccountPage.selectCurrency(account.getCurrency());
-
         account.setAccountId(openAccountPage.clickOnProcessButton());
 
-        customer.getAccounts().add(account);
+        Accounts customerAccount = new Accounts();
+
+        customerAccount.setBalance(account.getBalance());
+        customerAccount.setCurrency(account.getCurrency());
+        customerAccount.setAccountId(account.getAccountId());
+
+        customer.getAccounts().add(customerAccount);
 
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Account was created");
     }

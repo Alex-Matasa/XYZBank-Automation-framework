@@ -17,11 +17,11 @@ import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class OpenMultipleDollarAccountsForNewCustomer extends Hooks {
+public class OpenMultiplePoundAccountsForNewCustomer extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "openAccount", "validOpenAccount"})
-    public void multipleDollarAccountsForNewCustomer() {
-        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_DOLLAR_ACCOUNTS_FOR_NEW_CUSTOMER_DATA);
+    public void multiplePoundAccountsForNewCustomer() {
+        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_POUND_ACCOUNTS_FOR_NEW_CUSTOMER_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

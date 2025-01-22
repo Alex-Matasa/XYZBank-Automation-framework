@@ -17,13 +17,12 @@ import pageObjects.customer.CustomerAccountFacade;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class OpenMultipleDollarAccountsForNewCustomer extends Hooks {
+public class OpenMultipleDifferentAccountsForNewCustomer extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "openAccount", "validOpenAccount"})
-    public void multipleDollarAccountsForNewCustomer() {
-        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_DOLLAR_ACCOUNTS_FOR_NEW_CUSTOMER_DATA);
+    public void multipleDifferentAccountsForNewCustomer() {
+        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_DIFFERENT_ACCOUNTS_FOR_NEW_CUSTOMER_DATA);
         Customers customer = dataModel.customers.get(0);
-        Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         CustomerActions customerActions = new CustomerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
@@ -41,8 +40,13 @@ public class OpenMultipleDollarAccountsForNewCustomer extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
 
-        for (int i = 0; i < 5; i++) {
-            bankManagerActions.openAccount(customer, account);
+        for (int i = 0; i < dataModel.getAccounts().size(); i++) {
+            Accounts account = dataModel.getAccounts().get(i);
+
+            for (int j = 0; j < 5; j++) {
+                bankManagerActions.openAccount(customer, account);
+                System.out.println(customer.getAccounts());
+            }
         }
 
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
