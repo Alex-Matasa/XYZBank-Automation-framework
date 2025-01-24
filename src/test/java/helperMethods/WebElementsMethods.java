@@ -1,6 +1,7 @@
 package helperMethods;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -26,6 +27,7 @@ public class WebElementsMethods {
     }
 
     public void select(By locator, String text) {
+
         Select select = new Select(driver.findElement(locator));
         select.selectByVisibleText(text);
     }
@@ -40,5 +42,16 @@ public class WebElementsMethods {
         return webElementList.stream()
                 .map(WebElement::getText)
                 .collect(Collectors.toList());
+    }
+
+    public String getAlertTextForEmptyElement(String value, By locator) {
+        if (value == null) {
+            WebElement elementField = driver.findElement(locator);
+
+            return (String) ((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField);
+        } else {
+            return "";
+        }
     }
 }

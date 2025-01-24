@@ -32,6 +32,8 @@ public class DepositAndWithdrawForExistingAccount extends Hooks {
         customerActions.navigateToPage(PageType.TRANSACTIONS);
         Assert.assertTrue(customerActions.validateTransactionsHistory(account));
 
+        System.out.println(customer.getAccounts().get(0).getTransactions());
+
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Transaction was successfully added to the list");
     }
 }

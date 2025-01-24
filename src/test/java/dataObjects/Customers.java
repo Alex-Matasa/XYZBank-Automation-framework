@@ -17,7 +17,9 @@ public class Customers {
 
 
     public void manipulateData() {
-        this.fullName = firstName + " " + lastName;
+        if(this.firstName != null && this.lastName != null) {
+            this.fullName = firstName + " " + lastName;
+        }
     }
 
     public void modifyData(Customers customers){

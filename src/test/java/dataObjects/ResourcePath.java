@@ -28,5 +28,6 @@ public class ResourcePath {
     public static final String MULTIPLE_POUND_ACCOUNTS_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/multiplePoundAccountsForNewCustomer.json";
     public static final String MULTIPLE_RUPEE_ACCOUNTS_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/multipleRupeeAccountsForNewCustomer.json";
     public static final String MULTIPLE_DIFFERENT_ACCOUNTS_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/multipleDifferentAccountsForNewCustomer.json";
+    public static final String LEAVE_CUSTOMER_NAME_UNSELECTED_DATA = "src/test/resources/testData/openAccount/invalidDataOpenAccount/leaveCustomerNameUnselected.json";
 }
 

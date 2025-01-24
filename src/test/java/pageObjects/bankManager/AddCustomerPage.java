@@ -50,9 +50,9 @@ public class AddCustomerPage extends BasePage {
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        alertMessages.append(getAlertTextForEmptyElement(firstName, AddCustomerLocators.fName));
-        alertMessages.append(getAlertTextForEmptyElement(lastName, AddCustomerLocators.lName));
-        alertMessages.append(getAlertTextForEmptyElement(postCode, AddCustomerLocators.postCode));
+        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(firstName, AddCustomerLocators.fName));
+        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(lastName, AddCustomerLocators.lName));
+        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(postCode, AddCustomerLocators.postCode));
 
         if (alertMessages.toString().isEmpty()) {
             alertMessages.append(alertsMethods.getAlertsTextAndAccept());
@@ -81,16 +81,5 @@ public class AddCustomerPage extends BasePage {
         }
 
         return customerIdToReturn;
-    }
-
-    private String getAlertTextForEmptyElement(String value, By locator) {
-        if (value == null) {
-            WebElement elementField = driver.findElement(locator);
-
-            return (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", elementField);
-        } else {
-            return "";
-        }
     }
 }

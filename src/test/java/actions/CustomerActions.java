@@ -50,14 +50,20 @@ public class CustomerActions {
 
         transaction.setDateAndTime();
 
-        if(transaction.getType().equals("Credit")) account.addToBalance(transaction.getAmount());
-        else account.subtractFromBalance(transaction.getAmount());
+        Transactions newTransaction = new Transactions();
+        newTransaction.setType(transaction.getType());
+        newTransaction.setTime(transaction.getTime());
+        newTransaction.setAmount(transaction.getAmount());
+        newTransaction.setAmount(transaction.getAmount());
 
-        account.getTransactions().add(transaction);
+        account.getTransactions().add(newTransaction);
+
+        if(newTransaction.getType().equals("Credit")) account.addToBalance(newTransaction.getAmount());
+        else account.subtractFromBalance(newTransaction.getAmount());
 
         Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
 
-        if(transaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
+        if(newTransaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
         else ExtentUtility.addTestLog(StepType.INFO_STEP, "Withdraw transaction was made");
 
         LoggerUtility.info("The balance was properly updated.");

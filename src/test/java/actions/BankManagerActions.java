@@ -73,7 +73,7 @@ public class BankManagerActions {
 
         openAccountPage.selectCustomer(customer.getFullName());
         openAccountPage.selectCurrency(account.getCurrency());
-        account.setAccountId(openAccountPage.clickOnProcessButton());
+        account.setAccountId(openAccountPage.clickOnProcessButton(customer.getFullName(), account.getCurrency()));
 
         Accounts customerAccount = new Accounts();
 
@@ -152,5 +152,9 @@ public class BankManagerActions {
         }
 
         return isAccountAdded;
+    }
+
+    public boolean isAccountCreated(Accounts account) {
+        return account.getAccountId().isEmpty();
     }
 }
