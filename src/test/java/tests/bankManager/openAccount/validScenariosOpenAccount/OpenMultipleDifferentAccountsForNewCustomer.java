@@ -45,7 +45,6 @@ public class OpenMultipleDifferentAccountsForNewCustomer extends Hooks {
 
             for (int j = 0; j < 5; j++) {
                 bankManagerActions.openAccount(customer, account);
-                System.out.println(customer.getAccounts());
             }
         }
 

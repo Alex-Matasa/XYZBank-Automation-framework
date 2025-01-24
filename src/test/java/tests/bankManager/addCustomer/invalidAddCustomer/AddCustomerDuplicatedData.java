@@ -1,4 +1,4 @@
-package tests.bankManager.addCustomer.validAddCustomer;
+package tests.bankManager.addCustomer.invalidAddCustomer;
 
 import actions.BankManagerActions;
 import actions.LoginActions;
@@ -13,11 +13,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class DuplicatedNameAndPostCode extends Hooks {
+public class AddCustomerDuplicatedData extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "validAddCustomer"})
-    public void duplicatedNameAndPostCode() {
-        DataModel dataModel = new DataModel(ResourcePath.DUPLICATED_NAME_AND_POST_CODE_DATA);
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
+    public void duplicatedData() {
+        DataModel dataModel = new DataModel(ResourcePath.DUPLICATED_DATA_DATA);
         Customers customer1 = dataModel.customers.get(0);
         Customers customer2 = dataModel.customers.get(1);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
@@ -27,12 +27,17 @@ public class DuplicatedNameAndPostCode extends Hooks {
         bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer1);
         dataModel.standardizeInputData(customer1);
+        bankManagerActions.navigateToPage(PageType.CUSTOMERS);
+        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
+
+        ExtentUtility.addTestLog(StepType.PASS_STEP, "Customer was added to the list");
+
+        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
         bankManagerActions.addCustomer(customer2);
         dataModel.standardizeInputData(customer2);
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer1));
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer2));
+        Assert.assertFalse(bankManagerActions.isCustomerDuplicated(customer1));
 
-        ExtentUtility.addTestLog(StepType.PASS_STEP, "Customers were added to the list");
+        ExtentUtility.addTestLog(StepType.PASS_STEP, "Customer was not duplicated");
     }
 }

@@ -13,11 +13,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class MinimumLengthTest extends Hooks {
+public class AddCustomerMaximumLengthTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "validAddCustomer"})
-    public void minimumLengthOfChars() {
-        DataModel dataModel = new DataModel(ResourcePath.MINIMUM_LENGTH_DATA);
+    public void maximumLengthOfChars() {
+        DataModel dataModel = new DataModel(ResourcePath.MAXIMUM_LENGTH_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());

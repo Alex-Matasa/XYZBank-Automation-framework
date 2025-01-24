@@ -13,11 +13,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class PostCodeEmptyTest extends Hooks {
+public class AddCustomerBlankSpaceFirstNameTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
-    public void postCodeEmpty() {
-        DataModel dataModel = new DataModel(ResourcePath.POST_CODE_EMPTY_DATA);
+    public void blankSpaceFirstName() {
+        DataModel dataModel = new DataModel(ResourcePath.BLANK_SPACE_FIRST_NAME_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());

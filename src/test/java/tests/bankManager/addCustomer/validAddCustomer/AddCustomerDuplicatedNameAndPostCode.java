@@ -13,11 +13,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class DuplicatedNames extends Hooks {
+public class AddCustomerDuplicatedNameAndPostCode extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "validAddCustomer"})
-    public void duplicatedNames() {
-        DataModel dataModel = new DataModel(ResourcePath.DUPLICATED_NAMES_DATA);
+    public void duplicatedNameAndPostCode() {
+        DataModel dataModel = new DataModel(ResourcePath.DUPLICATED_NAME_AND_POST_CODE_DATA);
         Customers customer1 = dataModel.customers.get(0);
         Customers customer2 = dataModel.customers.get(1);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());

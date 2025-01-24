@@ -1,4 +1,4 @@
-package tests.bankManager.addCustomer.invalidAddCustomer;
+package tests.bankManager.addCustomer.validAddCustomer;
 
 import actions.BankManagerActions;
 import actions.LoginActions;
@@ -13,22 +13,22 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class MultipleInputSpaceTest extends Hooks {
+public class AddCustomerMinimumLengthTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
-    public void multipleInputSpace() {
-        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_INPUT_SPACES_DATA);
-        Customers customer = dataModel.customers.get(0);
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "validAddCustomer"})
+    public void minimumLengthOfChars() {
+        DataModel dataModel = new DataModel(ResourcePath.MINIMUM_LENGTH_DATA);
+        Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
-        bankManagerActions.addCustomer(customer);
-        dataModel.standardizeInputData(customer);
+        bankManagerActions.addCustomer(customers);
+        dataModel.standardizeInputData(customers);
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
-        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer));
+        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customers));
 
-        ExtentUtility.addTestLog(StepType.PASS_STEP, "Customer was not added to the list");
+        ExtentUtility.addTestLog(StepType.PASS_STEP, "Customer was added to the list");
     }
 }

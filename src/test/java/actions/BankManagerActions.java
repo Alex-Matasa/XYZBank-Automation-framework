@@ -83,7 +83,9 @@ public class BankManagerActions {
 
         customer.getAccounts().add(customerAccount);
 
-        ExtentUtility.addTestLog(StepType.INFO_STEP, "Account was created");
+        if(!account.getAccountId().isEmpty()) {
+            ExtentUtility.addTestLog(StepType.INFO_STEP, "Account was created");
+        }
     }
 
     public boolean isCustomerInTheList(Customers customer) {

@@ -13,20 +13,21 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class LastNameEmptyTest extends Hooks {
+public class AddCustomerMultipleInputSpaceTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
-    public void lastNameEmpty() {
-        DataModel dataModel = new DataModel(ResourcePath.LAST_NAME_EMPTY_DATA);
-        Customers customers = dataModel.customers.get(0);
+    public void multipleInputSpace() {
+        DataModel dataModel = new DataModel(ResourcePath.MULTIPLE_INPUT_SPACES_DATA);
+        Customers customer = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
-        bankManagerActions.addCustomer(customers);
+        bankManagerActions.addCustomer(customer);
+        dataModel.standardizeInputData(customer);
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
-        Assert.assertFalse(bankManagerActions.isCustomerInTheList(customers));
+        Assert.assertTrue(bankManagerActions.isCustomerInTheList(customer));
 
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Customer was not added to the list");
     }

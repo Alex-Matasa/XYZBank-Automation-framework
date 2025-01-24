@@ -15,7 +15,6 @@ import pageObjects.locators.CustomerAccountFacadeLocators;
 public class LoginActions {
 
     private WebDriver driver;
-    private CommonPage commonPage;
     private LoginPage loginPage;
     private CustomerLoginPage customerLoginPage;
     private AssertionsMethods assertionsMethods;
@@ -43,9 +42,6 @@ public class LoginActions {
 
         Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
 
-        LoggerUtility.info("Logged in as customer");
-
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as Customer");
     }
-
 }

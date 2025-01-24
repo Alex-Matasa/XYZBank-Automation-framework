@@ -13,7 +13,7 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class BlankSpaceLastNameTest extends Hooks {
+public class AddCustomerBlankSpaceLastNameTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
     public void blankSpaceLastName() {

@@ -13,11 +13,11 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class FirstNameEmptyTest extends Hooks {
+public class AddCustomerLastNameEmptyTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "addCustomer", "invalidAddCustomer"})
-    public void firstNameEmpty() {
-        DataModel dataModel = new DataModel(ResourcePath.FIRST_NAME_EMPTY_DATA);
+    public void lastNameEmpty() {
+        DataModel dataModel = new DataModel(ResourcePath.LAST_NAME_EMPTY_DATA);
         Customers customers = dataModel.customers.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());

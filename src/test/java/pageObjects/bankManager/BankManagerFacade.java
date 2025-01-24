@@ -37,7 +37,7 @@ public class BankManagerFacade extends BasePage {
                 break;
         }
 
-        LoggerUtility.info("Clicked on " + pageName + "button");
+        LoggerUtility.info("Clicked on " + pageName + " button");
     }
 }
 
