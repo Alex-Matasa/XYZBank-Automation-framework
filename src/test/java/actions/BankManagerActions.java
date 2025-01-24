@@ -80,7 +80,6 @@ public class BankManagerActions {
         customerAccount.setBalance(account.getBalance());
         customerAccount.setCurrency(account.getCurrency());
         customerAccount.setAccountId(account.getAccountId());
-
         customer.getAccounts().add(customerAccount);
 
         if(!account.getAccountId().isEmpty()) {

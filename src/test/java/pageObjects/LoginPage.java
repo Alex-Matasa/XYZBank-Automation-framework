@@ -23,7 +23,5 @@ public class LoginPage extends BasePage{
         webElementsMethods.clickOn(LoginLocators.customerLoginButton);
 
         LoggerUtility.info("Clicked on Customer Login button");
-
-        ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as customer");
     }
 }
