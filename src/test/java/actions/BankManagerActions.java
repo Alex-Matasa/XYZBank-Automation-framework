@@ -156,6 +156,7 @@ public class BankManagerActions {
     }
 
     public boolean isAccountCreated(Accounts account) {
-        return account.getAccountId().isEmpty();
+        boolean isNotCreated = account.getAccountId().isEmpty();
+        return !isNotCreated;
     }
 }

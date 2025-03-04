@@ -14,7 +14,7 @@ public class OpenAccountPage extends BasePage {
 
     public void selectCustomer(String fullName) {
         if (fullName == null) {
-            LoggerUtility.info("Customer is not selected selected");
+            LoggerUtility.info("Customer is not selected");
         } else {
             webElementsMethods.select(OpenAccountLocators.selectCustomer, fullName);
 
@@ -24,7 +24,7 @@ public class OpenAccountPage extends BasePage {
 
     public void selectCurrency(String currency) {
         if(currency == null) {
-            LoggerUtility.info("Currency is not selected selected");
+            LoggerUtility.info("Currency is not selected");
         } else {
             webElementsMethods.select(OpenAccountLocators.selectCurrency, currency);
 

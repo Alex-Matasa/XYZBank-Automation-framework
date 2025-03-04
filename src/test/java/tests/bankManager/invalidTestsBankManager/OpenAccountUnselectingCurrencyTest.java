@@ -14,12 +14,12 @@ import pageObjects.PageType;
 import sharedData.Hooks;
 import suites.TestSuite;
 
-public class OpenAccountUnselectingCustomerNameTest extends Hooks {
+public class OpenAccountUnselectingCurrencyTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "openAccount", "invalidOpenAccount"})
-    public void openNewAccountForNewCustomer() {
+    public void openAccountUnselectingCurrency() {
         LoginActions loginActions = new LoginActions(getDriver());
-        DataModel dataModel = new DataModel(ResourcePath.LEAVE_CUSTOMER_NAME_UNSELECTED_DATA);
+        DataModel dataModel = new DataModel(ResourcePath.LEAVE_CURRENCY_UNSELECTED_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
@@ -27,7 +27,7 @@ public class OpenAccountUnselectingCustomerNameTest extends Hooks {
         loginActions.loginAsBankManager();
         bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
         bankManagerActions.openAccount(customer, account);
-        Assert.assertTrue(bankManagerActions.isAccountCreated(account));
+        Assert.assertFalse(bankManagerActions.isAccountCreated(account));
 
         ExtentUtility.addTestLog(StepType.PASS_STEP, "No account was created");
     }
