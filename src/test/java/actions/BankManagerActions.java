@@ -53,19 +53,11 @@ public class BankManagerActions {
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Filled form and submitted");
     }
 
-    public void deleteCustomer(Customers customers) {
+    public void deleteFirstEntryCustomer() {
         customersPage = new CustomersPage(driver);
-
-        customersPage.searchCustomer(customers.getLastName());
-
-        List<WebElement> customersList = driver.findElements(CustomersLocators.customersList);
-
-        if (customersList.size() == 1) {
-            customersList.get(0).findElement(By.xpath(".//td/button")).click();
-            LoggerUtility.info("Customer was deleted");
-        }
-
-        Assert.assertTrue(customersList.isEmpty());
+        String firstCustomer = customersPage.getListOfCustomers().get(0);
+        customersPage.clickOnDeleteButton();
+        Assert.assertNotSame(firstCustomer, customersPage.getListOfCustomers().get(0));
     }
 
     public void openAccount(Customers customer, Accounts account) {

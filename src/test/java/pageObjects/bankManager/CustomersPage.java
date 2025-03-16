@@ -14,8 +14,9 @@ public class CustomersPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnDeleteButton(WebElement customerToBeDeleted) {
-        webElementsMethods.clickOn(customerToBeDeleted.findElement(CustomersLocators.deleteButton));
+    public void clickOnDeleteButton() {
+        webElementsMethods.clickOn(CustomersLocators.firstDeleteButton);
+        LoggerUtility.info("Clicked on Delete button");
     }
 
     public void searchCustomer(String lastName) {
