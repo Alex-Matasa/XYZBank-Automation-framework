@@ -1,0 +1,19 @@
+{
+  "customers": [
+    {
+      "firstName": "Hermoine",
+      "lastName": "Granger",
+      "accounts": [
+        {
+          "accountId": "1002"
+        }
+      ]
+    }
+  ],
+  "transactions": [
+    {
+      "amount": "100",
+      "type": "Dredit"
+    }
+  ]
+}

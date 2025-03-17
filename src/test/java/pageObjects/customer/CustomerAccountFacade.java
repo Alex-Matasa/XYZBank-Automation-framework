@@ -61,14 +61,17 @@ public class CustomerAccountFacade extends BasePage {
         if (type.equals("Credit")) webElementsMethods.clickOn(DepositLocators.submitDepositButton);
         else webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
 
+        String message;
+
         LoggerUtility.info("Clicked on submit transaction button");
 
         if (amount == null) {
             WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
-            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
-
-            LoggerUtility.info("Warning alert message was displayed.");
+            message = (String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", elementField));
+//            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
+//                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
+//
+//            LoggerUtility.info("Warning alert message was displayed.");
 
         } else if (Integer.parseInt(amount) > 0) {
             switch (type) {

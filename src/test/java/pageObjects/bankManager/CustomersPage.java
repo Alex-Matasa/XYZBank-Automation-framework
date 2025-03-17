@@ -1,5 +1,7 @@
 package pageObjects.bankManager;
 
+import extentUtility.ExtentUtility;
+import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -16,7 +18,9 @@ public class CustomersPage extends BasePage {
 
     public void clickOnDeleteButton() {
         webElementsMethods.clickOn(CustomersLocators.firstDeleteButton);
-        LoggerUtility.info("Clicked on Delete button");
+
+        LoggerUtility.info("Clicked on Delete button on the first entry");
+        ExtentUtility.addTestLog(StepType.INFO_STEP, "Clicked on Delete button on the first entry in the table");
     }
 
     public void searchCustomer(String lastName) {

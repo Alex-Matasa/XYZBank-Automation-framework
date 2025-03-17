@@ -41,20 +41,18 @@ public class CustomerActions {
         ExtentUtility.addTestLog(StepType.INFO_STEP, "The account was selected");
     }
 
-    public void makeTransaction(Accounts account, Transactions transaction) {
+    public void makeTransaction(Accounts account, Transactions transactionTestData) {
         customerAccountFacade = new CustomerAccountFacade(driver);
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
 
-        customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
-        customerAccountFacade.submitTransaction(transaction.getAmount(),transaction.getType());
-
-        transaction.setDateAndTime();
+        customerAccountFacade.enterAmount(transactionTestData.getAmount(), transactionTestData.getType());
+        customerAccountFacade.submitTransaction(transactionTestData.getAmount(),transactionTestData.getType());
 
         Transactions newTransaction = new Transactions();
-        newTransaction.setType(transaction.getType());
-        newTransaction.setTime(transaction.getTime());
-        newTransaction.setAmount(transaction.getAmount());
-        newTransaction.setAmount(transaction.getAmount());
+        newTransaction.setDateAndTime();
+        newTransaction.setType(transactionTestData.getType());
+        newTransaction.setTime(transactionTestData.getTime());
+        newTransaction.setAmount(transactionTestData.getAmount());
 
         account.getTransactions().add(newTransaction);
 

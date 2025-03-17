@@ -30,5 +30,6 @@ public class ResourcePath {
     public static final String MULTIPLE_DIFFERENT_ACCOUNTS_FOR_NEW_CUSTOMER_DATA = "src/test/resources/testData/openAccount/validDataOpenAccount/multipleDifferentAccountsForNewCustomer.json";
     public static final String LEAVE_CUSTOMER_NAME_UNSELECTED_DATA = "src/test/resources/testData/openAccount/invalidDataOpenAccount/leaveCustomerNameUnselected.json";
     public static final String LEAVE_CURRENCY_UNSELECTED_DATA = "src/test/resources/testData/openAccount/invalidDataOpenAccount/leaveCurrencyUnselected.json";
+    public static final String WITHDRAW_MORE_THAN_BALANCE_FOR_AN_EXISTING_CUSTOMER = "src/test/resources/testData/transactions/invalidDataTransactions/withdrawMoreThanBalanceForExistingAccount.json";
 }
 
