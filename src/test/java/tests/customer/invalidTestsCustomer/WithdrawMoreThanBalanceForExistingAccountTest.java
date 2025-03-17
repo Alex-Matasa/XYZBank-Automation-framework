@@ -26,9 +26,7 @@ public class WithdrawMoreThanBalanceForExistingAccountTest extends Hooks {
         customerActions.selectAnAccount(account);
         customerActions.navigateToPage(PageType.WITHDRAW);
         customerActions.makeTransaction(account,transactionData);
-        customerActions.navigateToPage(PageType.TRANSACTIONS);
-        Assert.assertTrue(customerActions.validateTransactionsHistory(account));
 
-        ExtentUtility.addTestLog(StepType.PASS_STEP, "Transaction was successfully added to the list");
+        ExtentUtility.addTestLog(StepType.PASS_STEP, "Transaction Failed");
     }
 }

@@ -46,30 +46,32 @@ public class CustomerActions {
         account.setBalance(customerAccountFacade.getActualAccountInfo().get(1));
 
         customerAccountFacade.enterAmount(transactionTestData.getAmount(), transactionTestData.getType());
-        customerAccountFacade.submitTransaction(transactionTestData.getAmount(),transactionTestData.getType());
+        customerAccountFacade.submitTransaction(transactionTestData.getAmount(),transactionTestData.getType(), account.getBalance());
 
-        Transactions newTransaction = new Transactions();
-        newTransaction.setDateAndTime();
-        newTransaction.setType(transactionTestData.getType());
-        newTransaction.setTime(transactionTestData.getTime());
-        newTransaction.setAmount(transactionTestData.getAmount());
+        if((!transactionTestData.getType().equals("Debit")) && (Integer.parseInt(transactionTestData.getAmount()) > Integer.parseInt(account.getBalance()))) {
+            Transactions newTransaction = new Transactions();
+            newTransaction.setDateAndTime();
+            newTransaction.setType(transactionTestData.getType());
+            newTransaction.setTime(transactionTestData.getTime());
+            newTransaction.setAmount(transactionTestData.getAmount());
 
-        account.getTransactions().add(newTransaction);
+            account.getTransactions().add(newTransaction);
 
-        if(newTransaction.getType().equals("Credit")) account.addToBalance(newTransaction.getAmount());
-        else account.subtractFromBalance(newTransaction.getAmount());
+            if(newTransaction.getType().equals("Credit")) account.addToBalance(newTransaction.getAmount());
+            else account.subtractFromBalance(newTransaction.getAmount());
 
-        Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
+            Assert.assertEquals(customerAccountFacade.getActualAccountInfo().get(1), account.getBalance());
 
-        if(newTransaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
-        else ExtentUtility.addTestLog(StepType.INFO_STEP, "Withdraw transaction was made");
+            if(newTransaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
+            else ExtentUtility.addTestLog(StepType.INFO_STEP, "Withdraw transaction was made");
 
-        LoggerUtility.info("The balance was properly updated.");
+            LoggerUtility.info("The balance was properly updated.");
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 

@@ -11,6 +11,7 @@ import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomerAccountFacadeLocators;
 import pageObjects.locators.DepositLocators;
+import pageObjects.locators.TransactionsLocators;
 import pageObjects.locators.WithdrawLocators;
 
 import java.util.List;
@@ -54,36 +55,45 @@ public class CustomerAccountFacade extends BasePage {
             if (type.equals("Credit")) webElementsMethods.sendKeys(DepositLocators.amountToBeDeposited, amount);
             else webElementsMethods.sendKeys(WithdrawLocators.amountToBeWithdrawn, amount);
         }
+
+        LoggerUtility.info("The amount was entered");
     }
 
-    public void submitTransaction(String amount, String type) {
+    public void submitTransaction(String amount, String type, String balance) {
 
         if (type.equals("Credit")) webElementsMethods.clickOn(DepositLocators.submitDepositButton);
         else webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
+        LoggerUtility.info("Clicked on submit transaction button");
 
         String message;
 
-        LoggerUtility.info("Clicked on submit transaction button");
-
         if (amount == null) {
             WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
-            message = (String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript("return arguments[0].validationMessage;", elementField));
-//            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
-//                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
-//
-//            LoggerUtility.info("Warning alert message was displayed.");
+            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
+                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
 
-        } else if (Integer.parseInt(amount) > 0) {
+            LoggerUtility.info("Warning alert message was displayed.");
+        }
+
+        else if (Integer.parseInt(amount) > 0) {
             switch (type) {
                 case "Credit":
                     Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));
+                    LoggerUtility.info("Successful alert message was displayed");
                     break;
                 case "Debit":
-                    Assert.assertFalse(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Transaction Successful"));
+                    if (Integer.parseInt(amount) > Integer.parseInt(balance)) {
+                        Assert.assertTrue(assertionsMethods.actualEqualExpected(WithdrawLocators.errorMessage, "Transaction Failed. You can not withdraw amount more than the balance."));
+                        LoggerUtility.info("Warning alert message was displayed");
+                    }
+
+                    else{
+                        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Transaction Successful"));
+                        LoggerUtility.info("Successful alert message was displayed");
+                    }
                     break;
             }
         }
-        LoggerUtility.info("Successful alert message was displayed");
     }
 
     public List<String> getActualAccountInfo() {
