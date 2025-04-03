@@ -18,16 +18,12 @@ public class WebElementsMethods {
         this.driver = driver;
     }
 
-    public void clickOn(WebElement webElement) {
-        webElement.click();
-    }
 
     public void clickOn(By locator) {
         driver.findElement(locator).click();
     }
 
-    public void select(By locator, String text) {
-
+    public void selectByText (By locator, String text) {
         Select select = new Select(driver.findElement(locator));
         select.selectByVisibleText(text);
     }
@@ -44,14 +40,20 @@ public class WebElementsMethods {
                 .collect(Collectors.toList());
     }
 
-    public String getAlertTextForEmptyElement(String value, By locator) {
-        if (value == null) {
-            WebElement elementField = driver.findElement(locator);
+    public String getAlertTextForEmptyElement(By locator) {
 
-            return (String) ((JavascriptExecutor) driver).executeScript(
-                    "return arguments[0].validationMessage;", elementField);
-        } else {
-            return "";
-        }
+        WebElement elementField = driver.findElement(locator);
+
+        return (String) ((JavascriptExecutor) driver).executeScript( "return arguments[0].validationMessage;", elementField);
+    }
+
+    public boolean isElementVisible(By locator) {
+        WebElement element = driver.findElement(locator);
+        return element.isDisplayed();
+    }
+
+    public String getTextFromElement(By locator) {
+        WebElement element = driver.findElement(locator);
+        return  element.getText();
     }
 }

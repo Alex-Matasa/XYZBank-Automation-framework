@@ -11,7 +11,7 @@ public class CustomerLoginPage extends BasePage{
     }
 
     public void selectName(String fullName) {
-        webElementsMethods.select(CustomerLoginLocators.selectName, fullName);
+        webElementsMethods.selectByText(CustomerLoginLocators.selectName, fullName);
 
         LoggerUtility.info("Name is selected");
     }
@@ -20,5 +20,9 @@ public class CustomerLoginPage extends BasePage{
         webElementsMethods.clickOn(CustomerLoginLocators.loginButton);
 
         LoggerUtility.info("Clicked on Login button");
+    }
+
+    public boolean  validateCustomerLoginDashboard() {
+        return webElementsMethods.isElementVisible(CustomerLoginLocators.selectName);
     }
 }

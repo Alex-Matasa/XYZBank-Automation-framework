@@ -8,6 +8,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.AddCustomerLocators;
+import validation.ActualMessages;
 
 public class AddCustomerPage extends BasePage {
 
@@ -15,10 +16,10 @@ public class AddCustomerPage extends BasePage {
         super(driver);
     }
 
+
     public void enterFirstName(String firstName) {
         if (firstName != null) {
             webElementsMethods.sendKeys(AddCustomerLocators.fName, firstName);
-
             LoggerUtility.info("Entered First Name");
 
         } else LoggerUtility.info("Left the First Name field empty");
@@ -27,59 +28,37 @@ public class AddCustomerPage extends BasePage {
     public void enterLastName(String lastName) {
         if (lastName != null) {
             webElementsMethods.sendKeys(AddCustomerLocators.lName, lastName);
-
             LoggerUtility.info("Entered Last Name");
 
         } else LoggerUtility.info("Left the Last Name field empty");
-
     }
 
     public void enterPostCode(String postCode) {
         if (postCode != null) {
             webElementsMethods.sendKeys(AddCustomerLocators.postCode, postCode);
-
             LoggerUtility.info("Entered Post Code");
 
         } else LoggerUtility.info("Left the Post Code field empty");
     }
 
-    public String clickOnSubmitButton(String firstName, String lastName, String postCode) {
-        String customerIdToReturn = null;
-        StringBuilder alertMessages = new StringBuilder();
-
+    public void clickOnSubmitButton(String firstName, String lastName, String postCode) {
         webElementsMethods.clickOn(AddCustomerLocators.addCustomerSubmit);
         LoggerUtility.info("Clicked on Add Customer Submit button");
 
-        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(firstName, AddCustomerLocators.fName));
-        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(lastName, AddCustomerLocators.lName));
-        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(postCode, AddCustomerLocators.postCode));
+        String message = "";
 
-        if (alertMessages.toString().isEmpty()) {
-            alertMessages.append(alertsMethods.getAlertsTextAndAccept());
+        if (firstName == null) {
+            message = webElementsMethods.getAlertTextForEmptyElement(AddCustomerLocators.fName);
+        } else if (lastName == null) {
+            message = webElementsMethods.getAlertTextForEmptyElement(AddCustomerLocators.lName);
+        } else if (postCode == null) {
+            message = webElementsMethods.getAlertTextForEmptyElement(AddCustomerLocators.postCode);
         }
 
-        String actualAlertMessage = alertMessages.toString();
-
-        if (actualAlertMessage.contains("id")) {
-            Assert.assertTrue(actualAlertMessage.contains("Customer added successfully with customer id"));
-
-            LoggerUtility.info("Validated successful message");
-            LoggerUtility.info("Accepted pop-up alert");
-
-            customerIdToReturn = actualAlertMessage.split(":")[1];
-
-        } else if (actualAlertMessage.contains("field")) {
-            Assert.assertTrue(actualAlertMessage.contains("Please fill out this field."));
-
-            LoggerUtility.info("Warning alert message is displayed");
-
-        } else {
-            Assert.assertEquals (actualAlertMessage, "Please check the details. Customer may be duplicate.");
-
-            LoggerUtility.info("Warning alert message is displayed");
+        else {
+            message = alertsMethods.getAlertsTextAndAccept();
             LoggerUtility.info("Accepted pop-up alert");
         }
-
-        return customerIdToReturn;
+        ActualMessages.setActualMessage(message);
     }
 }

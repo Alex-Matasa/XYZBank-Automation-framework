@@ -1,5 +1,6 @@
 package dataObjects;
 
+import helperMethods.StringUtils;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -16,24 +17,14 @@ public class Customers {
     private List<Accounts> accounts = new ArrayList<>();
 
 
-    public void manipulateData() {
-        if(this.firstName != null && this.lastName != null) {
-            this.fullName = firstName + " " + lastName;
-        }
+    public void setFullName() {
+        this.fullName = firstName + " " + lastName;
     }
 
-    public void modifyData(Customers customers){
-        customers.setFirstName(modifyString(customers.getFirstName()));
-        customers.setLastName(modifyString(customers.getLastName()));
-        customers.setFullName(customers.getFirstName() + " " + customers.getLastName());
-        customers.setPostCode(modifyString(customers.getPostCode()));
-    }
-
-    private static String modifyString(String input) {
-        if (input == null) {
-            return "";
-        }
-        String trimmed = input.trim();
-        return trimmed.replaceAll("\\s+", " ");
+    public void sanitizeData() {
+        this.firstName = StringUtils.trimSpacesToOne(this.firstName);
+        this.lastName = StringUtils.trimSpacesToOne(this.lastName);
+        this.postCode = StringUtils.trimSpacesToOne(this.postCode);
+        this.fullName = this.firstName + " " + this.lastName;
     }
 }

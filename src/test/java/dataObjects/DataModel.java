@@ -13,13 +13,6 @@ public class DataModel extends BaseData {
 
     public DataModel(String filePath) {
         fromJsonToObject(filePath);
-        for (Customers customer : customers) {
-            customer.manipulateData();
-        }
-    }
-
-    public void standardizeInputData(Customers customers) {
-        customers.modifyData(customers);
     }
 
 }

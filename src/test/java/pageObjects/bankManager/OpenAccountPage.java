@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import pageObjects.BasePage;
 import pageObjects.locators.OpenAccountLocators;
+import validation.ActualMessages;
 
 public class OpenAccountPage extends BasePage {
 
@@ -16,8 +17,7 @@ public class OpenAccountPage extends BasePage {
         if (fullName == null) {
             LoggerUtility.info("Customer is not selected");
         } else {
-            webElementsMethods.select(OpenAccountLocators.selectCustomer, fullName);
-
+            webElementsMethods.selectByText(OpenAccountLocators.selectCustomer, fullName);
             LoggerUtility.info("Customer is selected");
         }
     }
@@ -26,46 +26,29 @@ public class OpenAccountPage extends BasePage {
         if(currency == null) {
             LoggerUtility.info("Currency is not selected");
         } else {
-            webElementsMethods.select(OpenAccountLocators.selectCurrency, currency);
-
+            webElementsMethods.selectByText(OpenAccountLocators.selectCurrency, currency);
             LoggerUtility.info("Currency is selected");
         }
     }
 
     public String clickOnProcessButton(String fullName, String currency) {
-        StringBuilder alertMessages = new StringBuilder();
-        String idToReturn = null;
-
         webElementsMethods.clickOn(OpenAccountLocators.processButton);
-
         LoggerUtility.info("Clicked on Process button");
 
-        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(fullName, OpenAccountLocators.selectCustomer));
-        alertMessages.append(webElementsMethods.getAlertTextForEmptyElement(currency, OpenAccountLocators.selectCurrency));
+        String message = "";
+        String accountNumber = "";
 
-        if (alertMessages.toString().isEmpty()) {
-            alertMessages.append(alertsMethods.getAlertsTextAndAccept());
+        if (fullName == null) {
+            message = webElementsMethods.getAlertTextForEmptyElement(OpenAccountLocators.selectCustomer);
+        } else if (currency == null) {
+            message = webElementsMethods.getAlertTextForEmptyElement(OpenAccountLocators.selectCurrency);
+        } else {
+            message = alertsMethods.getAlertsTextAndAccept();
+            accountNumber = message.split(":")[1].trim();
         }
 
-        String actualSuccessMessage = alertMessages.toString();
+        ActualMessages.setActualMessage(message);
 
-        if(actualSuccessMessage.contains("select")) {
-            Assert.assertTrue(actualSuccessMessage.equals("Please select an item in the list."));
-
-            idToReturn = "";
-            LoggerUtility.info("Warning alert message is displayed");
-        }
-
-        else{
-            idToReturn = actualSuccessMessage.split(":")[1];
-
-            LoggerUtility.info("Accepted pop-up alert");
-
-            Assert.assertTrue(actualSuccessMessage.contains("Account created successfully with account Number"));
-
-            LoggerUtility.info("Account is created successfully");
-        }
-
-        return idToReturn;
+        return accountNumber;
     }
 }

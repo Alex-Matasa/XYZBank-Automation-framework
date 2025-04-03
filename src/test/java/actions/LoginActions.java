@@ -3,45 +3,49 @@ package actions;
 import dataObjects.Customers;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;
-import helperMethods.AssertionsMethods;
-import loggerUtility.LoggerUtility;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import pageObjects.CommonPage;
-import pageObjects.CustomerLoginPage;
-import pageObjects.LoginPage;
 import pageObjects.locators.CustomerAccountFacadeLocators;
+import validation.ActualMessages;
+import validation.ValidationUtils;
+import org.openqa.selenium.WebDriver;
+import pageObjects.CustomerLoginPage;
+import pageObjects.HomePage;
 
 public class LoginActions {
 
     private WebDriver driver;
-    private LoginPage loginPage;
+    private HomePage homePage;
     private CustomerLoginPage customerLoginPage;
-    private AssertionsMethods assertionsMethods;
+    private ValidationUtils validationUtils;
 
     public LoginActions(WebDriver driver) {
         this.driver = driver;
     }
 
     public void loginAsBankManager() {
-        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
 
-        loginPage.clickOnBankManagerLogin();
-
-        ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as Bank Manager");
+        homePage.clickOnHomePageButton();
+        homePage.clickOnBankManagerLogin();
     }
 
     public void loginAsCustomer(Customers customer) {
-        loginPage = new LoginPage(driver);
+        homePage = new HomePage(driver);
         customerLoginPage = new CustomerLoginPage(driver);
-        assertionsMethods = new AssertionsMethods(driver);
 
-        loginPage.clickOnCustomerLogin();
+        homePage.clickOnHomePageButton();
+        homePage.clickOnCustomerLogin();
         customerLoginPage.selectName(customer.getFullName());
         customerLoginPage.clickOnLoginButton();
 
-        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, customer.getFullName()));
+        if (customer.getAccounts().isEmpty()) {
+            ActualMessages.setActualMessage(driver.findElement(CustomerAccountFacadeLocators.openAccountMessage).getText());
+        }
 
-        ExtentUtility.addTestLog(StepType.INFO_STEP, "Logged in as Customer");
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

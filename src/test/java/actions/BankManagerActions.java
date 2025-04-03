@@ -5,15 +5,14 @@ import dataObjects.Customers;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.bankManager.CustomersPage;
 import pageObjects.bankManager.OpenAccountPage;
-import pageObjects.locators.CustomersLocators;
+import validation.ActualMessages;
+import validation.ValidationUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +20,7 @@ import java.util.List;
 public class BankManagerActions {
 
     private final WebDriver driver;
-
     private BankManagerFacade bankManagerFacade;
-    private AddCustomerPage addCustomerPage;
-    private OpenAccountPage openAccountPage;
     private CustomersPage customersPage;
 
     public BankManagerActions(WebDriver driver) {
@@ -36,119 +32,98 @@ public class BankManagerActions {
         bankManagerFacade = new BankManagerFacade(driver);
 
         bankManagerFacade.navigateToPage(pageName);
-
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Navigated to " + pageName);
     }
 
-    public void addCustomer(Customers customers) {
+    public void addCustomer(Customers customer) {
         bankManagerFacade = new BankManagerFacade(driver);
-        addCustomerPage = new AddCustomerPage(driver);
+        AddCustomerPage addCustomerPage = new AddCustomerPage(driver);
 
-        addCustomerPage.enterFirstName(customers.getFirstName());
-        addCustomerPage.enterLastName(customers.getLastName());
-        addCustomerPage.enterPostCode(customers.getPostCode());
-
-        customers.setCustomerId(addCustomerPage.clickOnSubmitButton(customers.getFirstName(), customers.getLastName(), customers.getPostCode()));
-
+        addCustomerPage.enterFirstName(customer.getFirstName());
+        addCustomerPage.enterLastName(customer.getLastName());
+        addCustomerPage.enterPostCode(customer.getPostCode());
+        addCustomerPage.clickOnSubmitButton(customer.getFirstName(), customer.getLastName(), customer.getPostCode());
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Filled form and submitted");
-    }
 
-    public void deleteFirstEntryCustomer() {
-        customersPage = new CustomersPage(driver);
-        String firstCustomer = customersPage.getListOfCustomers().get(0);
-        customersPage.clickOnDeleteButton();
-        Assert.assertNotSame(firstCustomer, customersPage.getListOfCustomers().get(0));
+        if (ActualMessages.getActualMessage().contains("id")) {
+            customer.setCustomerId(ActualMessages.getActualMessage().substring("id:".length()).trim());
+            customer.setFullName();
+        }
     }
 
     public void openAccount(Customers customer, Accounts account) {
-        openAccountPage = new OpenAccountPage(driver);
+        OpenAccountPage openAccountPage = new OpenAccountPage(driver);
 
         openAccountPage.selectCustomer(customer.getFullName());
         openAccountPage.selectCurrency(account.getCurrency());
         account.setAccountId(openAccountPage.clickOnProcessButton(customer.getFullName(), account.getCurrency()));
 
-        Accounts customerAccount = new Accounts();
-
-        customerAccount.setBalance(account.getBalance());
-        customerAccount.setCurrency(account.getCurrency());
-        customerAccount.setAccountId(account.getAccountId());
-        customer.getAccounts().add(customerAccount);
-
-        if(!account.getAccountId().isEmpty()) {
-            ExtentUtility.addTestLog(StepType.INFO_STEP, "Account was created");
-        }
+        if (!account.getAccountId().isEmpty()) {
+            LoggerUtility.info("An id number was provided for the account");
+            customer.getAccounts().add(account);
+        } else LoggerUtility.info("NO id number was provided for the account");
     }
 
-    public boolean isCustomerInTheList(Customers customer) {
-        boolean isCustomerInTheList = false;
-
-        if (customer.getCustomerId() != null) {
-            customersPage = new CustomersPage(driver);
-
-            String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
-            List<String> actualList = customersPage.getListOfCustomers();
-
-            for (String actual : actualList) {
-                if (actual.contains(expectedCustomer)) {
-                    isCustomerInTheList = true;
-                    break;
-                }
-            }
-        }
+    public boolean isCustomerInTheTable(Customers customer) {
+        customersPage = new CustomersPage(driver);
+        boolean isCustomerInTheList;
+        String expectedCustomer = String.join(" ", customer.getFirstName(), customer.getLastName(), customer.getPostCode());
+        isCustomerInTheList = ValidationUtils.isStringInList(expectedCustomer, customersPage.getListOfCustomers());
 
         if (isCustomerInTheList) LoggerUtility.info("The Customer is added to the list");
-        else LoggerUtility.info(("The Customer is not added to the list"));
+        else LoggerUtility.info(("The Customer was not added to the list"));
 
         return isCustomerInTheList;
     }
 
     public boolean isCustomerDuplicated(Customers customer) {
         customersPage = new CustomersPage(driver);
-
-        List<String> actualList = customersPage.getListOfCustomers();
-        String expectedCustomer = String.join(" ", customer.getFullName(), customer.getPostCode());
+        String expectedCustomer = String.join(" ", customer.getFirstName(), customer.getLastName(), customer.getPostCode());
 
         int count = 0;
 
-        for (String actual : actualList) {
-            if (actual.contains(expectedCustomer)) {
+        for (String actual : customersPage.getListOfCustomers()) {
+            if (expectedCustomer.equals(actual)) {
                 count++;
             }
             if (count == 2) {
                 LoggerUtility.info("The Customer is duplicated");
-                ExtentUtility.addTestLog(StepType.FAIL_STEP, "Customer is duplicated");
-
+                ExtentUtility.addTestLog(StepType.FAIL_STEP, "Customer was duplicated");
                 return true;
             }
         }
-
-        LoggerUtility.info("The Customer is not duplicated");
+        LoggerUtility.info("The Customer was not duplicated");
 
         return false;
     }
 
     public boolean isAccountAddedToTheList(Customers customer) {
         customersPage = new CustomersPage(driver);
+        List<String> actualCustomerInfo = customersPage.getListOfCustomers();
 
-        boolean isAccountAdded = false;
+        StringBuilder expectedCustomerInfo = new StringBuilder(customer.getFirstName());
+        expectedCustomerInfo.append(" ").append(customer.getLastName());
+        expectedCustomerInfo.append(" ").append(customer.getPostCode());
 
-        List<String> actualList = customersPage.getListOfCustomers();
+        for (int i = 0; i < customer.getAccounts().size(); i++) {
+            expectedCustomerInfo.append(" ").append(customer.getAccounts().get(i).getAccountId());
+        }
 
-        for (String actual : actualList) {
-            if (actual.contains(customer.getFullName())) {
-                isAccountAdded = actual.contains(customer.getAccounts().get(0).getAccountId());
-                if (isAccountAdded) {
-                    LoggerUtility.info("The account id is added to table");
-                    break;
-                }
+        for (String row : actualCustomerInfo) {
+            if (row.equals(expectedCustomerInfo.toString())) {
+                LoggerUtility.info("Account is present in transactions table");
+                return true;
             }
         }
 
-        return isAccountAdded;
+        return false;
     }
 
     public boolean isAccountCreated(Accounts account) {
-        boolean isNotCreated = account.getAccountId().isEmpty();
-        return !isNotCreated;
+        if (account.getAccountId().isEmpty()) {
+            LoggerUtility.info("The account was not created");
+            return false;
+        }
+        return true;
     }
 }

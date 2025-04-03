@@ -1,0 +1,29 @@
+{
+  "customers": [
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "postCode": "30050"
+    }
+  ],
+  "accounts": [
+    {
+      "currency": "Dollar"
+    },
+    {
+      "currency": "Dollar"
+    },
+    {
+      "currency": "Pound"
+    },
+    {
+      "currency": "Pound"
+    },
+    {
+      "currency": "Rupee"
+    },
+    {
+      "currency": "Rupee"
+    }
+  ]
+}

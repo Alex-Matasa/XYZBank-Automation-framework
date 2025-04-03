@@ -29,7 +29,7 @@ public class Hooks extends Driver{
 
         driver.get("https://www.globalsqa.com/angularJs-protractor/BankingProject/#/login");
 
-        LoggerUtility.info("Navigated to Home Page");
+        LoggerUtility.info("Navigated to the site");
     }
 
     @AfterMethod(alwaysRun = true)

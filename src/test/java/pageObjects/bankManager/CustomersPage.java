@@ -9,6 +9,7 @@ import pageObjects.BasePage;
 import pageObjects.locators.CustomersLocators;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomersPage extends BasePage {
 
@@ -26,10 +27,14 @@ public class CustomersPage extends BasePage {
     public void searchCustomer(String lastName) {
         webElementsMethods.sendKeys(CustomersLocators.searchField, lastName);
 
-        LoggerUtility.info("Entered Last Name of the customer");
+        LoggerUtility.info("Entered Last Name of the transactions");
     }
 
     public List<String> getListOfCustomers() {
-        return webElementsMethods.extractDataAsStringList(CustomersLocators.customersList);
+        List<String> originalList =  webElementsMethods.extractDataAsStringList(CustomersLocators.customersList);
+
+        return originalList.stream()
+                .map(str -> str.replace("Delete", "").trim())  // Remove "Delete" and trim the string
+                .collect(Collectors.toList());
     }
 }

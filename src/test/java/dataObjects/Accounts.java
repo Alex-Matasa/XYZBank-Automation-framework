@@ -15,7 +15,6 @@ public class Accounts {
     private List<Transactions> transactions = new ArrayList<>();
 
 
-
     public void addToBalance(String amount) {
         int currentBalance = parseStringToInt(this.balance);
         int addAmount = parseStringToInt(amount);

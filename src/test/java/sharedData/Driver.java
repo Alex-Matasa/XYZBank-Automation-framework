@@ -15,7 +15,7 @@ public class Driver {
         if (driver == null) {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--disable-search-engine-choice-screen");
-//            chromeOptions.addArguments("--headless=new");
+            chromeOptions.addArguments("--headless=new");
 
             driver = new ChromeDriver(chromeOptions);
 
