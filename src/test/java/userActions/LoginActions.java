@@ -1,9 +1,6 @@
-package actions;
+package userActions;
 
 import dataObjects.Customers;
-import extentUtility.ExtentUtility;
-import extentUtility.StepType;
-import org.testng.Assert;
 import pageObjects.locators.CustomerAccountFacadeLocators;
 import validation.ActualMessages;
 import validation.ValidationUtils;

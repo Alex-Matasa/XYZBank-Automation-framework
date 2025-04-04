@@ -69,65 +69,30 @@ public class CustomerAccountFacade extends BasePage {
         return driver.findElement(CustomerAccountFacadeLocators.welcome).getText().contains("Welcome " + customer.getFullName());
     }
 
+    public void submitTransaction(String type, String amount) {
+        if (type.equals("Credit")) {
+            webElementsMethods.clickOn(DepositLocators.submitDepositButton);
+            LoggerUtility.info("Clicked on submit deposit button");
+        } else {
+            webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
+            LoggerUtility.info("Clicked on submit withdraw button");
+        }
 
-    public void submitDeposit(String amount) {
-        webElementsMethods.clickOn(DepositLocators.submitDepositButton);
-        LoggerUtility.info("Clicked on submit deposit button");
+        String message = "";
 
         if (amount == null) {
-            ActualMessages.setActualMessage(webElementsMethods.getAlertTextForEmptyElement(DepositLocators.amountToBeDeposited));
-        } else
-            ActualMessages.setActualMessage(webElementsMethods.getTextFromElement(CustomerAccountFacadeLocators.message));
-    }
+            if (type.equals("Credit"))
+                message = webElementsMethods.getAlertTextForEmptyElement(DepositLocators.amountToBeDeposited);
 
-    public void submitTransaction(String amount, String type, String balance) {
+            else message = webElementsMethods.getAlertTextForEmptyElement(WithdrawLocators.amountToBeWithdrawn);
+        } else message = webElementsMethods.getTextFromElement(CustomerAccountFacadeLocators.message);
 
-        if (type.equals("Credit")) webElementsMethods.clickOn(DepositLocators.submitDepositButton);
-        else webElementsMethods.clickOn(WithdrawLocators.submitWithdrawButton);
-        LoggerUtility.info("Clicked on submit transaction button");
-
-        String message;
-
-//        if (amount == null) {
-//            WebElement elementField = driver.findElement(CustomerAccountFacadeLocators.amount);
-//            Assert.assertEquals((String) Objects.requireNonNull(((JavascriptExecutor) driver).executeScript(
-//                    "return arguments[0].validationMessage;", elementField)), "Please fill out this field.");
-//
-//            LoggerUtility.info("Warning alert message was displayed.");
-//        }
-//
-//        else if (Integer.parseInt(amount) > 0) {
-//            switch (type) {
-//                case "Credit":
-//                    Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Deposit Successful"));
-//                    LoggerUtility.info("Successful alert message was displayed");
-//                    break;
-//                case "Debit":
-//                    if (Integer.parseInt(amount) > Integer.parseInt(balance)) {
-//                        Assert.assertTrue(assertionsMethods.actualEqualExpected(WithdrawLocators.errorMessage, "Transaction Failed. You can not withdraw amount more than the balance."));
-//                        LoggerUtility.info("Warning alert message was displayed");
-//                    }
-//
-//                    else{
-//                        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.message, "Transaction Successful"));
-//                        LoggerUtility.info("Successful alert message was displayed");
-//                    }
-//                    break;
-//            }
-//        }
+        ActualMessages.setActualMessage(message);
     }
 
     public List<String> getAccountInfo() {
         return webElementsMethods.extractDataAsStringList(CustomerAccountFacadeLocators.accountInfoDisplayedList);
     }
-
-//    public boolean validateCustomerHasNoAccount(Customers transactions) {
-//        Assert.assertTrue(assertionsMethods.actualEqualExpected(CustomerAccountFacadeLocators.welcome, transactions.getFullName()));
-//        boolean hasNoAccount = assertionsMethods.actualContainsExpected(CustomerAccountFacadeLocators.pleaseOpenAccountMessage, "open an account");
-//        if(hasNoAccount) LoggerUtility.info("Validated successful message");
-//
-//        return hasNoAccount;
-//    }
 
     public void clickOnLogoutButton() {
         webElementsMethods.clickOn(CustomerAccountFacadeLocators.logoutButton);

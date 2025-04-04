@@ -1,6 +1,6 @@
 package tests.loginLogout;
 
-import actions.LoginActions;
+import userActions.LoginActions;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;
 import org.testng.Assert;

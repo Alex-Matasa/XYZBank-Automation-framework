@@ -1,4 +1,4 @@
-package actions;
+package userActions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
@@ -6,7 +6,6 @@ import extentUtility.ExtentUtility;
 import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.bankManager.CustomersPage;
@@ -14,7 +13,6 @@ import pageObjects.bankManager.OpenAccountPage;
 import validation.ActualMessages;
 import validation.ValidationUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class BankManagerActions {

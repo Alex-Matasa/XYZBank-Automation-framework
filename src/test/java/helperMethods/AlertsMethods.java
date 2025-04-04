@@ -18,5 +18,4 @@ public class AlertsMethods {
         return text;
     }
 
-
 }

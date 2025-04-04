@@ -18,6 +18,7 @@ public class ResourcePath {
     public static final String MINIMUM_LENGTH_DATA= "src/test/resources/testData/customers/validDataAddCustomer/minimumLength.json";
     public static final String ONE_INPUT_SPACE_DATA= "src/test/resources/testData/customers/validDataAddCustomer/oneInputSpace.json";
     public static final String DEPOSIT_MINIMUM_AMOUNT_DATA = "src/test/resources/testData/transactions/validDataTransactions/depositMinimumAmount.json";
+    public static final String WITHDRAW_MAXIMUM_AMOUNT_DATA = "src/test/resources/testData/transactions/validDataTransactions/withdrawMaximumAmount.json";
     public static final String OPEN_DOLLAR_ACCOUNT_DATA = "src/test/resources/testData/accounts/validDataOpenAccount/openDollarAccount.json";
     public static final String OPEN_POUND_ACCOUNT_DATA = "src/test/resources/testData/accounts/validDataOpenAccount/openPoundAccount.json";
     public static final String OPEN_RUPEE_ACCOUNT_DATA = "src/test/resources/testData/accounts/validDataOpenAccount/openRupeeAccount.json";

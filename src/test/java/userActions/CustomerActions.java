@@ -1,4 +1,4 @@
-package actions;
+package userActions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
@@ -7,7 +7,6 @@ import extentUtility.ExtentUtility;
 import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import pageObjects.PageType;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.TransactionsPage;
@@ -45,45 +44,36 @@ public class CustomerActions {
 
         navigateToPage(PageType.DEPOSIT);
         customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
-        customerAccountFacade.submitDeposit(transaction.getAmount());
+        customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
         if (transaction.getAmount() != null) {
             customer.getAccounts().get(0).getTransactions().add(transaction);
             customer.getAccounts().get(0).addToBalance(transaction.getAmount());
         }
+
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void makeTransaction(Accounts account, Transactions transactionTestData) {
+    public void withdrawMoney(Customers customer, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
-        account.setBalance(customerAccountFacade.getAccountInfo().get(1));
 
-        customerAccountFacade.enterAmount(transactionTestData.getAmount(), transactionTestData.getType());
-//        customerAccountFacade.submitTransaction(transactionTestData.getAmount(),transactionTestData.getType(), account.getBalance());
+        navigateToPage(PageType.WITHDRAW);
+        customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
+        customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
-        if((!transactionTestData.getType().equals("Debit")) && (Integer.parseInt(transactionTestData.getAmount()) > Integer.parseInt(account.getBalance()))) {
-            Transactions newTransaction = new Transactions();
-            newTransaction.setDateAndTime();
-            newTransaction.setType(transactionTestData.getType());
-            newTransaction.setTime(transactionTestData.getTime());
-            newTransaction.setAmount(transactionTestData.getAmount());
+        if ((transaction.getAmount() != null) && ((Integer.parseInt(transaction.getAmount()) >= (Integer.parseInt(transaction.getAmount()))))) {
+            customer.getAccounts().get(0).getTransactions().add(transaction);
+            customer.getAccounts().get(0).subtractFromBalance(transaction.getAmount());
+        }
 
-            account.getTransactions().add(newTransaction);
-
-            if(newTransaction.getType().equals("Credit")) account.addToBalance(newTransaction.getAmount());
-            else account.subtractFromBalance(newTransaction.getAmount());
-
-            Assert.assertEquals(customerAccountFacade.getAccountInfo().get(1), account.getBalance());
-
-            if(newTransaction.getType().equals("Credit")) ExtentUtility.addTestLog(StepType.INFO_STEP, "Deposit transaction was made");
-            else ExtentUtility.addTestLog(StepType.INFO_STEP, "Withdraw transaction was made");
-
-            LoggerUtility.info("The balance was properly updated.");
-
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
