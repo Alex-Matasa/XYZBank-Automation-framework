@@ -1,4 +1,4 @@
-package actions;
+package userActions;
 
 import dataObjects.Customers;
 import pageObjects.locators.CustomerAccountFacadeLocators;

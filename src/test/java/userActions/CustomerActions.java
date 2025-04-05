@@ -1,4 +1,4 @@
-package actions;
+package userActions;
 
 import dataObjects.Accounts;
 import dataObjects.Customers;
