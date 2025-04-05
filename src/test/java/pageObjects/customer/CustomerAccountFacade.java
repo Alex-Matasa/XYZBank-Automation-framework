@@ -53,6 +53,8 @@ public class CustomerAccountFacade extends BasePage {
             else webElementsMethods.sendKeys(WithdrawLocators.amountToBeWithdrawn, amount);
             LoggerUtility.info("The amount was entered");
         }
+
+        else LoggerUtility.info(("The amount field was left empty"));
     }
 
     public boolean validateNoAccountCustomerMessage() {

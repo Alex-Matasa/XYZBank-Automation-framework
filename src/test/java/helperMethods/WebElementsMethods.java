@@ -1,11 +1,11 @@
 package helperMethods;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,6 +33,7 @@ public class WebElementsMethods {
     }
 
     public List<String> extractDataAsStringList(By locator) {
+
         List <WebElement> webElementList = driver.findElements(locator);
 
         return webElementList.stream()
@@ -55,5 +56,16 @@ public class WebElementsMethods {
     public String getTextFromElement(By locator) {
         WebElement element = driver.findElement(locator);
         return  element.getText();
+    }
+
+    public void waitWhileVisible(WebDriver driver, By locator) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        wait.until(driver1 -> {
+            try {
+                return !driver1.findElement(locator).isDisplayed();
+            } catch (NoSuchElementException e) {
+                return true; // Treat "not found" as "not visible"
+            }
+        });
     }
 }

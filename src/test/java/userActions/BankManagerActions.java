@@ -44,7 +44,7 @@ public class BankManagerActions {
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Filled form and submitted");
 
         if (ActualMessages.getActualMessage().contains("id")) {
-            customer.setCustomerId(ActualMessages.getActualMessage().substring("id:".length()).trim());
+            customer.setCustomerId(ActualMessages.getActualMessage().split(":")[1].trim());
             customer.setFullName();
         }
     }

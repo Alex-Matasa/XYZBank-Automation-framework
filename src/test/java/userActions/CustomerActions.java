@@ -47,8 +47,8 @@ public class CustomerActions {
         customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
         if (transaction.getAmount() != null) {
-            customer.getAccounts().get(0).getTransactions().add(transaction);
             customer.getAccounts().get(0).addToBalance(transaction.getAmount());
+            customer.getAccounts().get(0).getTransactions().add(transaction);
         }
 
         try {
@@ -65,9 +65,11 @@ public class CustomerActions {
         customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
         customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
-        if ((transaction.getAmount() != null) && ((Integer.parseInt(transaction.getAmount()) >= (Integer.parseInt(transaction.getAmount()))))) {
-            customer.getAccounts().get(0).getTransactions().add(transaction);
+        boolean isInvalid = transaction.getAmount() == null || Integer.parseInt(transaction.getAmount()) > Integer.parseInt(customer.getAccounts().get(0).getBalance());
+
+        if (! isInvalid) {
             customer.getAccounts().get(0).subtractFromBalance(transaction.getAmount());
+            customer.getAccounts().get(0).getTransactions().add(transaction);
         }
 
         try {
@@ -78,6 +80,7 @@ public class CustomerActions {
     }
 
     public boolean validateAccountInfo(Accounts account) {
+
         List<String> expectedAccountInfo = List.of(account.getAccountId(), account.getBalance(), account.getCurrency());
         customerAccountFacade = new CustomerAccountFacade(driver);
 
