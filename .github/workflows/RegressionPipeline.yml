@@ -25,7 +25,7 @@ jobs:
         run: mvn clean install -Dthreads=${{ github.event.inputs.workers }} -Dgroups=regression
       - name: Publish suite results
         if: always()
-        uses: userActions/upload-artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: Suite Report
           path: |

@@ -1,7 +1,7 @@
 package tests.customers.valid;
 
-import userActions.BankManagerActions;
-import userActions.LoginActions;
+import actions.BankManagerActions;
+import actions.LoginActions;
 import dataObjects.Customers;
 import dataObjects.DataModel;
 import dataObjects.ResourcePath;

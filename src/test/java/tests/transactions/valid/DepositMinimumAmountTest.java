@@ -1,8 +1,8 @@
 package tests.transactions.valid;
 
-import userActions.BankManagerActions;
-import userActions.CustomerActions;
-import userActions.LoginActions;
+import actions.BankManagerActions;
+import actions.CustomerActions;
+import actions.LoginActions;
 import dataObjects.*;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;

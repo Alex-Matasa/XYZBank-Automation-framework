@@ -1,7 +1,7 @@
 package tests.accounts.invalid;
 
-import userActions.BankManagerActions;
-import userActions.LoginActions;
+import actions.BankManagerActions;
+import actions.LoginActions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.DataModel;

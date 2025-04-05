@@ -1,8 +1,8 @@
 package tests.accounts.valid;
 
-import userActions.BankManagerActions;
-import userActions.CustomerActions;
-import userActions.LoginActions;
+import actions.BankManagerActions;
+import actions.CustomerActions;
+import actions.LoginActions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
 import dataObjects.DataModel;
