@@ -27,7 +27,7 @@ public class DepositMinimumAmountTest extends Hooks {
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
 
         TestPreconditions.forMakingATransaction(loginActions, bankManagerActions, customer, account);
-        customerActions.depositMoney(customer, transaction);
+        customerActions.depositMoney(customer.getAccounts().get(0), transaction);
         Assert.assertTrue(ValidationUtils.alertMessageEqualsText(ExpectedMessages.DEPOSIT_SUCCESSFUL_MESSAGE));
         Assert.assertTrue(customerActions.validateAccountInfo(customer.getAccounts().get(0)));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Deposit successful");

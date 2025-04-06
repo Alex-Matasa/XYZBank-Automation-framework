@@ -28,8 +28,8 @@ public class WithdrawMaximumAmountTest extends Hooks {
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
 
         TestPreconditions.forMakingATransaction(loginActions, bankManagerActions, customer, account);
-        customerActions.depositMoney(customer, transaction1);
-        customerActions.withdrawMoney(customer,transaction2);
+        customerActions.depositMoney(customer.getAccounts().get(0), transaction1);
+        customerActions.withdrawMoney(customer.getAccounts().get(0), transaction2);
         Assert.assertTrue(ValidationUtils.alertMessageEqualsText(ExpectedMessages.WITHDRAW_SUCCESSFUL_MESSAGE));
         Assert.assertTrue(customerActions.validateAccountInfo(customer.getAccounts().get(0)));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Withdraw successful");

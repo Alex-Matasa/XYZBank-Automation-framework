@@ -1,0 +1,27 @@
+{
+  "customers": [
+    {
+      "firstName": "John",
+      "lastName": "Smith",
+      "postCode": "30050"
+    }
+  ],
+  "accounts": [
+    {
+      "currency": "Dollar"
+    },
+    {
+      "currency": "Pound"
+    }
+  ],
+  "transactions": [
+    {
+      "amount": "100",
+      "type": "Credit"
+    },
+    {
+      "amount": "50",
+      "type": "Debit"
+    }
+  ]
+}

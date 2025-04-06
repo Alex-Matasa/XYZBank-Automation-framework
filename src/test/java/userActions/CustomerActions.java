@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import pageObjects.PageType;
 import pageObjects.customer.CustomerAccountFacade;
 import pageObjects.customer.TransactionsPage;
+import validation.ValidationUtils;
+
 import java.util.List;
 
 
@@ -39,7 +41,7 @@ public class CustomerActions {
         customerAccountFacade.selectAccountId(account.getAccountId());
     }
 
-    public void depositMoney(Customers customer, Transactions transaction) {
+    public void depositMoney(Accounts account, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
 
         navigateToPage(PageType.DEPOSIT);
@@ -47,8 +49,9 @@ public class CustomerActions {
         customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
         if (transaction.getAmount() != null) {
-            customer.getAccounts().get(0).addToBalance(transaction.getAmount());
-            customer.getAccounts().get(0).getTransactions().add(transaction);
+            account.addToBalance(transaction.getAmount());
+            transaction.setDateAndTime();
+            account.getTransactions().add(transaction);
         }
 
         try {
@@ -58,18 +61,19 @@ public class CustomerActions {
         }
     }
 
-    public void withdrawMoney(Customers customer, Transactions transaction) {
+    public void withdrawMoney(Accounts account, Transactions transaction) {
         customerAccountFacade = new CustomerAccountFacade(driver);
 
         navigateToPage(PageType.WITHDRAW);
         customerAccountFacade.enterAmount(transaction.getAmount(), transaction.getType());
         customerAccountFacade.submitTransaction(transaction.getType(), transaction.getAmount());
 
-        boolean isInvalid = transaction.getAmount() == null || Integer.parseInt(transaction.getAmount()) > Integer.parseInt(customer.getAccounts().get(0).getBalance());
+        boolean isInvalid = transaction.getAmount() == null || Integer.parseInt(transaction.getAmount()) > Integer.parseInt(account.getBalance());
 
         if (! isInvalid) {
-            customer.getAccounts().get(0).subtractFromBalance(transaction.getAmount());
-            customer.getAccounts().get(0).getTransactions().add(transaction);
+            account.subtractFromBalance(transaction.getAmount());
+            transaction.setDateAndTime();
+            account.getTransactions().add(transaction);
         }
 
         try {
@@ -92,21 +96,26 @@ public class CustomerActions {
 
     public boolean validateTransactionsHistory(Accounts account) {
         transactionsPage = new TransactionsPage(driver);
-        List<String> tableTransactions = transactionsPage.getTransactionsHistory();
-        List<String> accountTransactions = account.getTransactions().stream()
+        customerAccountFacade = new CustomerAccountFacade(driver);
+
+        customerAccountFacade.navigateToPage(PageType.TRANSACTIONS);
+        List<String> actualTransactions = transactionsPage.getTransactionsHistory();
+        List<String> expectedTransactions = account.getTransactions().stream()
                 .map(transaction -> transaction.getTime() + " " + transaction.getAmount() + " " + transaction.getType())
                 .toList();
 
         boolean isValid = true;
 
-        for (String accountTransaction : accountTransactions) {
-            if (!tableTransactions.contains(accountTransaction)) {
+        for (String transaction : expectedTransactions) {
+            if (!actualTransactions.equals(expectedTransactions)) {
                 isValid = false;
                 break;
             }
         }
 
         if(isValid) LoggerUtility.info("All transaction are displayed in the table");
+
+        transactionsPage.clickOnBackButton();
 
         return isValid;
     }

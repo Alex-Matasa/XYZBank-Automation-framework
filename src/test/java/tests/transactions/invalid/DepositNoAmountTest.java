@@ -27,7 +27,7 @@ public class DepositNoAmountTest extends Hooks {
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
 
         TestPreconditions.forMakingATransaction(loginActions, bankManagerActions, customer, account);
-        customerActions.depositMoney(customer, transaction);
+        customerActions.depositMoney(customer.getAccounts().get(0), transaction);
         Assert.assertTrue(ValidationUtils.alertMessageEqualsText(ExpectedMessages.FIELD_REQUIRED_MESSAGE));
         Assert.assertTrue(customerActions.validateAccountInfo(customer.getAccounts().get(0)));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "The account's balance is unchanged and a warning message pops-up");
