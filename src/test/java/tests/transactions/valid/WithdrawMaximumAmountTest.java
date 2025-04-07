@@ -16,7 +16,7 @@ import validation.ValidationUtils;
 
 public class WithdrawMaximumAmountTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "makeTransactions", "validMakeTransactions"})
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "transactions", "validTransactions"})
     public void withdrawMaximumAmount() {
         DataModel dataModel = new DataModel(ResourcePath.WITHDRAW_MAXIMUM_AMOUNT_DATA);
         Customers customer = dataModel.customers.get(0);

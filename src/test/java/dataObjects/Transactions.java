@@ -11,11 +11,12 @@ public class Transactions {
     private String type;
     private String amount;
     private String time;
+    private LocalDateTime dateTime;
+
 
     public void setDateAndTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a");
-        LocalDateTime timestamp = LocalDateTime.now();
-        this.time = timestamp.format(formatter);
+        this.dateTime = LocalDateTime.now();
+        this.time = dateTime.format(DateTimeFormatter.ofPattern("MMM d, yyyy h:mm:ss a"));
     }
 
 }

@@ -16,7 +16,7 @@ import validation.ValidationUtils;
 
 public class DepositMinimumAmountTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "makeTransactions", "validMakeTransactions"})
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "transactions", "validTransactions"})
     public void depositMinimumAmount() {
         DataModel dataModel = new DataModel(ResourcePath.DEPOSIT_MINIMUM_AMOUNT_DATA);
         Customers customer = dataModel.customers.get(0);

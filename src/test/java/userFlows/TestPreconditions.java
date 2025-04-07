@@ -1,6 +1,8 @@
 package userFlows;
 
+import dataObjects.Transactions;
 import userActions.BankManagerActions;
+import userActions.CustomerActions;
 import userActions.LoginActions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
@@ -49,5 +51,14 @@ public class TestPreconditions {
         Flows.openAccount(loginActions, bankManagerActions, customer, account);
         loginActions.loginAsCustomer(customer);
     }
+
+    public static void forValidatingTransactionsTable(LoginActions loginActions, BankManagerActions bankManagerActions, Customers customer, CustomerActions customerActions, Accounts account, Transactions transaction1, Transactions transaction2) {
+        Flows.addCustomer(loginActions, bankManagerActions, customer);
+        Flows.openAccount(loginActions, bankManagerActions, customer, account);
+        loginActions.loginAsCustomer(customer);
+        customerActions.depositMoney(account, transaction1);
+        customerActions.withdrawMoney(account, transaction2);
+    }
+
 
 }

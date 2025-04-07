@@ -16,7 +16,7 @@ import validation.ValidationUtils;
 
 public class WithdrawNoAmountTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "makeTransactions", "invalidMakeTransactions"})
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "transactions", "invalidTransactions"})
     public void withdrawNoAmount() {
         DataModel dataModel = new DataModel(ResourcePath.WITHDRAW_NO_AMOUNT_DATA);
         Customers customer = dataModel.customers.get(0);

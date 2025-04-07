@@ -34,5 +34,6 @@ public class ResourcePath {
     public static final String LOGOUT_AS_CUSTOMER_DATA = "src/test/resources/testData/loginLogout/logoutAsCustomer.json";
     public static final String VALIDATE_TRANSACTION_HISTORY_DATA = "src/test/resources/testData/transactions/validDataTransactions/validateTransactionHistory.json";
     public static final String MAKE_TRANSACTIONS_FOR_ALL_ACCOUNTS_DATA = "src/test/resources/testData/transactions/validDataTransactions/makeTransactionsForAllAccounts.json";
+    public static final String SORT_TRANSACTION_BY_DATE_TIME_DATA = "src/test/resources/testData/transactions/validDataTransactions/sortTransactionsByDateTime.json";
 }
 

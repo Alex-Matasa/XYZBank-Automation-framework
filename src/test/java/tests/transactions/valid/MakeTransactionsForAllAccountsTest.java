@@ -18,7 +18,7 @@ import validation.ValidationUtils;
 
 public class MakeTransactionsForAllAccountsTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "makeTransactions", "validMakeTransactions"})
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "transactions", "validTransactions"})
     public void makeTransactionsForAllAccounts() {
         DataModel dataModel = new DataModel(ResourcePath.MAKE_TRANSACTIONS_FOR_ALL_ACCOUNTS_DATA);
         Customers customer = dataModel.customers.get(0);

@@ -1,6 +1,8 @@
 package userFlows;
 
+import dataObjects.Transactions;
 import userActions.BankManagerActions;
+import userActions.CustomerActions;
 import userActions.LoginActions;
 import dataObjects.Accounts;
 import dataObjects.Customers;
@@ -19,5 +21,4 @@ public class Flows {
         bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
         bankManagerActions.openAccount(customer, account);
     }
-
 }

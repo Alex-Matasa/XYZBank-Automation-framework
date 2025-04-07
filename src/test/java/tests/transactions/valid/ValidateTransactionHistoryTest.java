@@ -11,41 +11,31 @@ import suites.TestSuite;
 import userActions.BankManagerActions;
 import userActions.CustomerActions;
 import userActions.LoginActions;
+import userFlows.Flows;
 import userFlows.TestPreconditions;
 import validation.ExpectedMessages;
 import validation.ValidationUtils;
 
 public class ValidateTransactionHistoryTest extends Hooks {
 
-    @Test(groups = {TestSuite.REGRESSION_SUITE, "makeTransactions", "validMakeTransactions"})
+    @Test(groups = {TestSuite.REGRESSION_SUITE, "transactions", "validTransactions"})
     public void validateTransactionHistory() {
-        DataModel dataModel = new DataModel(ResourcePath.MAKE_TRANSACTIONS_FOR_ALL_ACCOUNTS_DATA);
+        DataModel dataModel = new DataModel(ResourcePath.VALIDATE_TRANSACTION_HISTORY_DATA);
         Customers customer = dataModel.customers.get(0);
+        Accounts account = dataModel.accounts.get(0);
         Transactions transaction1 = dataModel.transactions.get(0);
         Transactions transaction2 = dataModel.transactions.get(1);
         CustomerActions customerActions = new CustomerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
 
-        loginActions.loginAsBankManager();
-        bankManagerActions.navigateToPage(PageType.ADD_CUSTOMER);
-        bankManagerActions.addCustomer(customer);
-
-        bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
-        for (int i = 0; i < dataModel.accounts.size(); i++) {
-            Accounts account = dataModel.accounts.get(i);
-            bankManagerActions.openAccount(customer,account);
-        }
-
+        Flows.addCustomer(loginActions, bankManagerActions, customer);
+        Flows.openAccount(loginActions, bankManagerActions, customer, account);
         loginActions.loginAsCustomer(customer);
-
-        for (int i = 0; i < customer.getAccounts().size(); i++) {
-            customerActions.selectAnAccount(customer.getAccounts().get(i));
-            customerActions.depositMoney(customer.getAccounts().get(i), transaction1);
-            customerActions.withdrawMoney(customer.getAccounts().get(i), transaction2);
-            Assert.assertTrue(customerActions.validateTransactionsHistory(customer.getAccounts().get(i)));
-        }
-
-        ExtentUtility.addTestLog(StepType.PASS_STEP, "All the transactions are added into transactions history table");
+        customerActions.depositMoney(customer.getAccounts().get(0), transaction1);
+        customerActions.withdrawMoney(customer.getAccounts().get(0), transaction2);
+        customerActions.navigateToPage(PageType.TRANSACTIONS);
+        Assert.assertTrue(customerActions.validateTransactionsHistory(customer.getAccounts().get(0)));
+        ExtentUtility.addTestLog(StepType.PASS_STEP, "Transactions are displayed in the table");
     }
 }

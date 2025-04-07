@@ -17,6 +17,10 @@ public class TransactionsPage extends BasePage {
         webElementsMethods.clickOn(TransactionsLocators.backButton);
     }
 
+    public void clickOnDateFilter() {
+        webElementsMethods.clickOn(TransactionsLocators.dateFilter);
+    }
+
     public List <String> getTransactionsHistory() {
         return webElementsMethods.extractDataAsStringList(TransactionsLocators.transactionHistoryList);
     }
