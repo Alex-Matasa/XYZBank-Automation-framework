@@ -24,11 +24,11 @@ public class CustomersPage extends BasePage {
         ExtentUtility.addTestLog(StepType.INFO_STEP, "Clicked on Delete button on the first entry in the table");
     }
 
-    public void searchCustomer(String lastName) {
-        webElementsMethods.sendKeys(CustomersLocators.searchField, lastName);
-
-        LoggerUtility.info("Entered Last Name of the transactions");
+    public void searchCustomer(String string) {
+        webElementsMethods.sendKeys(CustomersLocators.searchField, string);
+        LoggerUtility.info("Clicked on search bar");
     }
+
 
     public List<String> getListOfCustomers() {
         List<String> originalList =  webElementsMethods.extractDataAsStringList(CustomersLocators.customersList);

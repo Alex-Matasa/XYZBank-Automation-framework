@@ -26,4 +26,13 @@ public class ValidationUtils {
         return false;
     }
 
+    public static boolean textContainsString(String stringToCheck, List<String> stringList) {
+        for (String actual : stringList) {
+            if (actual.contains(stringToCheck)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

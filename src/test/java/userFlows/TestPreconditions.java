@@ -30,8 +30,10 @@ public class TestPreconditions {
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
     }
 
-    public static void forSearchingCustomer(LoginActions loginActions, BankManagerActions bankManagerActions, Customers customer) {
+    public static void forSearchingCustomer(LoginActions loginActions, BankManagerActions bankManagerActions, Customers customer, Accounts account) {
         Flows.addCustomer(loginActions, bankManagerActions, customer);
+        bankManagerActions.navigateToPage(PageType.OPEN_ACCOUNT);
+        bankManagerActions.openAccount(customer, account);
         bankManagerActions.navigateToPage(PageType.CUSTOMERS);
     }
 
