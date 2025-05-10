@@ -95,8 +95,8 @@ public class BankManagerActions {
         return false;
     }
 
-    public boolean validateFilteredTableListSingleMatch(String textToCheck) {
-        return ValidationUtils.textContainsString(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == 1;
+    public boolean validateFilteredTable(String textToCheck, int numberOfMatches) {
+        return ValidationUtils.textContainsString(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
     }
 
     public boolean isAccountAddedToTheList(Customers customer) {
@@ -129,9 +129,10 @@ public class BankManagerActions {
         return true;
     }
 
-    public void searchForInfo(String infoToSearchFor) {
+    public void searchForACustomer(String infoToSearchFor) {
         customersPage = new CustomersPage(driver);
 
         customersPage.searchCustomer(infoToSearchFor);
+        LoggerUtility.info("Text was typed");
     }
 }
