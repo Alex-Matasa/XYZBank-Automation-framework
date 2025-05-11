@@ -95,8 +95,12 @@ public class BankManagerActions {
         return false;
     }
 
-    public boolean validateFilteredTable(String textToCheck, int numberOfMatches) {
+    public boolean validateFilteredTableSingleMatch(String textToCheck, int numberOfMatches) {
         return ValidationUtils.textContainsString(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
+    }
+
+    public boolean validateFilteredTableMultipleMatches(String textToCheck, int numberOfMatches) {
+        return ValidationUtils.allTheElementsContainText(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
     }
 
     public boolean isAccountAddedToTheList(Customers customer) {

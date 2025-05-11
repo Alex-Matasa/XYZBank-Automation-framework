@@ -18,7 +18,7 @@ public class SearchCustomerByLastNameSingeMatchTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "customers", "validSearchCustomer"})
     public void searchByLastNameSingleMatch() {
-        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_DATA);
+        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_SINGLE_MATCH_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
@@ -26,7 +26,7 @@ public class SearchCustomerByLastNameSingeMatchTest extends Hooks {
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
         bankManagerActions.searchForACustomer(customer.getLastName());
-        Assert.assertTrue(bankManagerActions.validateFilteredTable(customer.getLastName(), 1));
+        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getLastName(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

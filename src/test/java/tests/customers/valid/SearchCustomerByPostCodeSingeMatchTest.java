@@ -18,7 +18,7 @@ public class SearchCustomerByPostCodeSingeMatchTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "customers", "validSearchCustomer"})
     public void searchByPostCodeSingleMatch() {
-        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_DATA);
+        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_SINGLE_MATCH_DATA);
         Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
@@ -26,7 +26,7 @@ public class SearchCustomerByPostCodeSingeMatchTest extends Hooks {
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
         bankManagerActions.searchForACustomer(customer.getPostCode());
-        Assert.assertTrue(bankManagerActions.validateFilteredTable(customer.getPostCode(), 1));
+        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getPostCode(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

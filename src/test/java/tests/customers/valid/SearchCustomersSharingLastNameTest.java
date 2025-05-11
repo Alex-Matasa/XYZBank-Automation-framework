@@ -14,19 +14,21 @@ import userActions.BankManagerActions;
 import userActions.LoginActions;
 import userFlows.TestPreconditions;
 
-public class SearchCustomerByAccountNumberSingeMatchTest extends Hooks {
+public class SearchCustomersSharingLastNameTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "customers", "validSearchCustomer"})
-    public void searchByAccountNumberSingleMatch() {
-        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_SINGLE_MATCH_DATA);
-        Customers customer = dataModel.customers.get(0);
+    public void searchByLastNameMultipleMatches() {
+        DataModel dataModel = new DataModel(ResourcePath.SEARCH_CUSTOMERS_SHARING_LAST_NAME_DATA);
+        Customers customer1 = dataModel.customers.get(0);
+        Customers customer2 = dataModel.customers.get(1);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
-        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
-        bankManagerActions.searchForACustomer(customer.getAccounts().get(0).getAccountId());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getAccounts().get(0).getAccountId(), 1));
+        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer1, account);
+        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer2, account);
+        bankManagerActions.searchForACustomer(customer1.getLastName());
+        Assert.assertTrue(bankManagerActions.validateFilteredTableMultipleMatches(customer1.getLastName(), 2));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

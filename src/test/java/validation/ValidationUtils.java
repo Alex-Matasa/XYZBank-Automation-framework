@@ -35,4 +35,13 @@ public class ValidationUtils {
         return false;
     }
 
+    public static boolean allTheElementsContainText(String stringToCheck, List<String> stringList) {
+        for (String actual : stringList) {
+            if (!actual.contains(stringToCheck)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

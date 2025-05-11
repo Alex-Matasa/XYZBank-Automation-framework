@@ -35,6 +35,9 @@ public class ResourcePath {
     public static final String VALIDATE_TRANSACTION_HISTORY_DATA = "src/test/resources/testData/transactions/validDataTransactions/validateTransactionHistory.json";
     public static final String MAKE_TRANSACTIONS_FOR_ALL_ACCOUNTS_DATA = "src/test/resources/testData/transactions/validDataTransactions/makeTransactionsForAllAccounts.json";
     public static final String SORT_TRANSACTION_BY_DATE_TIME_DATA = "src/test/resources/testData/transactions/validDataTransactions/sortTransactionsByDateTime.json";
-    public static final String SEARCH_FOR_A_CUSTOMER_DATA = "src/test/resources/testData/customers/validDataSearchCustomer/validSearchCustomerData.json";
+    public static final String SEARCH_FOR_A_CUSTOMER_SINGLE_MATCH_DATA = "src/test/resources/testData/customers/validDataSearchCustomer/validSearchCustomerDataSingleMatch.json";
+    public static final String SEARCH_CUSTOMERS_SHARING_FIRST_NAME_DATA = "src/test/resources/testData/customers/validDataSearchCustomer/validSearchCustomersSharingFirstNameData.json";
+    public static final String SEARCH_CUSTOMERS_SHARING_LAST_NAME_DATA = "src/test/resources/testData/customers/validDataSearchCustomer/validSearchCustomersSharingLastNameData.json";
+    public static final String SEARCH_CUSTOMERS_SHARING_POST_CODE_DATA = "src/test/resources/testData/customers/validDataSearchCustomer/validSearchCustomersSharingPostCode.json";
 }
 
