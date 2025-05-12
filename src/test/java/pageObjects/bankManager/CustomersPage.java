@@ -37,4 +37,12 @@ public class CustomersPage extends BasePage {
                 .map(str -> str.replace("Delete", "").trim())  // Remove "Delete" and trim the string
                 .collect(Collectors.toList());
     }
+
+    public List<String> getListOfCustomersLowerCase() {
+        List<String> customers = getListOfCustomers();
+
+        return customers.stream()
+                .map(String::toLowerCase)
+                .collect(Collectors.toList());
+    }
 }

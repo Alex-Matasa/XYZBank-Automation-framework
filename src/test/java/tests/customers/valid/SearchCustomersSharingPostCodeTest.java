@@ -27,8 +27,8 @@ public class SearchCustomersSharingPostCodeTest extends Hooks {
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer1, account);
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer2, account);
-        bankManagerActions.searchForACustomer(customer1.getPostCode());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableMultipleMatches(customer1.getPostCode(), 2));
+        bankManagerActions.searchOrFilterCustomers(customer1.getPostCode());
+        Assert.assertTrue(bankManagerActions.validateSearchMultipleMatches(customer1.getPostCode(), 2));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

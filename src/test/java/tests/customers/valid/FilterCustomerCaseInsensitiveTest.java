@@ -14,21 +14,19 @@ import userActions.BankManagerActions;
 import userActions.LoginActions;
 import userFlows.TestPreconditions;
 
-public class SearchCustomersSharingFirstNameTest extends Hooks {
+public class FilterCustomerCaseInsensitiveTest extends Hooks {
 
     @Test(groups = {TestSuite.REGRESSION_SUITE, "customers", "validSearchCustomer"})
-    public void searchByFirstNameMultipleMatches() {
-        DataModel dataModel = new DataModel(ResourcePath.SEARCH_CUSTOMERS_SHARING_FIRST_NAME_DATA);
-        Customers customer1 = dataModel.customers.get(0);
-        Customers customer2 = dataModel.customers.get(1);
+    public void filterIsCaseInsensitive() {
+        DataModel dataModel = new DataModel(ResourcePath.SEARCH_FOR_A_CUSTOMER_SINGLE_MATCH_DATA);
+        Customers customer = dataModel.customers.get(0);
         Accounts account = dataModel.accounts.get(0);
         BankManagerActions bankManagerActions = new BankManagerActions(getDriver());
         LoginActions loginActions = new LoginActions(getDriver());
 
-        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer1, account);
-        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer2, account);
-        bankManagerActions.searchOrFilterCustomers(customer1.getFirstName());
-        Assert.assertTrue(bankManagerActions.validateSearchMultipleMatches(customer1.getFirstName(), 2));
+        TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
+        bankManagerActions.searchOrFilterCustomers(customer.getFirstName().toUpperCase());
+        Assert.assertTrue(bankManagerActions.validateSearchCustomerSingleMatch(customer.getFirstName(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

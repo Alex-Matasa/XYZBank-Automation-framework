@@ -25,8 +25,8 @@ public class SearchCustomerByAccountNumberSingeMatchTest extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
-        bankManagerActions.searchForACustomer(customer.getAccounts().get(0).getAccountId());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getAccounts().get(0).getAccountId(), 1));
+        bankManagerActions.searchOrFilterCustomers(customer.getAccounts().get(0).getAccountId());
+        Assert.assertTrue(bankManagerActions.validateSearchCustomerSingleMatch(customer.getAccounts().get(0).getAccountId(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

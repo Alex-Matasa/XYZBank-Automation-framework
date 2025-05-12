@@ -95,12 +95,16 @@ public class BankManagerActions {
         return false;
     }
 
-    public boolean validateFilteredTableSingleMatch(String textToCheck, int numberOfMatches) {
+    public boolean validateSearchCustomerSingleMatch(String textToCheck, int numberOfMatches) {
         return ValidationUtils.textContainsString(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
     }
 
-    public boolean validateFilteredTableMultipleMatches(String textToCheck, int numberOfMatches) {
+    public boolean validateSearchMultipleMatches(String textToCheck, int numberOfMatches) {
         return ValidationUtils.allTheElementsContainText(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
+    }
+
+    public boolean validateFilteredCustomers(String charsToCheck) {
+        return ValidationUtils.allTheElementsContainText(charsToCheck, customersPage.getListOfCustomersLowerCase());
     }
 
     public boolean isAccountAddedToTheList(Customers customer) {
@@ -133,10 +137,12 @@ public class BankManagerActions {
         return true;
     }
 
-    public void searchForACustomer(String infoToSearchFor) {
+    public void searchOrFilterCustomers(String infoToSearchFor) {
         customersPage = new CustomersPage(driver);
 
         customersPage.searchCustomer(infoToSearchFor);
         LoggerUtility.info("Text was typed");
     }
+
+
 }

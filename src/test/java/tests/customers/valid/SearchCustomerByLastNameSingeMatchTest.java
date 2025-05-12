@@ -25,8 +25,8 @@ public class SearchCustomerByLastNameSingeMatchTest extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
-        bankManagerActions.searchForACustomer(customer.getLastName());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getLastName(), 1));
+        bankManagerActions.searchOrFilterCustomers(customer.getLastName());
+        Assert.assertTrue(bankManagerActions.validateSearchCustomerSingleMatch(customer.getLastName(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

@@ -25,8 +25,8 @@ public class SearchCustomerByPostCodeSingeMatchTest extends Hooks {
         LoginActions loginActions = new LoginActions(getDriver());
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer, account);
-        bankManagerActions.searchForACustomer(customer.getPostCode());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableSingleMatch(customer.getPostCode(), 1));
+        bankManagerActions.searchOrFilterCustomers(customer.getPostCode());
+        Assert.assertTrue(bankManagerActions.validateSearchCustomerSingleMatch(customer.getPostCode(), 1));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }

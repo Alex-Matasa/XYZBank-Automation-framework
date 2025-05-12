@@ -27,8 +27,8 @@ public class SearchCustomersSharingLastNameTest extends Hooks {
 
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer1, account);
         TestPreconditions.forSearchingCustomer(loginActions, bankManagerActions, customer2, account);
-        bankManagerActions.searchForACustomer(customer1.getLastName());
-        Assert.assertTrue(bankManagerActions.validateFilteredTableMultipleMatches(customer1.getLastName(), 2));
+        bankManagerActions.searchOrFilterCustomers(customer1.getLastName());
+        Assert.assertTrue(bankManagerActions.validateSearchMultipleMatches(customer1.getLastName(), 2));
         ExtentUtility.addTestLog(StepType.PASS_STEP, "Table is filtered properly");
     }
 }
