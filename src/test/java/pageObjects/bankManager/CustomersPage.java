@@ -4,7 +4,6 @@ import extentUtility.ExtentUtility;
 import extentUtility.StepType;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import pageObjects.BasePage;
 import pageObjects.locators.CustomersLocators;
 
@@ -17,14 +16,25 @@ public class CustomersPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnDeleteButton() {
-        webElementsMethods.clickOn(CustomersLocators.firstDeleteButton);
-
-        LoggerUtility.info("Clicked on Delete button on the first entry");
-        ExtentUtility.addTestLog(StepType.INFO_STEP, "Clicked on Delete button on the first entry in the table");
+    public void clickOnFirstNameButton() {
+        webElementsMethods.clickOn(CustomersLocators.firstNameButton);
     }
 
-    public void searchCustomer(String string) {
+    public void clickOnLastNameButton() {
+        webElementsMethods.clickOn(CustomersLocators.lastNameButton);
+    }
+
+    public void clickOnPostCodeButton() {
+        webElementsMethods.clickOn(CustomersLocators.postCodeButton);
+    }
+
+    public void clickOnDeleteButton() {
+        webElementsMethods.clickOn(CustomersLocators.deleteButton);
+
+        LoggerUtility.info("Clicked on Delete button");
+    }
+
+    public void clickOnSearchButton(String string) {
         webElementsMethods.sendKeys(CustomersLocators.searchField, string);
         LoggerUtility.info("Clicked on search bar");
     }

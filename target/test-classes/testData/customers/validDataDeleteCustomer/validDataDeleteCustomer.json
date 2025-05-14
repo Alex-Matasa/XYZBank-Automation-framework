@@ -1,9 +1,14 @@
 {
   "customers": [
     {
-      "firstName": "Lucas",
-      "lastName": "Bennett",
-      "postCode": "75241"
+      "firstName": "John",
+      "lastName": "Smith",
+      "postCode": "30050"
+    }
+  ],
+  "accounts": [
+    {
+      "currency": "Dollar"
     }
   ]
 }

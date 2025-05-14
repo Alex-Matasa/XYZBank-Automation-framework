@@ -28,7 +28,7 @@ public class ResourcePath {
     public static final String OPEN_MULTIPLE_DIFFERENT_ACCOUNTS_DATA = "src/test/resources/testData/accounts/validDataOpenAccount/openMultipleDifferentAccounts.json";
     public static final String LEAVE_CUSTOMER_NAME_UNSELECTED_DATA = "src/test/resources/testData/accounts/invalidDataOpenAccount/leaveCustomerNameUnselected.json";
     public static final String LEAVE_CURRENCY_UNSELECTED_DATA = "src/test/resources/testData/accounts/invalidDataOpenAccount/leaveCurrencyUnselected.json";
-    public static final String VALID_DELETE_CUSTOMER_DATA = "src/test/resources/testData/customers/validDataDeleteCustomer/validDataDeleteCustomer.json";
+    public static final String DELETE_CUSTOMER_DATA = "src/test/resources/testData/customers/validDataDeleteCustomer/validDataDeleteCustomer.json";
     public static final String LOGIN_AS_CUSTOMER_NO_ACCOUNT_DATA = "src/test/resources/testData/loginLogout/loginAsCustomerNoAccount.json";
     public static final String LOGIN_AS_CUSTOMER_WITH_ACCOUNT_DATA = "src/test/resources/testData/loginLogout/loginAsCustomerWithAccounts.json";
     public static final String LOGOUT_AS_CUSTOMER_DATA = "src/test/resources/testData/loginLogout/logoutAsCustomer.json";

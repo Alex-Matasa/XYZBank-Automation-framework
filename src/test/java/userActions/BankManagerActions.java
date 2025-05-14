@@ -4,8 +4,10 @@ import dataObjects.Accounts;
 import dataObjects.Customers;
 import extentUtility.ExtentUtility;
 import extentUtility.StepType;
+import helperMethods.StringUtils;
 import loggerUtility.LoggerUtility;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pageObjects.bankManager.AddCustomerPage;
 import pageObjects.bankManager.BankManagerFacade;
 import pageObjects.bankManager.CustomersPage;
@@ -60,6 +62,38 @@ public class BankManagerActions {
             LoggerUtility.info("An id number was provided for the account");
             customer.getAccounts().add(account);
         } else LoggerUtility.info("NO id number was provided for the account");
+    }
+
+    public void sortByFirstName(boolean ascending) {
+        customersPage = new CustomersPage(driver);
+
+        if (ascending) {
+            customersPage.clickOnFirstNameButton();
+            customersPage.clickOnFirstNameButton();
+        } else customersPage.clickOnFirstNameButton();
+
+        LoggerUtility.info("Clicked on First Name button");
+    }
+
+    public void sortByLastName(boolean ascending) {
+        customersPage = new CustomersPage(driver);
+        if (ascending) {
+            customersPage.clickOnLastNameButton();
+            customersPage.clickOnLastNameButton();
+        } else customersPage.clickOnLastNameButton();
+
+        LoggerUtility.info("Clicked on Last Name button");
+    }
+
+    public void sortByPostCode(boolean ascending) {
+        customersPage = new CustomersPage(driver);
+        if (ascending) {
+            customersPage.clickOnPostCodeButton();
+            customersPage.clickOnPostCodeButton();
+
+        } else customersPage.clickOnPostCodeButton();
+
+        LoggerUtility.info("Clicked on Post Code button");
     }
 
     public boolean isCustomerInTheTable(Customers customer) {
@@ -140,9 +174,32 @@ public class BankManagerActions {
     public void searchOrFilterCustomers(String infoToSearchFor) {
         customersPage = new CustomersPage(driver);
 
-        customersPage.searchCustomer(infoToSearchFor);
+        customersPage.clickOnSearchButton(infoToSearchFor);
         LoggerUtility.info("Text was typed");
     }
 
+    public boolean validateSortedByFirstName(boolean ascending) {
+        List<String> sortedList = StringUtils.extractSublist(customersPage.getListOfCustomers(), 0);
+        return ValidationUtils.listIsSorted(sortedList, ascending);
+    }
 
+    public boolean validateSortedByLastName(boolean ascending) {
+        List<String> sortedList = StringUtils.extractSublist(customersPage.getListOfCustomers(), 1);
+        return ValidationUtils.listIsSorted(sortedList, ascending);
+    }
+
+    public boolean validateSortedByPostCode(boolean ascending) {
+        List<String> sortedList = StringUtils.extractSublist(customersPage.getListOfCustomers(), 2);
+        return ValidationUtils.listIsSorted(sortedList, ascending);
+    }
+
+    public void deleteCustomer(Customers customer) {
+        customersPage = new CustomersPage(driver);
+
+        String expectedCustomer = String.join(" ", customer.getFirstName(), customer.getLastName(), customer.getPostCode(), customer.getAccounts().get(0).getAccountId());
+
+        Assert.assertTrue(ValidationUtils.isStringInList(expectedCustomer, customersPage.getListOfCustomers()));
+        customersPage.clickOnDeleteButton();
+    }
 }
+

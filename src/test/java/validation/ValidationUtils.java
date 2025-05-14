@@ -44,4 +44,14 @@ public class ValidationUtils {
         return true;
     }
 
+    public static boolean listIsSorted(List<String> list, boolean ascending) {
+        for (int i = 0; i < list.size() - 1; i++) {
+            int comparison = list.get(i).compareToIgnoreCase(list.get(i + 1));
+            if (ascending && comparison > 0 || !ascending && comparison < 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
 }
