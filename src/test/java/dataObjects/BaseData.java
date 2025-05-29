@@ -16,15 +16,4 @@ public class BaseData {
             e.printStackTrace();
         }
     }
-
-    protected void fromObjectToJson(String filePath) {
-        ObjectMapper objectMapper = new ObjectMapper();
-
-        try {
-            objectMapper.writeValue(new File(filePath), this);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 }

@@ -133,7 +133,7 @@ public class BankManagerActions {
         return ValidationUtils.textContainsString(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
     }
 
-    public boolean validateSearchMultipleMatches(String textToCheck, int numberOfMatches) {
+    public boolean validateSearchCustomerMultipleMatches(String textToCheck, int numberOfMatches) {
         return ValidationUtils.allTheElementsContainText(textToCheck, customersPage.getListOfCustomers()) && customersPage.getListOfCustomers().size() == numberOfMatches;
     }
 
